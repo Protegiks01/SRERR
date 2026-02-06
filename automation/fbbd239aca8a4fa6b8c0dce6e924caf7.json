@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: flat()] [Medium - Signature Forgery] What happens if flat() receives a slice with empty inner Vecs? Does the flat_map handle this correctly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b13fad20-30d8-48c7-839d-3c732826057a?mode=deep",
+    "timestamp": "2026-02-06 21:26:27.511650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Can statements be queued with duplicate points but different scalars, and could this enable cancellation attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4f90ec10-41ed-4c45-9565-1aafa1301e06?mode=deep",
+    "timestamp": "2026-02-06 21:26:39.552793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] If all queued statements have been removed or filtered, does verify() still compute correctly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_82158b74-cc86-42a8-b87f-d0342b911307?mode=deep",
+    "timestamp": "2026-02-06 21:26:52.256167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Medium - DoS] What happens if slice.len() is 1 from the start at line 110? Does the while loop execute correctly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_346dae20-2c5b-466d-872d-fcc5b883c61a?mode=deep",
+    "timestamp": "2026-02-06 21:27:05.522878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Struct: BatchVerifier] [High - Consensus Bug] Is BatchVerifier Send + Sync? If shared across threads without proper synchronization, could race conditions cause verification inconsistencies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9514b0ea-b819-4695-865a-4f923044c0be?mode=deep",
+    "timestamp": "2026-02-06 21:27:19.501241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - Consensus Bug] Can concurrent queue() calls interleave in ways that break the deterministic ordering assumption for statement verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1226bf58-81ff-4269-a888-7c00bd8f56c1?mode=deep",
+    "timestamp": "2026-02-06 21:27:35.129429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Consensus Bug] If verify() is called while queue() is executing on another thread, could partial state cause incorrect verification results?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3a0e13ae-3e8c-4a55-8551-5db4c97c2801?mode=deep",
+    "timestamp": "2026-02-06 21:27:50.453956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Medium - DoS] Can methods be called in an unexpected order (e.g., verify() before queue()) that causes panics or undefined behavior?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0b7db4df-76c3-4aa4-b010-4de9c8005faa?mode=deep",
+    "timestamp": "2026-02-06 21:28:07.673061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] Can an attacker submit statements where G points are the identity element, making any scalar value trivially verify, and exploit random weighting to hide this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_776b839b-9e3c-4c77-b4c6-2f89643da912?mode=deep",
+    "timestamp": "2026-02-06 21:28:25.360955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] If G has a small cofactor, can an attacker craft points in the small subgroup that behave unexpectedly under batch verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_77e2a12f-a660-4d52-b1d3-466eb86ad6b8?mode=deep",
+    "timestamp": "2026-02-06 21:28:44.242729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] Does the multiexp at line 94 validate that all input points are on the curve, or could invalid curve points bypass verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_282c91c8-f1da-4bd2-9de6-1aaaefd54e85?mode=deep",
+    "timestamp": "2026-02-06 21:29:04.190009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Can scalar inversion or division be exploited if an attacker provides scalars that are field inverses of the random weights?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4682f60d-f2cf-445a-a382-f2f32755a7d6?mode=deep",
+    "timestamp": "2026-02-06 21:29:24.797491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: flat()] [Medium - Signature Forgery] If copied() at line 18 doesn't perform deep copies for complex point representations, could aliasing cause verification errors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_31745352-56e1-4e46-9f88-1946c0687138?mode=deep",
+    "timestamp": "2026-02-06 21:29:45.623343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Replay Attack] If BatchVerifier is reused across different sessions or contexts without proper clearing, can old statements be replayed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_043222d2-5e2f-4b90-bab0-6d9ce8aeb21d?mode=deep",
+    "timestamp": "2026-02-06 21:30:06.100928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Cross-Protocol Attack] If batch verification is used across multiple protocols without domain separation, can proofs from one protocol validate in another?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_104fab1f-bb1c-43f4-a4a0-b482a0715bcc?mode=deep",
+    "timestamp": "2026-02-06 21:30:26.866647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Critical - Consensus Bug] If blame results are used to penalize validators on-chain, can the non-determinism in blame_vartime() cause unfair slashing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5145f786-39e9-4d4f-8d81-e08eeac349e0?mode=deep",
+    "timestamp": "2026-02-06 21:30:47.429698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [High - DoS] Can an attacker deliberately trigger the worst-case performance of binary search in blame_vartime() to DoS the blame process?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b32883a7-131b-42e0-bcb5-e733d1e1a12d?mode=deep",
+    "timestamp": "2026-02-06 21:31:08.280424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - State Corruption] If RNG fails or throws an error during weight generation, is the BatchVerifier left in a valid state or corrupted?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a3dfa35b-470e-445e-822c-adde9a7281b0?mode=deep",
+    "timestamp": "2026-02-06 21:31:29.664740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] In FROST signature aggregation, can malicious participants exploit batch verification to make invalid partial signatures sum to a valid aggregate?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3a0af9da-ac42-44ec-9e6f-46bfdcfa5f61?mode=deep",
+    "timestamp": "2026-02-06 21:31:52.513426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Key Compromise] When batch-verifying FROST DKG commitments, can an attacker forge commitments that pass batch checks but reveal partial private keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e714a689-2de2-4176-abfe-d2977c74e2aa?mode=deep",
+    "timestamp": "2026-02-06 21:32:15.502028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [High - Protocol Break] If blame_vartime() is used to identify DKG cheaters, can strategic statement ordering allow attackers to avoid detection?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_46da6054-cf0f-400f-8a2e-c3176ae3260a?mode=deep",
+    "timestamp": "2026-02-06 21:32:39.489642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Nonce Reuse] Can batch verification of FROST nonce commitments allow nonce reuse if invalid commitments pass due to algebraic cancellation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6398d15d-6b28-48dd-b4d4-7ed7eb7e49b8?mode=deep",
+    "timestamp": "2026-02-06 21:33:03.366015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Binding Factor Forgery] When verifying FROST binding factors in batch, can malicious proofs bypass individual checks by exploiting the linear combination?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_11c0b6bc-db4d-4311-9197-3a3dbb8fa62e?mode=deep",
+    "timestamp": "2026-02-06 21:33:28.636736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - DoS] Can an attacker queue millions of statements to exhaust validator memory before verify() is called, preventing batch completion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cd34971b-82fa-442c-b2ca-de8ae8388633?mode=deep",
+    "timestamp": "2026-02-06 21:33:53.935715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Medium - DoS] Does the multiexp operation at line 94 have complexity bounds that prevent it from being used as a DoS vector with large batches?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6e3655e1-7b05-491e-bd0f-2a102837d569?mode=deep",
+    "timestamp": "2026-02-06 21:34:20.150999",
+    "report_generated": false
+  }
+]
