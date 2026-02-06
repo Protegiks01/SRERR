@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [High - DKG Randomness] If rng_seed() is used to generate DKG secret shares, and the label is not properly bound to the session and participant ID, can this enable share prediction attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b6f2068c-671e-402b-a83e-e8359ef5e61d?mode=deep",
+    "timestamp": "2026-02-06 20:39:55.347567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Medium - Preprocess Binding] In FROST preprocessing, if nonce pairs are generated using rng_seed() without unique per-preprocess labels, can this cause preprocess reuse?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_91fe3d81-d0ca-4a26-a35d-fb31b439c6ff?mode=deep",
+    "timestamp": "2026-02-06 20:40:07.631125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [High - Incomplete Zeroization] The Zeroize implementation updates with 255-byte words then calls black_box() on finalize() - can compiler optimizations still eliminate these writes, leaving sensitive transcript state in memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7a585725-5260-4db0-a795-e972bc55cb90?mode=deep",
+    "timestamp": "2026-02-06 20:40:21.139036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [High - Block Size Assumption] zeroize() assumes writing 2*block_size is sufficient to overwrite internal state - does this hold for all digest algorithms, or can some (e.g., tree hashes) retain state beyond this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dfb429a3-2606-438c-a288-722158c274a2?mode=deep",
+    "timestamp": "2026-02-06 20:40:34.206910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Challenge Leakage] The mark_read() function clones the digest and finalizes it - does this create an additional copy of the transcript state that isn't zeroized?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3e031681-ed12-4cef-972d-976ddab2f9bc?mode=deep",
+    "timestamp": "2026-02-06 20:40:48.071915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Clone State Retention] When challenge() clones self.0, if the Digest implementation allocates heap memory, is that memory properly zeroized when DigestTranscript is dropped?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3954bf10-ffa3-41e3-9901-64d75e8a534e?mode=deep",
+    "timestamp": "2026-02-06 20:41:03.078701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Word Size Assumption] The zeroize implementation uses WORD_SIZE = 4 bytes - on 64-bit systems with 64-bit internal digest state, does this leave gaps in the overwrite pattern?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_de056931-0c21-452e-bfa3-6474af871492?mode=deep",
+    "timestamp": "2026-02-06 20:41:19.396946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Low - Finalize Side Effects] The black_box(finalize()) call is meant to prevent optimization, but does finalize() have side effects that could interfere with secure erasure?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b1bd5c5e-60e7-422c-a9b8-55f6509e5557?mode=deep",
+    "timestamp": "2026-02-06 20:41:36.996983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: Transcript] [High - Clone Semantics] The Transcript trait requires Clone but doesn't specify whether clones should be independent - if transcript clones share internal state, can this cause challenge reuse?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cb42d151-bc88-4738-aa3b-efa936a8f10f?mode=deep",
+    "timestamp": "2026-02-06 20:41:55.236735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: Transcript] [Medium - Send Safety] The trait requires Send, but if the underlying Digest has thread-local state, can sending a transcript across threads cause non-deterministic challenge generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_89ea0415-97fe-426a-a061-22d516172fb1?mode=deep",
+    "timestamp": "2026-02-06 20:42:15.423349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Clone Timing] The challenge() function clones self.0 after appending the challenge label - if cloning is expensive and timing-dependent, can this create timing side channels?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_95bb9aa4-7b4d-463b-aafe-f7058987ebe3?mode=deep",
+    "timestamp": "2026-02-06 20:42:35.605204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Struct: DigestTranscript] [Low - Clone Cost] If DigestTranscript is cloned frequently in FROST protocols, and the underlying digest has O(n) clone cost for n bytes hashed, does this create a DoS vector?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0e4308bf-bdde-4496-8678-72c556ec52a1?mode=deep",
+    "timestamp": "2026-02-06 20:42:56.730957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [Critical - Deterministic Encoding] If the Digest::update() implementation is non-deterministic (e.g., due to internal buffering strategies), can validators produce different transcript states for identical inputs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f16c89ee-e0b9-4c81-b626-4398209d893f?mode=deep",
+    "timestamp": "2026-02-06 20:43:18.413677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Critical - Finalization Determinism] Does the Digest::finalize() guarantee bit-identical output across different CPU architectures, or can floating-point optimizations in some digest implementations cause consensus divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_df7f5a9f-4517-4c5f-b07f-772556e3ae53?mode=deep",
+    "timestamp": "2026-02-06 20:43:41.444286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: new()] [High - Static Lifetime Requirement] Labels and names require &'static [u8] - but if validators compile with different compiler settings affecting static data layout, can this cause consensus divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0a8f7ab6-f1d9-48b8-9f67-54441bafd593?mode=deep",
+    "timestamp": "2026-02-06 20:44:04.565969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [High - AsRef Polymorphism] The message parameter uses AsRef<[u8]> - if different types implementing AsRef produce different byte sequences in edge cases, can this break consensus?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0b011dba-2551-46fd-84fe-b2f59835c5cc?mode=deep",
+    "timestamp": "2026-02-06 20:44:29.176017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Update Ordering] The implementation updates with Continued/Challenged in specific order - if Digest::update() batches updates non-deterministically, can this cause divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_74fd1870-a276-4aff-8d72-7c57f0da99ee?mode=deep",
+    "timestamp": "2026-02-06 20:44:54.289716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: SecureDigest] [High - Insufficient Bounds] SecureDigest only requires >=256-bit output, not collision resistance or second-preimage resistance - can an attacker use a weak 256-bit hash to break transcript binding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e21517cb-41b5-4cb9-8dbd-4cfffb42858e?mode=deep",
+    "timestamp": "2026-02-06 20:45:19.578211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: Transcript::Challenge] [Medium - Challenge Type Safety] Challenge type only requires AsRef<[u8]> - if different digest outputs have different internal representations, can this cause type confusion in FROST protocols?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1af4ad79-8e31-4019-a968-cdd771590656?mode=deep",
+    "timestamp": "2026-02-06 20:45:45.376070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [Medium - Fixed Size Assumption] rng_seed() always returns [u8; 32] regardless of digest output size - if a digest produces exactly 32 bytes, does truncation introduce bias?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1e8ec6ec-fc69-4d59-ac6a-825c0de931a8?mode=deep",
+    "timestamp": "2026-02-06 20:46:12.095643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: SecureDigest] [Low - HashMarker Requirement] Why is HashMarker required? Does this provide any security guarantee, or is it just a marker trait that could be unsafely implemented?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e143c9b4-65ec-407a-a443-fac03137c27c?mode=deep",
+    "timestamp": "2026-02-06 20:46:39.240793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [High - Timing Channels] The append() function processes variable-length messages - can timing differences based on message length leak information about FROST secret shares during DKG?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1230b78c-7d4f-40a6-ad25-4674a69cf290?mode=deep",
+    "timestamp": "2026-02-06 20:47:07.412196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [High - Clone Timing Leak] The challenge() clones the digest state - if clone time depends on the amount of data hashed, can this leak information about transcript contents?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b2879402-1afd-4aa2-9e22-4a4a588a2173?mode=deep",
+    "timestamp": "2026-02-06 20:47:34.452969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [Medium - Cache Timing] The u64::to_le_bytes() conversion and subsequent update() calls - can cache timing differences leak message lengths?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f11d0a82-953f-40d0-ad50-3264a1d983c4?mode=deep",
+    "timestamp": "2026-02-06 20:48:03.111458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Zeroization Timing] The zeroize() implementation updates in a loop - if loop iterations are timing-observable, can this leak information about the digest's block size?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_be609577-91a9-49de-93da-b375a0103c1f?mode=deep",
+    "timestamp": "2026-02-06 20:48:29.104020",
+    "report_generated": false
+  }
+]
