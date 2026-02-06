@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: test_oversize_dst()] [DST Truncation - High] The test at lines 97-106 verifies DSTs >255 bytes are hashed. However, ExpandMsgXmd is called inside hash_to_F without size checks. If an attacker provides a 256-byte DST via external instruction metadata, does the expand_message() function hash it correctly, or could truncation cause nonce collisions across different validator sets?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3a61336-1a20-4bab-8c49-ef0740f9187b?mode=deep",
+    "timestamp": "2026-02-06 20:42:22.830656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: test_oversize_dst()] [Test Coverage Gap - Medium] The test hardcodes a 256-byte DST (line 101). What happens with DSTs of exactly 255 bytes (the threshold)? Could an off-by-one error in ExpandMsgXmd cause 255-byte DSTs to bypass hashing, while 256-byte DSTs are hashed, creating collision opportunities at the boundary?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5b49e984-43fe-4fa4-84f5-7090f95ef09d?mode=deep",
+    "timestamp": "2026-02-06 20:42:35.123956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: test_oversize_dst()] [Specification Deviation - Low] The test expects DSTs >255 to match the hashed version (line 105). If the IETF specification changes this threshold in later drafts, could Serai validators using different spec versions disagree on DST handling, forking the threshold signature protocol?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_78cf5209-7db3-4ef9-8ce8-797dff05338b?mode=deep",
+    "timestamp": "2026-02-06 20:42:48.359453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: test_secp256k1()] [Test Vector Weakness - High] The test at lines 123-138 uses a single FROST-specific vector. If this vector was accidentally generated with a flawed hash_to_F implementation, could the test be passing while the actual code has a bias or reduction bug, undetected until an attacker exploits it to forge signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c2d4e035-a841-4d63-83e0-9afd24102e6c?mode=deep",
+    "timestamp": "2026-02-06 20:43:01.592471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: test_p256()] [Test Vector Weakness - High] Similarly, P-256 has only one test vector (lines 153-168). If the k256 and p256 crate libraries swap their implementations (e.g., due to a dependency confusion attack), would the single test catch the swap, or could validators end up using the wrong curve for multisig wallet generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5bbc5970-6e41-4ce6-9080-c1aeab1835ef?mode=deep",
+    "timestamp": "2026-02-06 20:43:15.450789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: test_secp256k1()] [Missing Edge Cases - Medium] The test only checks hash_to_F with a 64-byte message (line 126-131). What if an attacker provides empty messages, single-byte messages, or messages with all 0xFF bytes? Could these edge cases trigger modular reduction bugs that produce zero scalars, breaking nonce generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00ca2b01-15d6-47e5-b324-4f3cc40b1393?mode=deep",
+    "timestamp": "2026-02-06 20:43:30.235199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Test Coverage] [Missing Negative Tests - Medium] Neither test verifies that invalid scalar representations are rejected. If Scalar::from_repr() accepts non-canonical encodings (e.g., values >= field order), could this enable malleability attacks where attackers provide multiple representations of the same scalar to confuse threshold signature aggregation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7d0ae208-d15c-430d-a08d-b01eedcf0242?mode=deep",
+    "timestamp": "2026-02-06 20:43:46.079674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Incomplete Zeroization - High] The modulus buffer at line 62 stores sensitive material (field order minus one) but is never explicitly zeroized. If validators run in multi-tenant environments with memory forensics, could leaked modulus bytes help attackers factor the field order or optimize brute-force attacks on threshold keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6abd155b-ace6-445b-87ea-93b32c5e439f?mode=deep",
+    "timestamp": "2026-02-06 20:44:03.262650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Zeroization Timing - Medium] wide.zeroize() and array.zeroize() are called at lines 88-89, but only AFTER from_repr() succeeds. If from_repr() panics on invalid input, could the unwrap() at line 85 skip zeroization, leaving sensitive bytes in the stack frame for potential side-channel extraction?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_09a5aff9-80bd-4d8d-91de-8cb5b23fb723?mode=deep",
+    "timestamp": "2026-02-06 20:44:21.116604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Trait: Zeroize] [Derive Correctness - Medium] Both Secp256k1 and P256 derive Zeroize (lines 111, 146). Since they are zero-sized types, does Zeroize::zeroize() become a no-op? If future refactoring adds cached fields, could developers assume zeroization is automatic, leaving secrets in memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_88e967a1-279e-4a26-b671-09ff07b04931?mode=deep",
+    "timestamp": "2026-02-06 20:44:40.416885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Unwrap Chain - High] The function has three unwrap() calls (lines 70, 76, 85). In a validator's critical path (e.g., signing a batch to release external funds), if any unwrap triggers a panic, does Serai's panic handler prevent the validator from rejoining the DKG set, effectively reducing t and potentially falling below the security threshold?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e6445d5d-4d40-4465-8f64-a737aebc2204?mode=deep",
+    "timestamp": "2026-02-06 20:45:00.196407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [NonZero Panic - Medium] `NonZero::new(modulus).unwrap()` at line 80 assumes the modulus is never zero. If the calculation at lines 62-70 somehow produces zero (e.g., via a compiler bug or memory corruption), would this panic during validator key generation, forcing a full validator set restart and delaying deposits?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_32d30e19-b620-4af2-98ec-a3147aaf43a6?mode=deep",
+    "timestamp": "2026-02-06 20:45:21.198288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Fill_bytes Error - Medium] ExpandMsgXmd's fill_bytes() at line 77 is assumed infallible. If the output buffer size (48) mismatches L or the expander fails, could this silently produce short outputs, causing the wide reduction to use uninitialized memory and generate biased scalars?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_87faccdf-3792-4c88-974d-825700c0d127?mode=deep",
+    "timestamp": "2026-02-06 20:45:42.750043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Reduction Correctness - Critical] The modular reduction `wide.rem(&NonZero::new(modulus).unwrap())` at line 80 assumes U384::rem implements correct modular arithmetic. If the elliptic_curve crate has a rem() implementation bug (e.g., off-by-one in division), could this produce scalars outside the field, causing FROST signatures to fail verification when validators try to spend external deposits?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f55d3109-042d-4c9f-a9a0-c9d9f1e26c86?mode=deep",
+    "timestamp": "2026-02-06 20:46:05.876936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [IETF Compliance - High] The comment at line 40 references draft-irtf-cfrg-hash-to-curve-16. If this draft has known errata or later RFCs fix security issues, is Serai's implementation frozen to a potentially vulnerable version? Could attackers exploit differences between Serai's hash_to_F and other implementations to create signature malleability?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ce05d38a-d49c-403f-92b3-4e4cf7ccb3f8?mode=deep",
+    "timestamp": "2026-02-06 20:46:29.522710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Uniform Distribution - High] The code aims for 2^-128 bias (line 49). Has this been formally verified for secp256k1 and P-256 field orders? If the actual bias is higher (e.g., due to the modulus calculation error), could a nation-state attacker pre-compute rainbow tables of biased nonces to compromise threshold signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5804d7dd-42bd-4a48-826d-c682e862bc13?mode=deep",
+    "timestamp": "2026-02-06 20:46:53.743634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Hash Function Collision - Medium] The function uses SHA-256 via ExpandMsgXmd (line 75). While SHA-256 is secure, if a collision were found (or quantum computers break it), could attackers find (dst, msg) pairs that hash to the same scalar, enabling replay attacks where the same nonce is used for different signing sessions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b63375d1-055f-42f6-a37a-4ca4d0411256?mode=deep",
+    "timestamp": "2026-02-06 20:47:17.837343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [to_bytes Canonicality - High] The code calls (F::ZERO - F::ONE).to_bytes() at line 65. If the Scalar::to_bytes() method does not return a canonical (minimal) representation of the field order minus one, could the modulus calculation be off, causing hash_to_F to produce scalars in the wrong range and breaking signature verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c1c6ff91-4a3e-4d1e-b89d-2f8775a3219e?mode=deep",
+    "timestamp": "2026-02-06 20:47:42.683654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [from_repr Validation - High] Scalar::from_repr() at line 85 is documented to enforce canonical encoding. However, if the k256 or p256 crates have bugs where non-canonical scalars are accepted, could attackers provide multiple encodings of the same scalar to confuse threshold signature aggregation, double-spending external funds?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_499cfa15-7f19-4a99-bebb-3f5a60388e18?mode=deep",
+    "timestamp": "2026-02-06 20:48:08.799497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Repr Size Assumption - Medium] The code assumes Scalar::Repr is exactly 32 bytes (line 64). If a future curve addition has a different repr size, or if k256/p256 change their repr format, could this cause silent buffer overflows when copying bytes, corrupting the stack and enabling RCE?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2d7590a8-b95e-409c-b6f4-187cd55a1608?mode=deep",
+    "timestamp": "2026-02-06 20:48:34.290412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Byte Order Consistency - Medium] The code uses big-endian for U384 (lines 70, 81) but relies on Scalar's to_bytes() for endianness (line 65). If k256 uses little-endian for Scalar serialization, could the modulus[16..] slice operation grab the wrong bytes, computing an incorrect modulus and breaking all FROST signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_23025833-4b66-4265-a05d-07e3ff3b8335?mode=deep",
+    "timestamp": "2026-02-06 20:48:59.220977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Variable-Time Modulus - Critical] The modular reduction at line 80 uses U384::rem(), which is typically implemented with variable-time division. During FROST nonce generation, could timing measurements of hash_to_F reveal bits of the message (which includes participant contributions), enabling an attacker to extract threshold key shares via network timing analysis?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0f03d95e-d818-4ac6-a71b-0fb9ba02f43f?mode=deep",
+    "timestamp": "2026-02-06 20:49:22.853615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Variable-Time from_repr - High] Scalar::from_repr() at line 85 may perform range checks with conditional branches. If the reduced bytes are close to the field modulus, could timing differences reveal information about intermediate nonce values, enabling a malicious validator to bias the nonce aggregation and produce weak signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eb556024-b626-4be2-bade-ff328a4088a4?mode=deep",
+    "timestamp": "2026-02-06 20:49:48.490795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Cache Timing - Medium] The function accesses modulus[16..] (line 65) and wide[16..] (line 84). If these slices cross cache line boundaries, could cache timing attacks on a shared CPU reveal which bytes of the scalar are non-zero, leaking nonce information to co-located attackers in cloud environments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cc550556-90f9-4864-863f-3d345695c0ad?mode=deep",
+    "timestamp": "2026-02-06 20:50:15.045392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Function: hash_to_F()] [Zeroization Timing - Low] wide.zeroize() and array.zeroize() (lines 88-89) may not be constant-time. If zeroization time varies based on the number of non-zero bytes, could power analysis on validator hardware (e.g., during a physical compromise) leak information about nonce values post-signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1cb5af3d-5940-4c65-8809-bee70e77b406?mode=deep",
+    "timestamp": "2026-02-06 20:50:43.016022",
+    "report_generated": false
+  }
+]
