@@ -1,0 +1,14 @@
+[
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [High - DoS] Can the binary search at lines 109-117 be forced into O(n*log(n)) time with carefully crafted invalid statements?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: flat()] [Critical - DoS] Can nested Vec allocations cause stack exhaustion if statement vectors are deeply nested (though type system prevents this)?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Medium - Resource Leak] If BatchVerifier is cloned multiple times, do all clones properly zeroize, or could this leak sensitive scalars?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Fund Loss] If batch verification is used for DEX swap signatures, can crafted invalid swaps pass verification and drain liquidity pools?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Mint/Burn Imbalance] Can batch verification of mint/burn proofs allow unbalanced operations where mints exceed burns due to weight cancellation?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Critical - Economic Attack] If blame_vartime() incorrectly identifies a valid swap as invalid, could this cause wrongful refunds and economic loss?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - AMM Invariant Break] Can batch verification of constant product (xy=k) proofs allow violation of the invariant through algebraic manipulation?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Solvency Risk] When verifying reserve proofs, can attackers exploit random weighting to make undercollateralized positions appear solvent?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Double-Spend] Can batch verification of Bitcoin transaction signatures allow double-spends if invalid signatures cancel out valid ones?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Finality Break] If used to verify Ethereum finality proofs in batch, can manipulated proofs pass verification and accept unfinalized blocks?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Critical - Fund Loss] When blaming invalid Monero output proofs, can incorrect attribution cause legitimate outputs to be rejected and funds lost?",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Instruction Forgery] Can batch verification of cross-chain instruction signatures allow forged instructions that violate network-specific limits (OP_RETURN 80 bytes)?"
+]

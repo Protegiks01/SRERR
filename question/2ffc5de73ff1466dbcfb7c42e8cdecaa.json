@@ -1,0 +1,11 @@
+[
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Optimization Correctness] Does the None-based bucket optimization at line 57 `vec![None; ...]` correctly represent identity elements, or can Some(identity) and None be confused? (Medium)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Optimization Correctness] Can the early skip at line 60 `if nibble != 0` cause incorrect results if the identity element should be explicitly accumulated in certain edge cases? (Low)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Optimization Correctness] Does the conditional intermediate_sum logic at lines 72-76 correctly handle the transition from None to Some, or can the first non-zero bucket be skipped? (Medium)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Invariant Violation] Does the function maintain the mathematical invariant that result = sum(scalar[i] * point[i]) exactly, or can rounding in group operations cause drift? (Low)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Invariant Violation] Can the vartime version violate the multiexp invariant in edge cases where None handling skips necessary accumulations? (Medium)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Documentation] The comment at line 8-9 references DOI: 10.1137/0209022, but does the implementation exactly follow the paper, or are there Serai-specific modifications that could introduce bugs? (Low)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Edge Case] If pairs contains duplicate points with different scalars, are they correctly accumulated in the same buckets, or can bucket indexing errors cause incorrect results? (Low)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Edge Case] When multiple pairs map to the same bucket at lines 61-65, does the Option handling correctly accumulate all contributions without overwriting? (Medium)",
+  "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Edge Case] If the scalar field size and group order don't match exactly, can scalar reductions cause the multiexp to produce results in the wrong subgroup? (Low)"
+]

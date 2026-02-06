@@ -1,0 +1,21 @@
+[
+  "[File: networks/bitcoin/src/crypto.rs] [Line 69] [Reduction - Medium] Scalar::reduce from U256 - does this handle the case where the hash output equals or exceeds the curve order correctly?",
+  "[File: networks/bitcoin/src/crypto.rs] [Line 72] [Constant Time - Critical] The conditional_select for negating c - is this actually constant-time when Choice is false, or can it leak through speculation?",
+  "[File: networks/bitcoin/src/crypto.rs] [Line 90] [State - Medium] FrostSchnorr::ietf() - does this properly initialize transcript state, or can stale state from previous sessions leak through?",
+  "[File: networks/bitcoin/src/crypto.rs] [Line 146] [Negation - Critical] The conditional negation of s based on needs_negation(&sig.R) - can this ever produce invalid signatures if the negation logic is wrong?",
+  "[File: networks/bitcoin/src/crypto.rs] [Line 148] [Array Slice - High] The [1..] slice assumes the signature is at least 65 bytes - what prevents shorter signatures from causing panics here?",
+  "[File: networks/bitcoin/src/crypto.rs] [Line 148] [Conversion - Medium] The try_into().unwrap() - can this ever fail if the FROST signature format changes or is malformed?",
+  "[File: networks/bitcoin/src/crypto.rs] [Consensus] [Share Aggregation - Critical] When aggregating signature shares from t-of-n validators, is there validation that exactly t shares are used, not t-1 or t+1?",
+  "[File: networks/bitcoin/src/crypto.rs] [Consensus] [Nonce Aggregation - High] Does nonce aggregation use the same participant set ordering across all validators to ensure consistent nonce sums?",
+  "[File: networks/bitcoin/src/crypto.rs] [Consensus] [Challenge Consistency - Critical] Can different validators compute different challenges due to floating-point errors or scalar reduction differences?",
+  "[File: networks/bitcoin/src/crypto.rs] [State Machine] [Signing Order - High] Must verify() be called after sign_share(), or can calling them out of order corrupt internal state?",
+  "[File: networks/bitcoin/src/crypto.rs] [State Machine] [Reuse Prevention - Critical] Can the same Schnorr instance be reused for multiple signing sessions, and if so, does this cause nonce or transcript reuse?",
+  "[File: networks/bitcoin/src/crypto.rs] [State Machine] [Abort Handling - Medium] If a signing session is aborted mid-way, are all nonces and state properly cleared to prevent leakage in the next session?",
+  "[File: networks/bitcoin/src/crypto.rs] [Network] [Share Transport - High] When signature shares are transmitted between validators, is there authentication to prevent MITM attacks that inject false shares?",
+  "[File: networks/bitcoin/src/crypto.rs] [Network] [Nonce Commitment - High] Are nonce commitments transmitted and verified before nonces are revealed to prevent adaptive chosen-nonce attacks?",
+  "[File: networks/bitcoin/src/crypto.rs] [Network] [Message Authentication - Medium] Does the protocol ensure that all signing messages are authenticated to prevent message injection or modification?",
+  "[File: networks/bitcoin/src/crypto.rs] [Integration] [Key Tweaking - High] The test file shows tweak_keys() being used - does key tweaking preserve the threshold signature security properties?",
+  "[File: networks/bitcoin/src/crypto.rs] [Integration] [Group Key Derivation - Critical] Is the group key used in verify() the same key used to derive Bitcoin addresses, or can they diverge causing unspendable funds?",
+  "[File: networks/bitcoin/src/crypto.rs] [Integration] [Message Hash - Medium] The test shows SHA256 hashing of messages - is this hash binding properly included in the BIP-340 challenge computation?",
+  "[File: networks/bitcoin\n\n### Citations\n\n**File:** networks/bitcoin/src/crypto.rs (L1-163)\n```rust\nuse subtle::{Choice, ConstantTimeEq, ConditionallySelectable};\n\nuse k256::{\n  elliptic_curve::sec1::{Tag, ToEncodedPoint},\n  ProjectivePoint,\n};\n\nuse bitcoin::key::XOnlyPublicKey;\n\n/// Get the x coordinate of a non-infinity point.\n///\n/// Panics on invalid input.\nfn x(key: &ProjectivePoint) -> [u8; 32] {\n  let encoded = key.to_encoded_point(true);\n  (*encoded.x().expect("
+]

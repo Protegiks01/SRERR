@@ -1,0 +1,5 @@
+[
+  "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_statements()] [Numerical Stability] Do the scalar field operations maintain numerical stability under extreme values, or could overflow cause incorrect results? (LOW)",
+  "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Quantum Resistance] Does Schnorr signature verification provide any post-quantum security, or will quantum computers enable trivial forgery? (LOW - long-term)",
+  "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Hardware Security Modules] Can the signing function integrate with HSMs for secure key storage, or does it require keys in memory? (LOW)"
+]

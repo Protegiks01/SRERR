@@ -1,0 +1,6 @@
+[
+  "[File: serai/crypto/multiexp/src/straus.rs] [Optimization] [Side-Channel] Could the compiler optimize the constant-time table lookup at line 43 into a branch-based lookup, breaking constant-time guarantees? (Critical)",
+  "[File: serai/crypto/multiexp/src/batch.rs] [Optimization] [Correctness] Could link-time optimization (LTO) inline and reorder operations in verify() in ways that break the intended cryptographic properties? (Medium)",
+  "[File: serai/crypto/multiexp/src/lib.rs] [Function: multiexp()] [Input Validation] Is there any validation that all points in pairs are non-identity, or could an all-identity input return identity and bypass security checks? (Medium)",
+  "[File: serai/crypto/multiexp/src/lib.rs] [Function: prep_bits()] [Input Validation] Does prep_bits validate that all scalars are in the correct range [0, field_modulus), or could out-of-range scalars cause incorrect groupings? (High)"
+]

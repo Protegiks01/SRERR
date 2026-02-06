@@ -1,0 +1,13 @@
+[
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Aggregate Signature] When computing aggregate BLS signatures, can multiexp errors allow signature forgery with partial validator set?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Scalar Inversion] If scalars represent field inverses, does straus() handle them correctly without overflow?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Medium - Generator Order] Does prep_tables() work correctly when pair.1 has small order (e.g., 2-torsion point)?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [Low - Result Ordering] Does the order of additions affect the final result due to floating-point-like precision issues?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Mixed Groups] Can pairs contain points from different groups, causing incorrect multiexp results?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Table Overflow] When computing tables[p][255] for window=8, can the accumulator overflow the group order?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Fund Loss] Can multiexp errors in threshold signature generation allow adversary to drain cross-chain assets from Serai multisig wallets?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Mint/Burn Imbalance] Can incorrect multiexp in balance proofs allow minting synthetic sriXYZ without corresponding deposits?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [High - Consensus Divergence] Can timing-dependent behavior cause different validators to compute different results, breaking consensus?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Rotation Attack] During validator set rotation, can multiexp bugs allow old validators to retain control of multisig funds?",
+  "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Privacy Break] Can timing leaks reveal which external chain addresses are being monitored by Serai processors?"
+]

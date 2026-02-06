@@ -1,0 +1,7 @@
+[
+  "[File: crypto/frost/src/lib.rs] [Function: validate_map()] [Critical - Post-Validation State] After validate_map returns Ok(()), are there additional checks performed before using the validated map, or could state changes between validation and use introduce TOCTOU vulnerabilities?",
+  "[File: crypto/frost/src/lib.rs] [Module: Re-export Safety] [High - Transitive Dependencies] Do the re-exported types from dkg (line 10) transitively expose any unsafe or unchecked operations that could be exploited through the FROST API?",
+  "[File: crypto/frost/src/lib.rs] [Error: InternalError String] [Medium - Static String Safety] Are all InternalError &'static str values at line 30 properly sanitized to not reveal sensitive implementation details or memory addresses?",
+  "[File: crypto/frost/src/lib.rs] [Function: validate_map()] [High - Single Point of Validation] Is validate_map the only validation point for participant sets, or could callers bypass it and directly access signing functions with unvalidated inputs?",
+  "[File: crypto/frost/src/lib.rs] [Integration: Cross-Module Invariants] [Critical - Invariant Preservation] Does lib.rs enforce invariants (e.g., threshold correctness, participant uniqueness) across module boundaries, or could submodules violate assumptions made in lib.rs?"
+]
