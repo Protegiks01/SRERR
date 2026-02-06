@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: read()] [Network-Specific Encoding] Do different external networks (Bitcoin, Monero, Ethereum) use different encodings for R and s that could cause deserialization failures or consensus splits? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8d902db4-ca2f-4eb0-b819-3083852c12b0?mode=deep",
+    "timestamp": "2026-02-06 19:32:58.516156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Instruction Binding] Does the challenge bind to the specific instruction type (mint/burn/swap), or can instruction replay attacks occur across different operation types? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1d83007e-5b63-4e74-8614-254335e88bdd?mode=deep",
+    "timestamp": "2026-02-06 19:33:10.751578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Chain Reorg] If an external chain reorgs, can signatures verified before the reorg be replayed to mint duplicate sriXYZ assets? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_558e9676-15bf-4f54-97ad-158673c275d2?mode=deep",
+    "timestamp": "2026-02-06 19:33:23.729539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Deterministic Verification] Is verify() deterministic across all validator nodes, or could non-deterministic behavior cause consensus splits during signature validation? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1e8f08b2-b78d-45e8-b939-e2f58f951637?mode=deep",
+    "timestamp": "2026-02-06 19:33:36.677900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: read()] [Parsing Divergence] Can different Rust compiler versions or platforms parse signatures differently, causing validator consensus failures? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d46b0120-2893-4757-9361-fcf11afbedd1?mode=deep",
+    "timestamp": "2026-02-06 19:33:50.474367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [RNG Determinism] If batch_verify() RNG produces different random weights on different validator nodes, will this cause consensus divergence in batch signature validation? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_07856dfd-0d08-4c31-ae4b-8a6b8f40cf8a?mode=deep",
+    "timestamp": "2026-02-06 19:34:05.535374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: serialize()] [Endianness] Does serialize() handle endianness consistently across different architectures, or could big-endian vs little-endian differences cause consensus splits? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_75f96872-62a7-47e7-b0ed-e5e5075edd02?mode=deep",
+    "timestamp": "2026-02-06 19:34:20.806771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Floating Point] Does the verification use any floating-point arithmetic that could differ across platforms, causing non-deterministic verification results? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c46111a2-dc8c-42c5-90c0-c058aa968369?mode=deep",
+    "timestamp": "2026-02-06 19:34:38.442253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Struct: SchnorrSignature] [Memory Layout] Does the PartialEq implementation perform constant-time comparison, or can timing differences leak signature equality information? (LOW)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2a0eb9d0-5917-4075-9fe5-cc5717a8afe6?mode=deep",
+    "timestamp": "2026-02-06 19:34:56.314310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: serialize()] [Memory Allocation] Can serialize() be called on crafted signatures to trigger excessive vector allocations, causing OOM DoS on validator nodes? (LOW)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2a6eee0b-abab-4003-9f87-67de56f1d30d?mode=deep",
+    "timestamp": "2026-02-06 19:35:15.506708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Struct: SchnorrSignature] [Zeroize] Does Zeroize correctly clear both R and s from memory, including any internal temporary values used during computation? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_36d14292-5be1-4736-8a3d-3e9b53c653d3?mode=deep",
+    "timestamp": "2026-02-06 19:35:35.479459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_statements()] [Array Size] Is the fixed-size array of 3 elements optimal for batch verification, or could larger batches with dynamic arrays enable DoS through memory exhaustion? (LOW)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_87c21b0e-0f05-4b95-abc5-837663f0015e?mode=deep",
+    "timestamp": "2026-02-06 19:35:56.507347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [multiexp_vartime] Does multiexp_vartime have runtime complexity protections, or can adversarial signature construction force O(n²) behavior for DoS? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a1cd6753-ff72-4c20-bf9d-729ba934c5dc?mode=deep",
+    "timestamp": "2026-02-06 19:36:18.515870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Field Order] Does the code correctly handle edge cases where scalars equal or exceed the field order, or could modular reduction issues enable signature forgery? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e7692bc8-647f-45f0-8606-1a69554cbd22?mode=deep",
+    "timestamp": "2026-02-06 19:36:41.131457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Group Order] If the Ciphersuite uses a group whose order is not prime, can cofactor issues enable signature forgery through small-order point attacks? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a298aebd-9733-43e6-abb5-4b76e2fb5e64?mode=deep",
+    "timestamp": "2026-02-06 19:37:04.768434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Scalar Addition] Is the scalar addition (challenge * private_key) + nonce protected against overflow, or could overflow cause s to wrap to small values? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1223c5f2-37c8-4fbd-8a1f-6a591cf18513?mode=deep",
+    "timestamp": "2026-02-06 19:37:28.374392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_statements()] [Scalar Negation] Does -self.s correctly compute the additive inverse in the scalar field, or could negation of edge values (0, order-1) produce incorrect results? (LOW)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_770d61e5-6537-47f1-915b-56990ff86add?mode=deep",
+    "timestamp": "2026-02-06 19:37:52.365276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Point Addition] Does the multiexp correctly handle point addition edge cases (doubling, identity addition), or could specific R + cA combinations cause verification errors? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c9fe485a-ce95-4043-bff2-329a570ed00d?mode=deep",
+    "timestamp": "2026-02-06 19:38:15.387891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Documentation Warning] The comment warns that challenges must be properly crafted - but is there runtime validation, or can callers trivially misuse the API to create forgeable signatures? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_577060ff-3180-4e35-92f8-d0972755c281?mode=deep",
+    "timestamp": "2026-02-06 19:38:39.853372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Documentation Warning] Similar challenge warning in verify() - but without enforcement, can integrating code make mistakes that enable cross-context forgery? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8dafbfa7-a72f-4e5a-8b77-bf79b0baf73a?mode=deep",
+    "timestamp": "2026-02-06 19:39:03.733752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [Documentation Warning] Does batch_verify() warn that all signatures must use the same domain separation, or could mixed-domain batches enable forgery? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ca7dea4b-af78-4588-a9b2-e67b37a0139c?mode=deep",
+    "timestamp": "2026-02-06 19:39:26.899884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Nonce Ownership] The clippy::needless_pass_by_value comment explains single-use - but is this enforced at the type level, or can callers clone and reuse nonces? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_144faea0-affc-4979-9e3b-9791e8ecb547?mode=deep",
+    "timestamp": "2026-02-06 19:39:52.194091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Zeroizing Type] Does the function accept Zeroizing<C::F> for nonce to ensure proper cleanup, or could non-zeroizing nonce types leak sensitive data? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_077eb499-47ab-4818-9d25-89487a937cfd?mode=deep",
+    "timestamp": "2026-02-06 19:40:16.028709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Module: aggregate] [Half-Aggregation] Does the half-aggregation scheme from eprint 2021/350 correctly prevent rogue-key attacks when used with Serai's threshold multisig? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cf2463b8-445e-449f-b098-f47743c5b09b?mode=deep",
+    "timestamp": "2026-02-06 19:40:40.608602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Module: aggregate] [Weight Function] Does the weight() function produce uniformly random weights, or can biased weights enable signature forgery through cancellation? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4b0f6ce6-49b8-4e58-853a-1af04bb3046a?mode=deep",
+    "timestamp": "2026-02-06 19:41:06.679996",
+    "report_generated": false
+  }
+]
