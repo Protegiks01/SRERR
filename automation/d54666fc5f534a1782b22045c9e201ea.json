@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Struct: Nonce] [Nonce Reuse - Critical] Does the Nonce struct provide any mechanism to prevent reuse of nonce pairs across different signing sessions, and could nonce reuse lead to private key extraction?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6be3d112-5b95-42b7-a060-975d42558e6e?mode=deep",
+    "timestamp": "2026-02-06 20:52:59.753859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Struct: Nonce] [Memory Safety - High] Are the two Zeroizing<C::F> scalars in the Nonce tuple properly zeroized on drop in all panic scenarios, or could unhandled panics leak nonce values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fa834194-6629-4d3e-9749-70224b8e6406?mode=deep",
+    "timestamp": "2026-02-06 20:53:11.909944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Struct: Nonce] [Clone Safety - High] Does cloning a Nonce create independent copies where modifications to one don't affect the other, and are both copies properly zeroized?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ba769639-71f5-4190-9a64-b34ecc1f8706?mode=deep",
+    "timestamp": "2026-02-06 20:53:24.982995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Entropy - Critical] Does C::random_nonce ensure cryptographically secure randomness, and could weak RNG lead to predictable nonces enabling signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c2ce2648-9288-4cf8-a1e9-223a76d31dbc?mode=deep",
+    "timestamp": "2026-02-06 20:53:38.206961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Nonce Reuse - Critical] Are the two calls to C::random_nonce guaranteed to produce different values, or could they theoretically return the same value compromising the binomial structure?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4db61001-a034-438f-81f8-af931ea64ad8?mode=deep",
+    "timestamp": "2026-02-06 20:53:52.546662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Secret Leakage - Critical] Does passing secret_share to C::random_nonce properly incorporate it without leaking information about the share through the nonce generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_697ef372-d8b1-4f34-ad6a-80152e6b84e9?mode=deep",
+    "timestamp": "2026-02-06 20:54:07.695016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Generator Validation - High] Is there validation that the generators slice is non-empty and contains valid curve points, or could invalid generators lead to weak commitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_581b0f21-797b-4b43-9389-57c57756e1c2?mode=deep",
+    "timestamp": "2026-02-06 20:54:23.888305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Generator Validation - High] Could an attacker supply the identity element as a generator, making commitments trivial and enabling forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6f96185b-1cfe-437e-98fc-597101681be6?mode=deep",
+    "timestamp": "2026-02-06 20:54:41.019196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Generator Validation - Medium] Are generators checked for small-order points that could weaken the discrete log problem?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4f56b84c-ad7a-4849-a605-58bee4d8098b?mode=deep",
+    "timestamp": "2026-02-06 20:54:59.442874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Timing Attack - Medium] Do the scalar multiplications in the loop execute in constant time, or could timing variations leak information about nonce values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_190937da-c2d0-4635-8c41-dadc8ff3f9be?mode=deep",
+    "timestamp": "2026-02-06 20:55:18.620106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Resource Exhaustion - Medium] Is there a limit on generators.len(), or could an attacker provide an extremely large slice causing memory exhaustion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eeb9cee7-5999-438a-9309-6509b76677e7?mode=deep",
+    "timestamp": "2026-02-06 20:55:38.988405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::new()] [Commitment Correctness - High] Are the commitments GeneratorCommitments([g * d, g * e]) correctly formed for the FROST binomial nonce structure?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_49c61cb5-6979-4451-9e39-3b86e2de565c?mode=deep",
+    "timestamp": "2026-02-06 20:56:00.036076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: GeneratorCommitments::read()] [Malformed Input - High] Does read() validate that the two curve points are valid group elements, or could malformed input cause consensus divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b8c104aa-bc0d-4905-8246-681bb36aa4cc?mode=deep",
+    "timestamp": "2026-02-06 20:56:22.184505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: GeneratorCommitments::read()] [Subgroup Check - High] Does C::read_G perform subgroup checks, or could an attacker provide points outside the prime-order subgroup?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_54eacac1-a4a0-466e-82a9-a60dcb92b23c?mode=deep",
+    "timestamp": "2026-02-06 20:56:46.195305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: GeneratorCommitments::read()] [Identity Element - Medium] Can read() accept the identity element for commitments, potentially enabling zero-nonce attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_145d7bb1-4295-4d86-8880-a2a1fe46aead?mode=deep",
+    "timestamp": "2026-02-06 20:57:09.868088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: GeneratorCommitments::read()] [IO Error Handling - Low] Are IO errors properly propagated, or could partial reads leave the struct in an inconsistent state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_11921a57-3c2f-4ed0-a75b-1297645b64fb?mode=deep",
+    "timestamp": "2026-02-06 20:57:34.779036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: GeneratorCommitments::write()] [Serialization - Medium] Does write() produce canonical encodings, or could multiple encodings of the same point lead to transcript divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e9c5094d-3afb-464c-9a1a-376421f6d1bf?mode=deep",
+    "timestamp": "2026-02-06 20:58:01.035787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: GeneratorCommitments::write()] [IO Error - Low] If write_all fails after writing the first point, could this lead to partial commitment data being transmitted?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ea927c0b-6030-485f-8ffd-4772ea1545e1?mode=deep",
+    "timestamp": "2026-02-06 20:58:28.799688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::read()] [Length Mismatch - High] Does read() verify that exactly generators.len() commitments are read, or could length mismatches cause panics or incorrect commitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_694c64b8-dd8f-4c33-97ce-4acd37600195?mode=deep",
+    "timestamp": "2026-02-06 20:58:54.627082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::read()] [Index Bounds - Medium] Could the iterator 0..generators.len() combined with GeneratorCommitments::read fail with inconsistent results if generators is modified during read?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_04ea32d4-8cf4-4564-a4a4-7d27e18450b2?mode=deep",
+    "timestamp": "2026-02-06 20:59:19.456147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::read()] [Empty Generators - Medium] What happens if generators is empty - does this create valid but meaningless NonceCommitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eeb1731f-f69c-4800-bc60-5fff0648421f?mode=deep",
+    "timestamp": "2026-02-06 20:59:45.012240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::write()] [Serialization Consistency - Medium] Could partial write failures create state where some generators are written but not others, causing deserialization mismatches?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_744c8f49-7c1f-4862-9acb-d92dd8bd997a?mode=deep",
+    "timestamp": "2026-02-06 21:00:09.790685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::transcript()] [Domain Separation - Critical] Is the domain_separate(b'nonce') sufficient to prevent cross-protocol attacks, or could nonces from different contexts be confused?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_527002db-a9af-4143-8e17-a6e80652343f?mode=deep",
+    "timestamp": "2026-02-06 21:00:34.244029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::transcript()] [Commitment Ordering - High] Does the transcript append commitments in a deterministic order, or could reordering lead to different binding factors for the same commitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7490dc46-90ba-4020-b3c6-d7dde160ba67?mode=deep",
+    "timestamp": "2026-02-06 21:01:00.000320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Function: NonceCommitments::transcript()] [Transcript Binding - Critical] Are both D and E commitments included in the transcript, or could an attacker substitute one while keeping the other?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7c100726-d4f8-4283-8078-56aadc4376ca?mode=deep",
+    "timestamp": "2026-02-06 21:01:26.479306",
+    "report_generated": false
+  }
+]
