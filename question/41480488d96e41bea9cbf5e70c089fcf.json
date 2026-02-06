@@ -1,4 +1,0 @@
-[
-  "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Feature Gates] [Feature Interaction - Medium] The file uses #![cfg_attr(not(feature = 'std'), no_std)] at line 2. If Serai validators compile with no_std but hash_to_F relies on std-only functionality (e.g., for heap allocations in ExpandMsgXmd), could this cause compile failures or silent behavior changes in embedded deployments?",
-  "[File: serai/crypto/ciphersuite/kp256/src/lib.rs] [Feature Gates] [Missing Feature - Low] The macro invocation uses feature literals 'secp256k1' and 'p256' (line 113, 148). If Cargo.toml doesn't declare these as optional features, could both curves always be compiled in, increasing binary size and attack surface even when only one curve is needed?"
-]
