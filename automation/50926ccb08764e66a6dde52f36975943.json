@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Function: Schnorr::verify_share()] [DoS - High] Can verify_share() be exploited to cause panics by providing a verification_share at the point at infinity or nonces that lead to point at infinity in the verification equation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a1ed9f5e-d654-4936-a3c2-724ed8d404e7?mode=deep",
+    "timestamp": "2026-02-06 19:45:14.154014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Function: Schnorr::verify_share()] [Threshold Bypass - Critical] If verify_share() passes for fewer than threshold-t participants, can the aggregated signature still be considered valid, allowing unauthorized transactions with insufficient signature shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_90c77752-3d7f-443c-9cd8-d66d6f63381f?mode=deep",
+    "timestamp": "2026-02-06 19:45:26.642433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Function: Schnorr::verify_share()] [Error Handling - High] The verify_share() function returns Result<Vec<(Scalar, ProjectivePoint)>, ()>. Does the empty () error provide enough information to distinguish between malicious vs. accidental verification failures for slashing purposes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_89578ac6-da14-465a-a450-fe9af092f112?mode=deep",
+    "timestamp": "2026-02-06 19:45:39.527271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Function: Schnorr::verify_share()] [Replay Attack - Medium] Can an attacker replay previously valid signature shares for a different signing session to bypass fresh share generation requirements?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3f834a59-ea7e-4d55-be4b-55d7561dee0a?mode=deep",
+    "timestamp": "2026-02-06 19:45:53.055243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [FROST Integration] [Key Generation - Critical] When threshold keys are generated for Bitcoin signing, does the system ensure that the group key is bound to the Bitcoin network context to prevent cross-chain signature replay attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6e3f981e-ac39-41ca-95da-70d5d9fb8da9?mode=deep",
+    "timestamp": "2026-02-06 19:46:07.364225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [FROST Integration] [Rogue Key Attack - Critical] Does the FROST implementation include proof-of-knowledge checks during DKG to prevent rogue-key attacks where malicious participants manipulate the aggregate public key?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c4de45be-4b9c-407a-85d4-8d51e0d5d594?mode=deep",
+    "timestamp": "2026-02-06 19:46:22.657322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [FROST Integration] [Preprocessing - High] Are FROST preprocessing nonces used exactly once and then securely erased, or can preprocessing reuse lead to key extraction from multiple signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_816ed3c7-e9d5-4979-a9d4-18064dd93d52?mode=deep",
+    "timestamp": "2026-02-06 19:46:39.680316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [FROST Integration] [Participant Set - Medium] Does the signing protocol verify that exactly the expected set of t participants are contributing shares, preventing a malicious subset from signing unauthorized transactions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1b15e8e5-462f-4dd4-9b5f-04e8862943ef?mode=deep",
+    "timestamp": "2026-02-06 19:46:57.836515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [BIP-340] [Tagged Hash - High] Does the const_hash computation of TAG_HASH at compile time ensure the correct BIP-340 tag is used, or can runtime modifications corrupt the tag and break cross-validation with Bitcoin nodes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_64af73c4-553b-4892-b8fa-4988e6d3c0d0?mode=deep",
+    "timestamp": "2026-02-06 19:47:16.775732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [BIP-340] [X-only Keys - High] When converting to x-only public keys, does the system properly track and validate that all validators use the same even/odd Y-coordinate convention to avoid signature incompatibility?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9ab95344-1440-4755-8210-d4f27e206078?mode=deep",
+    "timestamp": "2026-02-06 19:47:36.974562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [BIP-340] [Challenge Binding - Critical] Is the BIP-340 challenge properly bound to the message, nonce, and public key to prevent Wagner's attack or other challenge manipulation attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dce3141c-60e0-4406-ab25-d95635bfdd0c?mode=deep",
+    "timestamp": "2026-02-06 19:47:56.996285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [BIP-340] [Signature Format - Medium] Does the 64-byte signature format (R_x || s) match Bitcoin's expectations exactly, or can byte ordering differences cause valid Serai signatures to be rejected by Bitcoin nodes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2dd8d0aa-c8d2-46b3-9c85-dd53f3d91cef?mode=deep",
+    "timestamp": "2026-02-06 19:48:18.870513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Side-Channel] [Conditional Selection - High] Are all conditional_select() operations truly constant-time at the assembly level, or can branch prediction or cache timing leak secret information during signature operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_750ea8d5-8898-420f-9827-2b2dede46db3?mode=deep",
+    "timestamp": "2026-02-06 19:48:41.579312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Side-Channel] [Scalar Negation - Medium] When negating the challenge scalar c or signature s, does the negation operation execute in constant time to prevent timing attacks from revealing the negation choice?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b8c379ee-cdbc-4fcc-98b4-af2ca5c7816a?mode=deep",
+    "timestamp": "2026-02-06 19:49:04.484345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Side-Channel] [Point Encoding - Medium] Does the to_encoded_point() operation leak information about the point's Y-coordinate through timing or power analysis during encoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_38b36889-b5c7-46cc-a48c-67c6958841b0?mode=deep",
+    "timestamp": "2026-02-06 19:49:28.955952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Side-Channel] [CT Equality - Low] Is the ct_eq() comparison for Tag::CompressedOddY resistant to all known timing side-channels including cache-timing and speculative execution attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3cd89a18-aaa7-4e66-8ebe-a4d27b56ff4e?mode=deep",
+    "timestamp": "2026-02-06 19:49:53.914229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Error Handling] [Panic Safety - Critical] Since x(), x_only(), and verify() can panic on invalid inputs, if these functions are called in a consensus-critical path, can panics cause permanent chain halts or validator set failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f6a13424-a359-4944-98dd-c5058ba0d711?mode=deep",
+    "timestamp": "2026-02-06 19:50:20.581694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Error Handling] [Unwrap Safety - High] The unwrap() calls in verify() for signature conversion assume infallibility. Can an attacker craft FROST signatures that are the wrong length or format to trigger these unwraps and panic?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_acc7079f-5117-48e7-9659-9e267314eae4?mode=deep",
+    "timestamp": "2026-02-06 19:50:48.637194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Error Handling] [Expect Messages - Medium] Do the expect() error messages provide enough debugging context when panics occur, or will validators be unable to identify and slash malicious participants who trigger panics?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4c93c3b6-c33e-4c40-9d30-476f63497f5e?mode=deep",
+    "timestamp": "2026-02-06 19:51:15.716314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Error Handling] [Result Propagation - High] Does the None return from verify() propagate properly to calling code with appropriate error handling, or can None be misinterpreted as a valid signature in some code paths?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ad9ca266-cf9a-4370-bc81-9c550a244fb2?mode=deep",
+    "timestamp": "2026-02-06 19:51:45.288582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Arithmetic] [Scalar Reduction - Medium] Does Scalar::reduce() from U256 handle edge cases like all-zeros or all-ones inputs correctly without introducing bias in the challenge distribution?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d2bcea73-83bc-4faa-a734-f0f28e6bc157?mode=deep",
+    "timestamp": "2026-02-06 19:52:13.315787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Arithmetic] [Negation Overflow - Low] When computing -c or -sum, does scalar negation handle the edge case of negating zero or the curve order correctly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_93d31a2c-0aab-42a9-8d76-35d21f5a7b5c?mode=deep",
+    "timestamp": "2026-02-06 19:52:42.163446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Arithmetic] [U256 Conversion - Medium] Can the U256::from_be_slice() operation on SHA256 output fail or produce incorrect results if the hash output is malformed or truncated?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5ec6b7e3-02c4-4a7c-90b6-6d73f2b27349?mode=deep",
+    "timestamp": "2026-02-06 19:53:10.365508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Memory Safety] [Nonce Zeroization - High] Are the Zeroizing<Scalar> nonces properly zeroized after sign_share() completes, or can nonce values remain in memory and leak through side-channels or memory dumps?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b1408251-2e80-422c-94d9-9e18149e844d?mode=deep",
+    "timestamp": "2026-02-06 19:53:40.806470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Memory Safety] [Key Material - Medium] Does the code ensure that private key material passed to sign_share() is never logged, printed, or exposed through debug formatting?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8dc402ff-9f9a-4ebc-94f4-a06646a0a19f?mode=deep",
+    "timestamp": "2026-02-06 19:54:12.043915",
+    "report_generated": false
+  }
+]
