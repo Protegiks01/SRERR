@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [High - Message Size] Is there a maximum message size enforced to prevent DoS through large message processing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bab36f35-47aa-4d00-b8ee-f2344a0f50d8?mode=deep",
+    "timestamp": "2026-02-06 19:34:34.144060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [High - Signature Size] Is the sum parameter validated to be non-zero and within the scalar field order?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_519f0ffb-cd97-45d1-95cb-c541ec001bd9?mode=deep",
+    "timestamp": "2026-02-06 19:34:46.234626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [High - Participant Validation] Is the participant index l validated to be within the valid range [1, n]?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_28054baa-5090-49b0-b715-a4a4704f2581?mode=deep",
+    "timestamp": "2026-02-06 19:34:59.016734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify_share()] [High - Verification Share] Is verification_share validated to be a non-identity point on the curve?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_417c11f7-f0be-4102-ab99-a317b2b63906?mode=deep",
+    "timestamp": "2026-02-06 19:35:12.190869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::append_message()] [Medium - Message Length] Can extremely large messages cause memory exhaustion when appended to the transcript?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_da833b89-6894-41a3-acbb-69ba542d6740?mode=deep",
+    "timestamp": "2026-02-06 19:35:26.188522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [High - Curve Binding] Is the curve identifier bound to the transcript to prevent cross-curve attacks using the same keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0538ff30-e88a-4228-9f03-899c1c18b74c?mode=deep",
+    "timestamp": "2026-02-06 19:35:41.348598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: IetfTranscript] [High - Protocol Binding] Without domain separation, can IETF transcripts collide across different protocols (Bitcoin, Ethereum, Monero)?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_873ce869-94bf-45b2-b3a8-ce8a65c63ef3?mode=deep",
+    "timestamp": "2026-02-06 19:35:56.789099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [Medium - Network Binding] Is the network identifier (Bitcoin/ETH/XMR) bound to the challenge to prevent cross-network signature reuse?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bf40cb5f-e258-4101-85f6-59932064c26e?mode=deep",
+    "timestamp": "2026-02-06 19:36:13.385928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Type: IetfSchnorr] [Medium - Offset Warning] The warning about key offsets breaking compatibility - can this be exploited if offsets are used despite the warning?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a2ffa755-e7da-453c-a31e-b9f91d5b8d60?mode=deep",
+    "timestamp": "2026-02-06 19:36:29.853431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: Schnorr] [Critical - State Lifecycle] The challenge self.c has states (None, Some) - can the state machine be bypassed to call verify() with stale or wrong challenges?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_786ccb62-f4cc-45ba-9c03-92d36abd1a7c?mode=deep",
+    "timestamp": "2026-02-06 19:36:46.119598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [High - Multiple Calls] Can sign_share() be called multiple times on the same instance, overwriting self.c and invalidating pending verifications?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5ab6c7cd-5023-420f-ac6f-b7d9b64bd857?mode=deep",
+    "timestamp": "2026-02-06 19:37:02.092138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::verify()] [High - Multiple Verifications] Can verify() be called multiple times with the same self.c but different group_key/nonces/sum, enabling signature malleability?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_da8c722f-2cc6-4342-89fa-4b9b1d83775a?mode=deep",
+    "timestamp": "2026-02-06 19:37:17.884950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [Medium - Stateless Design] Should Algorithm implementations be stateless to prevent state confusion attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_55119628-e703-4afd-b543-12f3370efd5a?mode=deep",
+    "timestamp": "2026-02-06 19:37:35.292092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Medium - Field Arithmetic] Can scalar field operations overflow or underflow, producing incorrect signature shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ff9912fa-99ce-4214-8f4c-fff6d785a483?mode=deep",
+    "timestamp": "2026-02-06 19:37:53.426386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [Medium - Point Arithmetic] Can group operations cause exceptions or return invalid points on curve implementation errors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00955bd5-64cc-4c42-9c60-75aba455c695?mode=deep",
+    "timestamp": "2026-02-06 19:38:12.467502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::append_message()] [Medium - Vector Growth] Can unbounded vector growth cause integer overflow in length calculations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d8da8cc8-2551-4117-b432-8d6d69d56452?mode=deep",
+    "timestamp": "2026-02-06 19:38:33.033866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [High - Timestamp Binding] Is a timestamp or nonce bound to the signature to prevent replay of valid signatures in different contexts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a368adc8-a756-4335-a76f-7bcbd5dd976c?mode=deep",
+    "timestamp": "2026-02-06 19:38:53.774370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [Medium - Signature Freshness] Can old valid signatures be replayed in new contexts where they shouldn't be valid?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dc2aa49e-fec2-4e8f-8f00-51f970fb3fe0?mode=deep",
+    "timestamp": "2026-02-06 19:39:15.508759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [Medium - Addendum Freshness] Can stale addendums from old sessions be replayed to cause verification failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c15374e4-a8b7-475e-b33b-c07a4fd57c70?mode=deep",
+    "timestamp": "2026-02-06 19:39:38.585159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Type: IetfSchnorr] [High - IETF Compliance] Does the IetfSchnorr implementation strictly follow the FROST IETF draft? Can deviations cause interoperability failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ad4ccd3b-4f35-4ff2-97e4-3ad0ba151558?mode=deep",
+    "timestamp": "2026-02-06 19:40:01.424991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: IetfTranscript] [Medium - Serialization Format] Does IetfTranscript use a standard serialization format compatible with other FROST implementations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bc972f74-b33a-4b68-9b33-e16b8bf2e82d?mode=deep",
+    "timestamp": "2026-02-06 19:40:25.113398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Hram::hram()] [Medium - Hash Function] Is the hash function used in H::hram() standardized (SHA256, SHA512) for interoperability?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1270e6fd-a69b-4478-b8a3-090f51fb9ed7?mode=deep",
+    "timestamp": "2026-02-06 19:40:50.429992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [High - Byzantine Addendum] Can a Byzantine validator send malicious addendums that cause honest validators to crash or produce invalid shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7b78e4a4-48f3-4eab-949b-1ace44ef577a?mode=deep",
+    "timestamp": "2026-02-06 19:41:16.349763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify_share()] [High - Byzantine Share] Can Byzantine validators send malformed shares that cause verify_share() to panic or return incorrect results?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9c68ff1e-cf31-45cf-bc50-d118aba68ff6?mode=deep",
+    "timestamp": "2026-02-06 19:41:43.450418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Medium - Share Malleability] Can a Byzantine validator modify their share after seeing other shares to enable forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7e21e804-3dfa-4660-97ab-3c8afb849a0d?mode=deep",
+    "timestamp": "2026-02-06 19:42:11.367388",
+    "report_generated": false
+  }
+]
