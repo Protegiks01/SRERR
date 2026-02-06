@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Integer Overflow] Can an attacker craft a message where the context length in bytes 0-4 exceeds usize::MAX on 32-bit systems, causing a panic during usize::try_from conversion? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bdce228f-9004-49b8-8d7d-2f2c321e0e05?mode=deep",
+    "timestamp": "2026-02-06 20:05:13.855524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Out-of-Bounds Access] If a malicious message has ctx_len larger than m.len()-4, does the slice m[4..(4+ctx_len)] cause a panic, allowing DoS of the signing process? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e4310085-b374-458e-b881-515825afdb68?mode=deep",
+    "timestamp": "2026-02-06 20:05:26.423782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Message Malleability] Can an attacker manipulate the 4-byte context length prefix to reinterpret the same underlying bytes as different context/message splits, creating signature reuse across different logical messages? (Severity: Critical - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fa48dedb-8526-4728-aba6-6b33973460fb?mode=deep",
+    "timestamp": "2026-02-06 20:05:39.221955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Panic-Based DoS] The expect() call on m[0..4].try_into() will panic if m.len() < 4. Can an attacker submit short messages to crash validators during signature verification? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a2005fbb-1264-4801-a459-3e7def0cb20a?mode=deep",
+    "timestamp": "2026-02-06 20:05:52.414938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Context Confusion] If ctx_len is 0, both context and message are empty strings. Does this allow cross-context signature reuse where signatures from one application context validate in another? (Severity: Critical - Cross-Context Attack)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f36b7ee2-eb4d-4f7f-a45b-d7189bf7cee6?mode=deep",
+    "timestamp": "2026-02-06 20:06:06.193070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Transcript Malleability] The message format [ctx_len | context | msg] is parsed client-side. Can an attacker create two different (context, msg) pairs that hash to the same challenge scalar, enabling signature replay? (Severity: Critical - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0b31d45d-d584-4819-92cd-4ee0c14a0e12?mode=deep",
+    "timestamp": "2026-02-06 20:06:21.977536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Point Conversion] PublicKey::from_bytes().unwrap() will panic on invalid curve points. Can malicious nonces or group keys cause validators to crash during HRAM computation? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6c929f4c-1f8c-43a6-807d-172d04d3cb51?mode=deep",
+    "timestamp": "2026-02-06 20:06:37.443039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Scalar Conversion] Scalar::from_repr().unwrap() panics if the challenge bytes are not a valid scalar. Can transcript manipulation cause this panic during threshold signing? (Severity: Medium - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_56f7356d-3328-421d-8efc-ef934a9e1aa3?mode=deep",
+    "timestamp": "2026-02-06 20:06:54.796983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Endianness] The context length uses to_le_bytes() for serialization. Is there a risk of endianness confusion when signing messages created on different architectures? (Severity: Low - Interoperability)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_99f3b569-7c03-40af-8734-257bb2f997a9?mode=deep",
+    "timestamp": "2026-02-06 20:07:13.346393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Commitment Ordering] The transcript commits to pk before R. Does this match the schnorrkel library's expected order, or could reordering enable forgery? (Severity: High - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_19fd9854-9a24-4452-b05b-874d9155507b?mode=deep",
+    "timestamp": "2026-02-06 20:07:32.041537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: Schnorrkel::new()] [Context Validation] The function panics if context.len() >= 2^32. Can an attacker trigger this panic by providing a malicious context during initialization, causing DoS? (Severity: Medium - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bdbb584d-84fd-4cc3-af28-d08c6d8abcbe?mode=deep",
+    "timestamp": "2026-02-06 20:07:50.759506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: Schnorrkel::new()] [Static Lifetime] The context requires 'static lifetime. If context is changed in a future validator set, are old signatures distinguishable from new ones to prevent replay? (Severity: High - Replay Attack)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_87af7069-cbbc-454f-9fa1-f8abb177db9b?mode=deep",
+    "timestamp": "2026-02-06 20:08:11.816430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: Schnorrkel::new()] [Transcript Binding] The Schnorr instance is initialized with a fixed transcript label. Is this label unique per network/chain to prevent cross-chain signature replay? (Severity: Critical - Cross-Chain Attack)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8177597c-92a9-4c98-9b84-77a56f82ca18?mode=deep",
+    "timestamp": "2026-02-06 20:08:33.548945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Message Storage] self.msg stores the raw message. If sign_share() is called multiple times without clearing, could stale messages be used in verify()? (Severity: High - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f9f4275c-1a6e-40fa-a8cc-f68d9eba4a9c?mode=deep",
+    "timestamp": "2026-02-06 20:08:56.610692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Context Length Panic] u32::try_from(self.context.len()).expect() panics if context > 2^32 bytes, but new() already checks this. Is there a race condition where context can be modified between new() and sign_share()? (Severity: Low - Race Condition)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_09a017f6-5a9c-4036-b8db-e40c33d69ef2?mode=deep",
+    "timestamp": "2026-02-06 20:09:19.330788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Concat Allocation] The concat() operation allocates a new Vec. For large messages, could repeated signing cause memory exhaustion in validators? (Severity: Medium - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ce9555dd-8560-4c04-8226-7b96f40fe713?mode=deep",
+    "timestamp": "2026-02-06 20:09:42.013786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Nonce Reuse] If self.schnorr.sign_share() is called with the same nonces twice (due to preprocessed nonce reuse), does the implementation detect and prevent this catastrophic failure? (Severity: Critical - Key Compromise)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_36cac894-3fc8-42d0-84e7-80cd6013b16c?mode=deep",
+    "timestamp": "2026-02-06 20:10:05.807261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Message Binding] The message is stored after being passed to schnorr.sign_share(). If the underlying Schnorr implementation modifies msg in place, could verify() use a different message than was signed? (Severity: High - Verification Bypass)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a83c1c76-07f1-4b7b-b3ec-b4acf96c908b?mode=deep",
+    "timestamp": "2026-02-06 20:10:29.917264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Threshold Violation] Does sign_share() validate that the nonces array length matches the expected threshold configuration, or could a Byzantine coordinator provide too few/many nonces? (Severity: Critical - Threshold Bypass)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3229be65-ed23-4f34-a353-55d33cb387cf?mode=deep",
+    "timestamp": "2026-02-06 20:10:51.855785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Bit Manipulation] Line 139 sets bit 7 of byte 63: sig[63] |= 1 << 7. What does this bit represent in schnorrkel's signature format, and could manipulation bypass security checks? (Severity: Critical - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_158d715c-0ee3-4dd6-a425-b09713abb90e?mode=deep",
+    "timestamp": "2026-02-06 20:11:15.746269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Signature Conversion] Signature::from_bytes().unwrap() panics on invalid signatures. Can a Byzantine participant cause DoS by providing malformed signature shares that aggregate to invalid signatures? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7ab2a08b-bb78-4291-aa89-745f57879313?mode=deep",
+    "timestamp": "2026-02-06 20:11:39.168683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Filter Logic] The filter() returns None if verification fails. Does the FROST protocol handle None correctly, or could this cause partial signature acceptance? (Severity: High - Partial Signature Attack)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_beebade3-365c-42a6-b1f5-5de2cd0abbdf?mode=deep",
+    "timestamp": "2026-02-06 20:12:03.141961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Nonce Index] Only nonces[0][0] is used for R. Does this assume a single nonce commitment, and could multi-nonce FROST variants be incompatible? (Severity: Medium - Protocol Incompatibility)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_53782875-e0dc-4f49-b126-461b2744acde?mode=deep",
+    "timestamp": "2026-02-06 20:12:28.165767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Message Unwrap] self.msg.as_ref().unwrap() panics if msg is None. If verify() is called before sign_share(), can this cause DoS? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1670bc9a-2a9d-47f1-b535-4c2746fcc9a1?mode=deep",
+    "timestamp": "2026-02-06 20:12:53.533773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Group Key Conversion] PublicKey::from_bytes(&group_key.to_bytes()).unwrap() has two unwrap() calls. Could invalid group keys from DKG cause verification panics? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_38f8e541-cf82-4dac-934e-c583ffc8d5b2?mode=deep",
+    "timestamp": "2026-02-06 20:13:19.754736",
+    "report_generated": false
+  }
+]
