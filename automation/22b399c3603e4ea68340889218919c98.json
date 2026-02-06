@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: WriteAddendum] [Medium - Buffer Overflow] Does WriteAddendum::write() validate buffer sizes to prevent overflow attacks during serialization?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5b1772e5-e7c5-49ca-be0e-706e9739570f?mode=deep",
+    "timestamp": "2026-02-06 19:17:01.183913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Impl: WriteAddendum for ()] [Low - Unit Type Serialization] The () implementation writes nothing - is this distinguishable from serialization errors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4832c62c-f821-469e-9460-0b554be85b69?mode=deep",
+    "timestamp": "2026-02-06 19:17:13.353190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [High - Secret in Memory] The secret share is used in signing - how long does it remain in memory unzeroized, risking cold boot or side-channel attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_70a05667-d624-439f-a904-fe0e745855d2?mode=deep",
+    "timestamp": "2026-02-06 19:17:26.150607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [High - Nonce Zeroizing] Nonces are wrapped in Zeroizing but passed as Vec - can the Vec allocation leak nonce data before zeroization?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_051ccc2a-61a1-438d-82f6-9454323f10db?mode=deep",
+    "timestamp": "2026-02-06 19:17:40.059603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: Schnorr] [Medium - Challenge in Memory] self.c stores the challenge - is this sensitive data properly zeroized when the Schnorr instance is dropped?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b638d9f0-f279-42ba-9e76-eda11aaa13d1?mode=deep",
+    "timestamp": "2026-02-06 19:17:53.526754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::append_message()] [Medium - Transcript in Memory] The transcript vector grows unbounded - can this leak sensitive data through memory analysis?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c4168742-62a8-4c1a-9319-e82091e8fff0?mode=deep",
+    "timestamp": "2026-02-06 19:18:08.009511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [High - Send + Sync] The trait requires Send + Sync - can concurrent access to mutable state (transcript, challenge) cause data races?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_18b16e4b-2ff0-44d7-ae67-b01318526946?mode=deep",
+    "timestamp": "2026-02-06 19:18:24.058550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: Schnorr] [High - Shared State] If Schnorr instances are shared across threads, can concurrent sign_share() and verify() calls corrupt self.c?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3b8bad17-74ba-445f-b82c-a42bd217e00c?mode=deep",
+    "timestamp": "2026-02-06 19:18:41.185221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Transcript] [Medium - Thread Safety] The Transcript trait requires Sync - can non-atomic transcript operations cause race conditions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e28a8e20-81f6-4f8e-a84a-7f6e0aa2b332?mode=deep",
+    "timestamp": "2026-02-06 19:18:58.996096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::verify()] [Critical - Unwrap Panic] unwrap() on None causes panic - can an attacker trigger this deliberately to DoS the signing system?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7cd1b915-0181-4cdb-83e7-f597ce44e919?mode=deep",
+    "timestamp": "2026-02-06 19:19:17.636005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::verify_share()] [Critical - Unwrap Panic] unwrap() on None causes panic - can verification requests before signing cause validator crashes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00f459e7-51b4-4019-af55-37dbacbe43f8?mode=deep",
+    "timestamp": "2026-02-06 19:19:36.540572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::rng_seed()] [High - Unimplemented Panic] unimplemented!() will crash if called - can this be triggered through unexpected API usage?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e0b36994-d16f-4f04-9c51-19864739b2a2?mode=deep",
+    "timestamp": "2026-02-06 19:19:59.727400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [High - Index Panic] swap_remove(0) panics on empty Vec - can nonce array mismatches cause validator crashes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a5ef15a5-2be4-49ed-96d3-1c940868efd2?mode=deep",
+    "timestamp": "2026-02-06 19:20:21.485659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::verify()] [High - Index Panic] nonces[0][0] panics on out-of-bounds - can malformed nonce arrays from Byzantine validators crash honest nodes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9178db7c-70e4-4017-a190-b9a1d52aec5a?mode=deep",
+    "timestamp": "2026-02-06 19:20:42.782085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::verify_share()] [High - Index Panic] nonces[0][0] panics on out-of-bounds - can invalid share verification requests cause DoS?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6d0c3fae-4206-45f2-9f15-a56be7bbe3ef?mode=deep",
+    "timestamp": "2026-02-06 19:21:06.501852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [Critical - Preprocess Reuse] The trait doesn't enforce preprocess uniqueness - can nonce reuse across signing sessions leak private keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f30e180c-eac7-42ff-a382-f3258de7e3e4?mode=deep",
+    "timestamp": "2026-02-06 19:21:30.560182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [Critical - Threshold Enforcement] The trait doesn't specify t-of-n threshold logic - can implementations accept fewer than t shares and produce invalid signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_10275ec1-e3b7-407a-b295-d16c35cdd244?mode=deep",
+    "timestamp": "2026-02-06 19:21:54.628829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [High - Rogue Key Prevention] The trait doesn't enforce proof-of-knowledge for keys - can rogue key attacks enable signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0a6a016c-012b-4df7-9452-824d6e29489a?mode=deep",
+    "timestamp": "2026-02-06 19:22:19.180983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Algorithm] [High - Binding Factor] The trait doesn't specify binding factor calculation - can implementations omit it and enable unforgeability attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1a33f942-363a-45a3-855b-6b84a1f4abe6?mode=deep",
+    "timestamp": "2026-02-06 19:22:44.128889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: Schnorr] [High - No Binding Factor] The Schnorr implementation doesn't explicitly show binding factor logic - is it handled in the nonce combination 'd + (e * p)'?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e775b75d-946b-4e33-bb24-315ff62de9ef?mode=deep",
+    "timestamp": "2026-02-06 19:23:09.885445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [High - Session Binding] Is the signing session ID bound to the challenge to prevent cross-session replay attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dfd19ff3-2cae-4bd4-a83c-07b4475c7d1c?mode=deep",
+    "timestamp": "2026-02-06 19:23:34.769111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [High - DLP Hardness] Does the implementation assume computational Diffie-Hellman (CDH) hardness on the curve? Can weak curves break this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4d2aed71-cf6e-41e1-8bcb-477c611bb963?mode=deep",
+    "timestamp": "2026-02-06 19:23:59.700880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Trait: Hram] [High - Random Oracle] Does H::hram() satisfy random oracle model requirements? Can weak hash functions enable forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a6889c29-910b-4f40-87e6-202272d573f1?mode=deep",
+    "timestamp": "2026-02-06 19:24:25.297988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Medium - Scalar Multiplication] Are scalar multiplications constant-time to prevent timing attacks that leak key bits?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_71fa1055-0973-42bc-b922-afb591c01004?mode=deep",
+    "timestamp": "2026-02-06 19:24:51.858485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::verify()] [Medium - Point Addition] Are point additions constant-time to prevent timing side-channels during verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_83c414c7-f16c-49f5-aeac-a7077af4b856?mode=deep",
+    "timestamp": "2026-02-06 19:25:18.867122",
+    "report_generated": false
+  }
+]
