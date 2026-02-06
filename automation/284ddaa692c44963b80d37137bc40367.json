@@ -1,0 +1,86 @@
+[
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [High: Group Key Binding] Line 363 appends group_key to rho_transcript - if the group key wasn't validated during DKG, can a rogue key attack succeed here?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_294ebd5a-5ab1-4443-afbc-9f322fd1d4d6?mode=deep",
+    "timestamp": "2026-02-06 19:18:59.439962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Medium: Message Hash] Line 364 uses C::hash_msg(msg) - if this hash doesn't include domain separation, can signatures be reused across different contexts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a3b5d8d7-e171-404d-9d5f-b7e3455b8732?mode=deep",
+    "timestamp": "2026-02-06 19:19:12.027970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Critical: Signature Format] What format does algorithm.verify() return in Some(sig)? If the format is ambiguous or malleable, can multiple valid representations exist?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9c0efc4e-905c-4758-9b9f-cd235bf0b372?mode=deep",
+    "timestamp": "2026-02-06 19:19:24.903712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [High: Share Ordering] Do shares need to be processed in any particular order? Can reordering shares cause different sums due to field arithmetic properties?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_948f024b-a232-4c3f-848e-71b44769e000?mode=deep",
+    "timestamp": "2026-02-06 19:19:38.157999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Struct: Params] [Medium: Lifetime Management] Params at line 51 doesn't have explicit lifetimes - can the algorithm or keys be dropped while Params still exists causing use-after-free?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_aa6d4c29-9159-4a40-90eb-3ce6ba4313c9?mode=deep",
+    "timestamp": "2026-02-06 19:19:52.225745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: multisig_params()] [Low: Params Access] Line 63 returns ThresholdParams by value - is this copied each time? Can this be inefficient for large params?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4d85262a-2234-406b-8ac3-fbdf0eb4f0e4?mode=deep",
+    "timestamp": "2026-02-06 19:20:07.193074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: new()] [Medium: Construction Validation] Lines 117-119 construct AlgorithmMachine without validating algorithm and keys compatibility - can mismatched algorithm/keys cause issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_02b8f0c2-1d8c-4135-8fa3-5b7249e31f8e?mode=deep",
+    "timestamp": "2026-02-06 19:20:23.315965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [High: Error Propagation] Multiple operations in sign() can return FrostError - if an error occurs after partial state mutation, is the error recovery clean?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f97588c0-d483-4dee-a82f-528cc854d40c?mode=deep",
+    "timestamp": "2026-02-06 19:20:40.952426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Medium: Partial Success] If batch verification finds one invalid share, are the other valid shares still processed? Can this leak information about valid vs. invalid participants?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1f8f7717-92b5-48fc-9cbf-2cb8537de194?mode=deep",
+    "timestamp": "2026-02-06 19:20:59.072947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Critical: Constant-Time Operations] Are the operations in sign() constant-time with respect to secret data (shares, nonces)? Can timing attacks leak bits of the secret share?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7aeca70a-c66a-40f9-b7af-07a525660875?mode=deep",
+    "timestamp": "2026-02-06 19:21:18.373958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [High: Timing Side Channels] Lines 476-484 perform per-share verification - does this leak information about which shares are invalid through execution time?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5370906d-b768-46b4-80f0-10262c76a4c8?mode=deep",
+    "timestamp": "2026-02-06 19:21:38.341954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Medium: Cache Line Leakage] Can cache line timing attacks observe which participants' preprocesses are accessed in which order, leaking information about the signing set?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6b131c62-b8f2-4b07-a4a1-3e4be22623d4?mode=deep",
+    "timestamp": "2026-02-06 19:21:59.791189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Low: Branch Prediction] Line 465 has an early return branch - can branch prediction side channels leak whether verification succeeded?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a979db42-a9bd-4d46-b548-ee2fc0bfb09d?mode=deep",
+    "timestamp": "2026-02-06 19:22:21.207946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: seeded_preprocess()] [Medium: Memory Access Patterns] Does nonce generation have data-dependent memory access patterns that could leak via cache timing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_591a4966-13f4-4595-9d12-932c2cfc2cd4?mode=deep",
+    "timestamp": "2026-02-06 19:22:44.400762",
+    "report_generated": false
+  }
+]
