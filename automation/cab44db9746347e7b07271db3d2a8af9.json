@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Critical - Key Compromise] Can the TapTweakHash reduction at line 62-64 ever produce a zero scalar due to modular reduction, causing keys.offset() to fail and panic instead of returning the expected error, potentially causing validator set initialization failures? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5e3d18af-88ea-4ce2-9c28-f7670be9c50b?mode=deep",
+    "timestamp": "2026-02-06 20:46:52.768250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Critical - Fund Loss] Does the conditional negation at lines 67-74 properly handle the edge case where needs_negation returns true but the scalar multiplication by -1 produces the point at infinity, potentially making funds unspendable? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_758299de-6ba2-40e4-a36e-77aa61256520?mode=deep",
+    "timestamp": "2026-02-06 20:47:05.028478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [High - State Inconsistency] Can different validators produce different tweaked keys if their FROST ThresholdKeys have diverged due to prior bugs, causing the TapTweakHash to produce different offsets and breaking consensus on the multisig address? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a29a6e19-2fde-44df-9750-5eef50e4f214?mode=deep",
+    "timestamp": "2026-02-06 20:47:17.801324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [High - Signature Forgery] Does the negation logic at line 71 properly maintain the discrete log relationship between the old and new keys, or could an attacker exploit subtle differences to forge signatures without threshold participation? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_badf5948-b989-4c40-9a06-cd15ec18347c?mode=deep",
+    "timestamp": "2026-02-06 20:47:31.037812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Medium - Malleability] Could an attacker manipulate the input keys before tweak_keys is called to force a specific needs_negation outcome, allowing them to predict or control which validators must negate their shares? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_be95704b-af89-4971-b6b3-b6a5f58fe6b0?mode=deep",
+    "timestamp": "2026-02-06 20:47:44.919786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [High - Unspendable Script Path] The comment at line 48 references BIP-341's unspendable script path, but does the implementation verify that the tweak_hash is computed correctly to prevent any possible script path spending? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_451a6d4e-9119-4ec0-801d-ef3a921fb649?mode=deep",
+    "timestamp": "2026-02-06 20:48:00.600273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Critical - DKG Bypass] If an attacker compromises the DKG process to inject a malicious group_key, can they choose a key that when tweaked produces a known private key, bypassing the threshold requirement? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bf7d86b6-8b41-4b18-8065-05d2be3513b1?mode=deep",
+    "timestamp": "2026-02-06 20:48:15.991208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Medium - Bias in Reduction] The comment at lines 57-60 mentions negligible bias from scalar reduction, but over many key generations could this bias accumulate to leak information about the key space or create predictable patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d1cc1f88-7e21-4597-aa33-daf5ed4c72ce?mode=deep",
+    "timestamp": "2026-02-06 20:48:33.059500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [High - Serialization Mismatch] When serializing the group_key at line 55, does slicing [1..] to remove the prefix byte match exactly what Bitcoin's Taproot expects, or could endianness or encoding differences cause address mismatches? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dd8a1a8b-d4e8-422c-9ef3-5a84eed472ca?mode=deep",
+    "timestamp": "2026-02-06 20:48:50.861582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Low - Negligible Probability] The comment at line 44 states 'negligible probability of returning keys whose group key is the point at infinity' - has this been formally verified, and what happens if this edge case occurs in production? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_931ee2e9-f475-4901-9135-cb37037cf762?mode=deep",
+    "timestamp": "2026-02-06 20:49:09.766240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: p2tr_script_buf()] [High - Fund Loss] Can an attacker provide an odd-Y coordinate key that returns None at line 82, causing a scanner to skip registering critical outputs and making funds permanently unspendable? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7d8d402e-2eb7-481d-a842-88327e190099?mode=deep",
+    "timestamp": "2026-02-06 20:49:29.693459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: p2tr_script_buf()] [Critical - Address Confusion] Does dangerous_assume_tweaked at line 85 skip critical validation that could allow an attacker to claim funds sent to a legitimately tweaked address by providing an untweaked key? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ff95a66e-78bf-4e56-93e4-4e5ebaa51c7a?mode=deep",
+    "timestamp": "2026-02-06 20:49:50.873334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: p2tr_script_buf()] [High - Point at Infinity] What happens if x_only is called with the point at infinity - does it panic (causing DoS) or return an invalid address that could be sent funds? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3a688750-d588-48d5-a799-d18d1b19e903?mode=deep",
+    "timestamp": "2026-02-06 20:50:12.566529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: p2tr_script_buf()] [Medium - Consensus Divergence] If different validator implementations have slightly different sec1 encoding implementations, could they disagree on whether a key is even/odd, causing them to scan different addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_024f8185-6370-47de-ae18-23839a33b882?mode=deep",
+    "timestamp": "2026-02-06 20:50:34.834666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: p2tr_script_buf()] [High - Script Path Vulnerability] Since dangerous_assume_tweaked is used, is there any risk that the script path could be spent if an attacker finds a preimage for the assumed tweak? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3eeb294-e0cb-4e59-b771-42baf717e896?mode=deep",
+    "timestamp": "2026-02-06 20:50:56.287330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: p2tr_script_buf()] [Critical - Key Validation Bypass] Does the function verify that the input ProjectivePoint is actually on the secp256k1 curve before converting to XOnlyPublicKey, or could an off-curve point lead to invalid addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_994c52ec-f772-403e-8dde-d7fc0476e873?mode=deep",
+    "timestamp": "2026-02-06 20:51:19.442280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::read()] [High - Deserialization Attack] At lines 122-133, if TxOut::consensus_decode fails, does the BufReader leave the reader in an inconsistent state that could cause subsequent ReceivedOutput reads to parse garbage? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d692767e-4722-4e90-91ef-18b424ac2a79?mode=deep",
+    "timestamp": "2026-02-06 20:51:42.825246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::read()] [Critical - Offset Validation] Does Secp256k1::read_F at line 123 validate that the offset scalar is in the valid range [1, n-1], or could an attacker inject a zero or out-of-range offset that breaks signing? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a1098787-e010-4d63-85ea-650e57b2e74f?mode=deep",
+    "timestamp": "2026-02-06 20:52:06.841612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::value()] [High - Value Overflow] At line 117, does to_sat() properly handle the maximum Bitcoin amount (21M BTC), and could summing multiple ReceivedOutput values overflow u64? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e50677e2-bfcb-456c-81bc-47e79cbe836e?mode=deep",
+    "timestamp": "2026-02-06 20:52:31.781566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::write()] [Medium - Serialization Inconsistency] Lines 138-140 serialize offset, output, then outpoint - if this order differs from how the coordinator expects data, could it cause transaction construction failures? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bbfcd344-a152-454a-9cb4-10fe9c50a2df?mode=deep",
+    "timestamp": "2026-02-06 20:52:58.191682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::serialize()] [Low - Memory Exhaustion] The serialize() method at lines 144-148 uses an unbounded Vec - for very large TxOut values could this cause memory exhaustion? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dae67f01-8fe3-47df-a5bf-4afa0e7b068a?mode=deep",
+    "timestamp": "2026-02-06 20:53:24.827720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::offset()] [Medium - Offset Leak] Does returning the raw offset scalar at lines 100-103 create a side channel where timing analysis of offset comparisons could leak information? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_11234787-9315-4730-a08e-85c820163c1a?mode=deep",
+    "timestamp": "2026-02-06 20:53:51.715488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::read()] [High - Parser Confusion] The BufReader at line 127 has capacity 0 - does this cause it to directly read from the underlying reader, and could this create parser confusion if the reader is shared? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4a544ce5-1e20-4fed-96e7-01c969e5f218?mode=deep",
+    "timestamp": "2026-02-06 20:54:20.913470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: Scanner::new()] [Critical - Unspendable Funds] If p2tr_script_buf returns None at line 164 due to an odd key, Scanner::new returns None, but what happens if funds were already sent to an earlier instance of this key before rotation? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_45d3f1bd-794a-45ae-8119-1707dca91c50?mode=deep",
+    "timestamp": "2026-02-06 20:54:48.596473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: Scanner::new()] [Medium - Empty HashMap] The HashMap is initialized with a single entry at line 163-164, but if this fails, no scanner exists - could this cause a validator to miss all incoming deposits? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e7a5780b-7321-4875-8cd0-649ade3ab509?mode=deep",
+    "timestamp": "2026-02-06 20:55:15.613581",
+    "report_generated": false
+  }
+]
