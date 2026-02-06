@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Signature Forgery] Does the sign() function enforce that the challenge parameter is properly bound to the public key, nonce, and message, or can a malicious caller provide an arbitrary challenge to forge signatures? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_afe3a586-003f-451c-951e-74ee312ddff8?mode=deep",
+    "timestamp": "2026-02-06 20:47:40.062309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Signature Forgery] Does the verify() function validate that the challenge was constructed with proper binding to the public key (A), nonce (R), and message, or can an attacker replay signatures across different contexts? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3e55d1c6-0101-4ca1-b605-48924eeebe88?mode=deep",
+    "timestamp": "2026-02-06 20:47:52.296611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Challenge Binding] Can the challenge parameter be reused across multiple signatures with different nonces, allowing an attacker to extract the private key through nonce correlation attacks? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ae7f2b6-9ecc-407e-8eba-375773e12dcf?mode=deep",
+    "timestamp": "2026-02-06 20:48:05.100777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [Challenge Binding] Does batch_verify() ensure all challenges are properly domain-separated and bound to their respective public keys and messages, or can cross-context signature forgery occur in batch scenarios? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3b24142-11b0-4278-a3d1-29fa250af170?mode=deep",
+    "timestamp": "2026-02-06 20:48:18.316501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Key Extraction] If the challenge is not cryptographically bound to the nonce R, can two signatures with the same nonce but different challenges leak the private key via the equation system s1 - s2 = (c1 - c2) * x? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_008027c4-b15f-41db-8b4e-91c785621512?mode=deep",
+    "timestamp": "2026-02-06 20:48:32.839116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Nonce Reuse] Does the function enforce single-use of the nonce parameter, or can the caller accidentally reuse the same nonce across multiple sign() calls, leaking the private key? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8b784736-cb3d-4d17-9aa1-5896867ffbf8?mode=deep",
+    "timestamp": "2026-02-06 20:48:47.706784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Nonce Generation] Does the sign() function accept a caller-provided nonce without validation of its randomness or uniqueness, enabling deterministic nonce attacks if the caller's RNG is weak? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_231e9e13-b037-4e6b-8753-44da9efe1e6d?mode=deep",
+    "timestamp": "2026-02-06 20:49:03.380774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Nonce Predictability] Can an attacker predict future nonces if the caller uses a pseudorandom generator with insufficient entropy, allowing precomputation of valid signatures before the private key is used? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7af7ebe5-eead-4966-af54-b803382632cc?mode=deep",
+    "timestamp": "2026-02-06 20:49:21.014311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Nonce Zero] What happens if the nonce parameter is zero (C::F::ZERO)? Does this create a trivially invertible signature where s = c*x, directly revealing the private key? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_05fe7c19-b13b-4902-a581-d605fddf8a51?mode=deep",
+    "timestamp": "2026-02-06 20:49:39.621075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Nonce Memory] After sign() completes, is the nonce parameter fully zeroized from memory, or could it remain in stack/heap allowing recovery through memory dumps in a multi-signature threshold scenario? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_02854fe3-ec7f-452f-bc2b-63004df4df27?mode=deep",
+    "timestamp": "2026-02-06 20:49:58.955871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Identity Point] Does verify() correctly reject signatures where R is the identity point, or could this enable equation forgery by making the first term in batch_statements() vanish? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a4694f4a-2103-4f25-b13b-752fc90264d8?mode=deep",
+    "timestamp": "2026-02-06 20:50:19.138734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Public Key Identity] Does verify() validate that the public_key parameter is not the identity element, or can an attacker exploit the equation sG = R + c*O to forge signatures for the identity key? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_868d7ee6-e174-4cea-8939-5609b94599c5?mode=deep",
+    "timestamp": "2026-02-06 20:50:39.613659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_statements()] [Equation Correctness] Is the verification equation R + cA - sG = 0 algebraically equivalent to sG = R + cA under all group operations, or are there edge cases where non-identity results occur for valid signatures? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_86c57989-4ceb-4b75-bfbd-64aee219b14b?mode=deep",
+    "timestamp": "2026-02-06 20:51:01.512884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Small Subgroup] Does the verification function detect and reject R or public_key values in small-order subgroups, which could enable forgery attacks on non-prime-order groups? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1ab20837-c5ca-43ce-ab9c-78b9c3fa4978?mode=deep",
+    "timestamp": "2026-02-06 20:51:23.943360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Return Value] Is the #[must_use] attribute on verify() sufficient to prevent callers from ignoring verification failures, or should the function panic on invalid signatures in consensus-critical paths? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7b2839fa-c08d-404f-9489-1b6235914749?mode=deep",
+    "timestamp": "2026-02-06 20:51:46.152728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Challenge Zero] If the challenge is C::F::ZERO, does verify() reduce to checking R = sG, allowing trivial forgery by choosing arbitrary s and computing R? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e4eec55e-d208-4af0-85ea-b8302adecffa?mode=deep",
+    "timestamp": "2026-02-06 20:52:09.369999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Scalar Zero] If s = C::F::ZERO, does the verification equation become R + cA = 0, which is only valid if R = -cA, potentially enabling forgery with specific R choices? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_723261ab-3822-4ffd-9563-d4771e00c302?mode=deep",
+    "timestamp": "2026-02-06 20:52:32.812509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [Batch Cancellation] Can an attacker craft a set of invalid signatures that sum to zero in the batch verifier, causing the entire batch to verify even though individual signatures are invalid? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0ffced4a-2d2f-4ca2-bdc2-8034bda3f53c?mode=deep",
+    "timestamp": "2026-02-06 20:52:57.290741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [Random Weight] Does the BatchVerifier apply cryptographically random weights to prevent batch cancellation attacks, or can predictable weights enable adversarial signature construction? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_910d00df-f119-4664-a7f4-4cde41321570?mode=deep",
+    "timestamp": "2026-02-06 20:53:22.336397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [ID Collision] If two signatures share the same id parameter in batch_verify(), does this cause state corruption or incorrect verification results in the BatchVerifier? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ebb959b2-0c98-4195-94a3-af33437316df?mode=deep",
+    "timestamp": "2026-02-06 20:53:48.621506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_statements()] [Statement Ordering] Does the order of the three terms in batch_statements() affect batch verification correctness, or could reordering enable malleability attacks? (LOW)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9912d7c1-1a41-4c6e-89a4-e852b9a49140?mode=deep",
+    "timestamp": "2026-02-06 20:54:12.980934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [RNG Failure] What happens if the RNG passed to batch_verify() fails or produces non-random output? Can this compromise the security of the entire batch verification? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0408f29b-9cf1-4f36-9b96-376c516e487e?mode=deep",
+    "timestamp": "2026-02-06 20:54:37.717428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: read()] [Non-Canonical R] Does read() enforce that R is in canonical encoding, or can non-canonical group element encodings bypass signature checks or enable malleability? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d401e677-0f66-426e-a88b-5b7dcf9cc8f4?mode=deep",
+    "timestamp": "2026-02-06 20:55:03.302772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: read()] [Non-Canonical s] Does read() enforce that s is in canonical scalar encoding (< group order), or can s values >= order create equivalent signatures that break deduplication or consensus? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_46b3a8e2-a175-420c-ae01-5e809e77eac3?mode=deep",
+    "timestamp": "2026-02-06 20:55:29.484355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: read()] [DoS via Large Input] Can read() be called with arbitrarily large readers that cause excessive memory allocation or CPU consumption, enabling DoS attacks on signature verification nodes? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fcb33894-036d-4897-8ec6-e6c3b2879ef5?mode=deep",
+    "timestamp": "2026-02-06 20:55:55.025867",
+    "report_generated": false
+  }
+]
