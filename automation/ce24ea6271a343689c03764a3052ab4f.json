@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Module: aggregate] [DST Collision] Can the DST (domain separation tag) in aggregate verification collide with challenge generation, enabling cross-context forgery? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9086925c-3e6f-4810-a6a4-6b49c44744f5?mode=deep",
+    "timestamp": "2026-02-06 20:48:18.605357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Module: aggregate] [Length Validation] Does SchnorrAggregate::verify() validate that Rs.len() matches keys_and_challenges.len() before indexing, or could out-of-bounds access occur? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_89e8c58c-5e53-409e-b1a3-127b25f23c3a?mode=deep",
+    "timestamp": "2026-02-06 20:48:31.820140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Module: aggregate] [Empty Aggregate] Does SchnorrAggregator::complete() correctly return None for empty aggregates, or could an empty aggregate verify successfully? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f7fef5cb-e786-4dce-bacc-0119bbb2b916?mode=deep",
+    "timestamp": "2026-02-06 20:48:44.308273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Batch Ordering] When the processor creates signature batches for external transactions, can verify() detect signatures applied to wrong transaction orderings? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_28fa20d3-f24c-4d4d-bb1d-aa008153a18c?mode=deep",
+    "timestamp": "2026-02-06 20:48:57.578707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Coordinator Protocol] In the coordinator-processor protocol, can a malicious processor provide incorrect challenges to sign(), causing validators to produce invalid signatures? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0f311cf6-aa9c-41a5-8fa9-c58c30341065?mode=deep",
+    "timestamp": "2026-02-06 20:49:11.145890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: batch_verify()] [Batch Atomicity] If batch verification fails for a mixed batch of valid/invalid signatures, does the entire batch get rejected, or can partial acceptance occur? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e9415809-ffc6-4bbe-9fa0-7af6bfd21468?mode=deep",
+    "timestamp": "2026-02-06 20:49:25.093333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Finality] Can signatures be verified before external blocks reach finality, enabling signature replay attacks during chain reorganizations? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_168807c5-f6f5-4dd6-9a89-6e20257cf1a4?mode=deep",
+    "timestamp": "2026-02-06 20:49:39.923885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Reattempt Safety] If the coordinator requests signature reattempts, can the same nonce be reused across attempts, leaking the private key? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9dfdd831-5fbf-4118-bd4f-05c0c8315d48?mode=deep",
+    "timestamp": "2026-02-06 20:49:56.840149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Mint Authorization] When verifying signatures for mint instructions, does verify() enforce that the signature authorizes the exact minted amount, or can rounding enable value extraction? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_96cc583c-4bca-4988-8118-2e0d7c5c9d72?mode=deep",
+    "timestamp": "2026-02-06 20:50:14.452317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Burn Authorization] For burn instructions, does verification ensure the signature authorizes the specific external address, or can address substitution occur? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b2efe22b-bfe2-4ee0-a806-e817a63d8e89?mode=deep",
+    "timestamp": "2026-02-06 20:50:32.466411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Multisig Threshold] In the t-of-n threshold multisig, does the signing process enforce that exactly t participants contributed, or can t-1 colluding validators forge signatures? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5b9f2024-5b44-4f0f-b239-8bfdc345723e?mode=deep",
+    "timestamp": "2026-02-06 20:50:51.077168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Economic Limits] Does verification enforce the economic security invariant that external funds don't exceed 33% of allocated stake, or is this checked elsewhere? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_66f3ae40-4885-43db-add0-a3e2e56c4292?mode=deep",
+    "timestamp": "2026-02-06 20:51:11.062315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Key Rotation] During validator set rotation, can old-session signatures be replayed with new-session keys, enabling unauthorized transfers? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a739d52a-4b39-46f0-8e85-4ac0b78adfa4?mode=deep",
+    "timestamp": "2026-02-06 20:51:31.610339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Swap Authorization] When verifying signatures for AMM swap instructions, does verify() bind to the exact input/output amounts and slippage parameters? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eabc6a48-9d3e-4ae4-b7e0-32a68d7e3050?mode=deep",
+    "timestamp": "2026-02-06 20:51:52.855479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Liquidity Add] For liquidity provision signatures, can verify() detect if the signed amounts don't maintain the xy=k invariant? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9ef8d499-ffea-4248-8e04-212efbb5fe36?mode=deep",
+    "timestamp": "2026-02-06 20:52:16.490905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Fee Handling] Does the signature bind to fee amounts, or can fee manipulation occur between signing and execution? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_14cbc5bd-dce9-4608-bde9-0bd30565c67e?mode=deep",
+    "timestamp": "2026-02-06 20:52:41.135831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Minimum Output] Can the minimum output amount in a swap be modified after signature verification but before execution? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_393a9dec-db30-4bb6-8aba-f5c2ca45b7b3?mode=deep",
+    "timestamp": "2026-02-06 20:53:05.670302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Pool Manipulation] Can an attacker get multiple swap signatures signed and then order execution to manipulate pool ratios for profit? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d1498d9d-fbc3-4d3f-ad7b-9c993f9b6efe?mode=deep",
+    "timestamp": "2026-02-06 20:53:30.058281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [SCALE Encoding] Does the signature bind to the exact SCALE-encoded instruction bytes, or can encoding variations create signature reuse? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_aa9a412c-f854-4d6b-95da-d0dca233f096?mode=deep",
+    "timestamp": "2026-02-06 20:53:55.668507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Instruction Type] Does the challenge bind to the instruction type discriminant (In vs Out), or can instruction type confusion occur? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_abf96e83-5d9a-4e14-ab82-4403ddcade22?mode=deep",
+    "timestamp": "2026-02-06 20:54:21.520855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Network Binding] Is the signature bound to the specific external network (Bitcoin/Ethereum/Monero), or can cross-network replay occur? (CRITICAL)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_523293f4-cc1b-4acb-b98c-a159b8bdb95c?mode=deep",
+    "timestamp": "2026-02-06 20:54:49.002519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Refund Address] For refundable instructions, does the signature bind to the refund address, or can refunds be redirected? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f2ad7488-8aec-45ef-a66f-20b950dda77b?mode=deep",
+    "timestamp": "2026-02-06 20:55:15.773649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Data Size Limits] Does signing enforce network-specific limits (80 bytes for Bitcoin OP_RETURN), or can oversized instructions be signed? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_95b4639a-ef48-458f-a44a-1ee9232dc242?mode=deep",
+    "timestamp": "2026-02-06 20:55:44.071367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: verify()] [Wagner's Attack] In batch verification, can an attacker use Wagner's generalized birthday attack to find signature combinations that verify incorrectly? (HIGH)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8957cc03-c6fb-4b60-af38-3cc11d06319e?mode=deep",
+    "timestamp": "2026-02-06 20:56:12.239142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/schnorr/src/lib.rs] [Function: sign()] [Lattice Attacks] If partial nonce information leaks through side channels, can lattice-based attacks recover the private key from multiple signatures? (MEDIUM)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_004ed84b-3e3e-4312-bbb1-2c46eda25d30?mode=deep",
+    "timestamp": "2026-02-06 20:56:40.294204",
+    "report_generated": false
+  }
+]
