@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Challenge format] [Cross-Curve Challenge Compatibility - MEDIUM] Different curves use different challenge formats (SHA-256 for Secp256k1, SHA-512 for Ed25519, Shake256 for Ed448). Are these formats sufficiently distinct that a challenge computed for one curve cannot accidentally validate under another?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f9a87d2b-e539-472d-803c-746a8402e9eb?mode=deep",
+    "timestamp": "2026-02-06 20:34:07.756190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Context binding] [Context Collision Across Curves - LOW] The Ed448 CONTEXT is 'FROST-ED448-SHAKE256-v1'. Are contexts for other curves (e.g., 'FROST-ED25519-SHA512-v1') sufficiently different that hash collisions between contexts are impossible, preventing cross-curve signature reuse?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_63ecbbe2-a486-46b6-8367-061a3ac6c7f0?mode=deep",
+    "timestamp": "2026-02-06 20:34:20.031650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Validator set rotation] [Rotation Context Binding - CRITICAL] When validator sets rotate, does the challenge computation incorporate the validator set identifier? If not, can signatures from the old validator set be replayed as if they came from the new set, allowing old validators to continue spending funds after rotation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ad3baf34-de9a-4e0f-9829-d869f2dd6f4b?mode=deep",
+    "timestamp": "2026-02-06 20:34:32.879325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Network identifier] [Multi-Network Isolation - CRITICAL] Serai might operate on multiple networks (mainnet, testnet, different blockchain integrations). Does the challenge bind to the network identifier? Can a signature from testnet be replayed on mainnet, spending real funds with test signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_efde0682-a562-443d-a21e-c40f88325fe4?mode=deep",
+    "timestamp": "2026-02-06 20:34:46.648197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Transaction batching] [Batch Identifier Binding - HIGH] Serai batches multiple transactions for efficiency. Is the batch identifier bound into the challenge computation? If not, can an attacker unbundle a signature from one batch and replay it in another batch with different transactions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_89b7f697-b758-4d84-b2ba-8e07c0e11d33?mode=deep",
+    "timestamp": "2026-02-06 20:35:00.138398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Function: IetfEd448Hram::hram()] [Block Height Binding - HIGH] Cross-chain transactions reference specific block heights. Is the block height bound into the message m before challenge computation? Without binding, old signatures could be replayed at future block heights, bypassing time-lock or sequence number checks.",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1e860e42-614a-45b1-b70d-6b49dc467967?mode=deep",
+    "timestamp": "2026-02-06 20:35:14.696711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: DEX integration] [Swap Order Binding - MEDIUM] In DEX operations, signatures authorize token swaps. Is the swap order ID and parameters (input/output amounts, slippage) bound into m? Can an attacker replace swap parameters while reusing a valid signature, executing trades at different prices?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5a680826-7192-40c4-8ae0-1df0cb0cc76e?mode=deep",
+    "timestamp": "2026-02-06 20:35:30.751934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: External chain integration] [Chain-Specific Formatting - HIGH] Different blockchains (Bitcoin, Ethereum, Monero) have different transaction formats. When signing for external chains, is m formatted in the chain-specific format before hram computation? Format inconsistencies could cause signatures valid in Serai but invalid on the target chain.",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_85a1ddbd-9b3a-4c7f-8a4e-f0fac9bfa6e5?mode=deep",
+    "timestamp": "2026-02-06 20:35:47.614932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Function: IetfEd448Hram::hram()] [Wagner's Attack - MEDIUM] In multi-party signing, if an attacker controls multiple participants, can they use Wagner's generalized birthday attack to find challenge combinations that allow key recovery? Does Ed448's 224-bit security level provide sufficient margin against this attack with Serai's threshold parameters?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_131d2963-710f-4d0f-8d0b-82ceedb53224?mode=deep",
+    "timestamp": "2026-02-06 20:36:05.874981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Function: Ietf8032Ed448Hram::hram()] [Collision Resistance Requirement - MEDIUM] Challenge functions must be collision-resistant to prevent existential forgeries. Does Shake256 provide sufficient collision resistance (112-bit security) for Ed448's 224-bit security target? Is there a security gap that reduces effective security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5cccafce-d278-41a2-9906-50322bf2b9a3?mode=deep",
+    "timestamp": "2026-02-06 20:36:24.411631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Scalar field] [Small Subgroup Attack - LOW] Ed448 has cofactor 4. Can an attacker exploit small subgroup elements in R or A to constrain the challenge to a smaller space, reducing security? Are points validated to be in the prime-order subgroup before use in hram?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b52257e1-008b-40cd-b283-4f28728c5a0d?mode=deep",
+    "timestamp": "2026-02-06 20:36:44.539643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Function: IetfEd448Hram::hram()] [Fault Injection - MEDIUM] If an attacker can induce faults (hardware errors, bit flips) during challenge computation, can they cause different participants to compute different challenges, revealing key material through signature share inconsistencies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_68ad4004-da05-4fca-a65a-299415f0a905?mode=deep",
+    "timestamp": "2026-02-06 20:37:04.976146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Implementation] [Quantum Resistance - LOW] Ed448 is not quantum-resistant. When quantum computers threaten 224-bit security, will the challenge computation need updating? Is there a migration path to post-quantum signatures, or would all Ed448-secured funds need migration?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cc988b5b-2456-4396-ad05-97100c9555e1?mode=deep",
+    "timestamp": "2026-02-06 20:37:26.110793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Algorithm integration] [Schnorr Algorithm Binding - HIGH] The IetfEd448Hram is used with Schnorr algorithm in algorithm.rs. Does the Schnorr implementation correctly apply the challenge from hram in the signature equation s = r + c*a? Any error in challenge application breaks signature security.",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_31214faf-0dba-4cf4-8b2a-457ebfe85c91?mode=deep",
+    "timestamp": "2026-02-06 20:37:48.504511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Nonce generation] [Preprocess Coordination - CRITICAL] FROST requires coordinated nonce generation across participants. If participants generate nonces independently and then compute R, does hram computation happen after R aggregation? If R is computed before aggregation, challenge values will differ across participants.",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3e4c8599-d3be-4509-8422-89c621c60097?mode=deep",
+    "timestamp": "2026-02-06 20:38:11.961453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Message flow] [Processor Message Integrity - CRITICAL] In Serai's processor architecture, the message m is received from the coordinator. Is m cryptographically authenticated before being passed to hram? Can a MITM attacker modify m in transit, causing validators to sign a different message than intended?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6f48b54d-e505-4360-9a72-d00dafbcefaf?mode=deep",
+    "timestamp": "2026-02-06 20:38:35.837173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Key generation] [DKG Challenge Binding - HIGH] During DKG, participants prove knowledge of secret shares. Are these proofs computed using the same challenge function (IetfEd448Hram)? If DKG uses a different challenge format, could this create compatibility issues or security gaps?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f527da7f-eb5e-4141-9358-9902001f1eac?mode=deep",
+    "timestamp": "2026-02-06 20:39:00.851080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/ed448.rs] [Overall: Signature aggregation] [Share Aggregation Binding - HIGH] When aggregating signature shares, the final signature is (R, sum(s_i)). Is the R used in final verification the same R used in challenge computation during signing? Any mismatch would cause verification to fail, but could also reveal information about individual shares.",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_20721b19-bd97-4d03-bedb-59c990838b3b?mode=deep",
+    "timestamp": "2026-02-06 20:39:26.791045",
+    "report_generated": false
+  }
+]
