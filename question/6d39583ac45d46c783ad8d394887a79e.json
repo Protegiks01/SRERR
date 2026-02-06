@@ -1,9 +1,0 @@
-[
-  "[File: serai/crypto/frost/src/nonce.rs] [Line 187] [Nonce Binding - Critical] Is the formula generator.0[0] + (generator.0[1] * rho) mathematically correct per FROST?",
-  "[File: serai/crypto/frost/src/nonce.rs] [Line 204] [Identity Start - High] Is initializing D to C::G::identity() the correct neutral element for aggregation?",
-  "[File: serai/crypto/frost/src/nonce.rs] [Line 206] [Unwrap Chain - High] Could binding_factors.as_ref().unwrap()[n] panic with out-of-bounds or None?",
-  "[File: serai/crypto/frost/src/nonce.rs] [Line 208] [Multiexp Input - High] Are the statements Vec correctly formatted as (scalar, point) tuples for multiexp_vartime?",
-  "[File: serai/crypto/frost/src/nonce.rs] [Protocol] [Nonce Freshness - Critical] How is nonce freshness enforced across the entire FROST signing protocol?",
-  "[File: serai/crypto/frost/src/nonce.rs] [Protocol] [Rogue Key Attack - High] Do nonce commitments include proofs-of-knowledge to prevent rogue key attacks?",
-  "[File: serai/crypto/frost/src/nonce.rs] [Protocol] [Commitment Binding - Critical] Are nonce commitments cryptographically bound to prevent substitution after seeing others' commitments?"
-]
