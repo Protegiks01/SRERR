@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 248: pow() zeroize] [Medium - Secret Leakage] Does bit.zeroize() correctly clear the bit value from memory, or could sensitive exponent bits remain in memory allowing recovery of FROST secrets?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_86f9f2d8-60de-4785-9900-269ed302bd0b?mode=deep",
+    "timestamp": "2026-02-06 19:28:40.718020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 235-270: pow() overall] [Medium - Exponent Padding] Does the algorithm correctly handle exponents with leading zeros, or could it compute wrong results for small exponents used in FROST polynomial evaluation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c0eed03d-82ab-4035-a10a-cf7f46d822ec?mode=deep",
+    "timestamp": "2026-02-06 19:28:52.811159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 278-306: sqrt_ratio_i()] [Critical - Algorithm Difference] Does sqrt_ratio_i differ from Field::sqrt_ratio in ways that could cause Ed25519 point decoding to accept invalid points not accepted by sqrt_ratio, breaking FROST verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a4417c8d-6806-4dfd-8cb5-96b91234691f?mode=deep",
+    "timestamp": "2026-02-06 19:29:05.337839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 281-282: sqrt_ratio_i() v powers] [High - Arithmetic Duplication] Does sqrt_ratio_i duplicate the v3 and v7 calculations from sqrt_ratio, or could copy-paste errors introduce discrepancies that break Ristretto operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7db23e30-53fd-4612-aff5-37498ef643c4?mode=deep",
+    "timestamp": "2026-02-06 19:29:19.372165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 284: sqrt_ratio_i() candidate root] [High - Formula Consistency] Does the candidate root formula exactly match sqrt_ratio and RFC 8032, or could subtle differences cause sqrt_ratio_i to return different results for the same inputs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a59c92b2-597c-45e0-8a9e-d66be863ace4?mode=deep",
+    "timestamp": "2026-02-06 19:29:33.261153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 287-293: sqrt_ratio_i() sign checks] [Critical - Logic Divergence] Do the correct_sign, flipped_sign, and flipped_sign_i checks match sqrt_ratio, or could logic differences cause one function to accept inputs the other rejects, breaking Ed25519/Ristretto compatibility?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f99b510f-baf7-48cc-8ea7-b30fb492b57e?mode=deep",
+    "timestamp": "2026-02-06 19:29:47.937701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 296: sqrt_ratio_i() conditional multiply] [High - Adjustment Error] Does r.conditional_assign(&(r * i), flipped_sign | flipped_sign_i) match sqrt_ratio's adjustment logic, or could differences cause non-equivalent results for FROST operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1ee12c6e-7b3c-4ee1-a3eb-1dc604d575c9?mode=deep",
+    "timestamp": "2026-02-06 19:30:03.822231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 303: sqrt_ratio_i() sign normalization] [Medium - Canonical Form] Does r.conditional_negate(r.is_odd()) match sqrt_ratio's normalization, or could sign differences cause non-canonical Ed25519 points in FROST group operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_17d72fc3-9e5e-44bf-8bf2-a0108ad45d54?mode=deep",
+    "timestamp": "2026-02-06 19:30:19.954567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 305: sqrt_ratio_i() return] [Medium - Success Condition] Does (correct_sign | flipped_sign) match sqrt_ratio's return condition, or could one function indicate success when the other indicates failure, breaking compatibility?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ec8d4c2d-c965-4f7c-9890-073bfa3bc644?mode=deep",
+    "timestamp": "2026-02-06 19:30:35.800094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 278-306: sqrt_ratio_i()] [Low - Function Redundancy] Is sqrt_ratio_i necessary given sqrt_ratio exists, or could maintaining two similar functions lead to divergence over time causing subtle FROST bugs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_97aa1cd7-8cd7-43b7-8086-149671708c4d?mode=deep",
+    "timestamp": "2026-02-06 19:30:50.084759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 230-232: wide_reduce()] [High - Reduction Correctness] Does wide_reduce(value) correctly call reduce(U512::from_le_bytes(value)), or could endianness errors cause incorrect reduction of 64-byte inputs used in hash-to-field operations for FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1fc6eb2b-d245-409d-bf82-5af3d16068d0?mode=deep",
+    "timestamp": "2026-02-06 19:31:05.239187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 230-232: wide_reduce()] [Medium - Bias] Does reducing 512 bits modulo a 255-bit prime introduce statistical bias that could weaken FROST when deriving field elements from hashes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_76aa9cff-8505-4d52-9111-c2d88cfa9577?mode=deep",
+    "timestamp": "2026-02-06 19:31:22.759108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 230-232: wide_reduce()] [Low - Side-Channel] Does wide_reduce run in constant time for all inputs, or could timing leak information about hash outputs used in FROST challenge generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_928ec03f-5d38-48cc-a97d-f48fb8abc8f4?mode=deep",
+    "timestamp": "2026-02-06 19:31:40.417513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 223-225: from_u256()] [High - Reduction Correctness] Does Residue::new(u256) correctly reduce the input modulo p, or could it accept out-of-range values that break FROST when constructing field elements from large integers?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b14b61bf-d7d9-4056-924f-8c833bc6dd83?mode=deep",
+    "timestamp": "2026-02-06 19:31:59.642353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 223-225: from_u256()] [Medium - Const Correctness] Is from_u256 truly const, or could runtime dependencies cause compilation failures or undefined behavior in const contexts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5be6130f-b9aa-4d43-838e-0416c23b8f95?mode=deep",
+    "timestamp": "2026-02-06 19:32:19.563927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 223-225: from_u256()] [Low - Reference Lifetime] Does passing &U256 instead of U256 introduce unnecessary indirection or lifetime issues that could cause bugs in FROST implementations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_128f5add-ada7-44e3-8440-21c8f2a07626?mode=deep",
+    "timestamp": "2026-02-06 19:32:40.852302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 309-313: FromUniformBytes] [High - Uniformity] Does from_uniform_bytes provide statistically uniform field elements, or could bias allow attackers to predict FROST challenges derived from hash outputs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1b8f203c-b753-413e-ba26-810a189dea12?mode=deep",
+    "timestamp": "2026-02-06 19:33:03.779634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 309-313: FromUniformBytes] [Medium - Compatibility] Does from_uniform_bytes match the hash-to-field algorithm expected by FROST implementations, or could differences cause incompatibility with standard protocols?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1cfd88ce-c82e-4d48-86e6-b018ce5712f8?mode=deep",
+    "timestamp": "2026-02-06 19:33:27.276630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 65-71: math! macro usage] [Critical - Overflow] Do the add, sub, and mul operations correctly handle all input combinations, or could overflow/underflow cause field arithmetic errors that break FROST signature validation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d8f75529-617d-490f-9190-b54d8d348d4d?mode=deep",
+    "timestamp": "2026-02-06 19:33:53.289135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 113-115: Field::square()] [High - Optimization Error] Does self.0.square() correctly compute squaring, or could optimization bugs cause it to differ from self * self, breaking FROST exponentiations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8331a6ce-567c-4315-a3bc-679ef852e854?mode=deep",
+    "timestamp": "2026-02-06 19:34:21.297648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 116-118: Field::double()] [High - Addition Error] Does self.0.add(&self.0) correctly double the field element, or could it differ from self + self causing inconsistencies in FROST polynomial arithmetic?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_32400df7-eb68-4713-907f-8debb895eaf9?mode=deep",
+    "timestamp": "2026-02-06 19:34:50.438620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 89-94: Neg for FieldElement] [Medium - Negation Correctness] Does self.0.neg() correctly compute -self modulo p, or could it return incorrect values that break FROST share combination?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bd7da387-fe86-46c3-b81e-c36cf79a8c62?mode=deep",
+    "timestamp": "2026-02-06 19:35:19.932449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 96-101: Neg for &FieldElement] [Low - Reference Handling] Does the reference implementation correctly delegate to the value implementation, or could ownership issues cause double-negation or other errors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_32bcf9fa-bb89-46c5-a2b6-97487815d419?mode=deep",
+    "timestamp": "2026-02-06 19:35:48.937757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 315-323: Sum implementation] [Medium - Accumulation Error] Does the sum iterator correctly handle empty inputs (returning ZERO), or could uninitialized values cause FROST polynomial evaluation to produce wrong results?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_15292f9b-1801-4cab-9cd6-7473e3f0dba4?mode=deep",
+    "timestamp": "2026-02-06 19:36:16.859638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 331-339: Product implementation] [Medium - Multiplicative Identity] Does the product iterator correctly initialize to ONE, or could initialization to ZERO cause all products to be zero, breaking FROST Lagrange interpolation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_af5cbaab-fb8a-48ea-84d9-2a413dbe144c?mode=deep",
+    "timestamp": "2026-02-06 19:36:43.978863",
+    "report_generated": false
+  }
+]
