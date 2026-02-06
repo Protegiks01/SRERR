@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [Low - Update Call Overhead] Each append() makes 3 update() calls - if update() has high overhead, can frequent append() calls DoS validators?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cd295fa7-5572-4307-af83-2502dcd9001c?mode=deep",
+    "timestamp": "2026-02-06 20:29:52.145883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: new()] [Critical - Protocol Separation] If Bitcoin and Monero signing both use new(b'serai-signing'), can an attacker replay a Bitcoin signature as a Monero signature?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ff994dca-13b5-4bc8-9f83-3234cca4eba3?mode=deep",
+    "timestamp": "2026-02-06 20:30:04.697293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: domain_separate()] [High - Cross-Network Replay] If domain_separate() doesn't include the network ID (Bitcoin/ETH/Monero), can an attacker replay DKG messages across networks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ab079a33-e88d-484c-a4ad-4cf8175a876e?mode=deep",
+    "timestamp": "2026-02-06 20:30:18.926417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [High - Cross-Session Binding] If session IDs are not included in early transcript messages, can an attacker cause transcript collision between different validator set epochs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_97a91823-bf4e-4fb2-9a92-2fe9802970ce?mode=deep",
+    "timestamp": "2026-02-06 20:30:32.250537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: Transcript] [Medium - Cross-Implementation Attack] If different parts of Serai use different Transcript implementations (Merlin vs Digest), can an attacker cause state confusion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_df95441f-7dec-4835-85e8-ad705c0295e8?mode=deep",
+    "timestamp": "2026-02-06 20:30:46.396939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Type: Challenge] [High - Output Size Variance] The Challenge type is Output<D> which varies by digest - if FROST code assumes 64-byte challenges but gets 32 bytes, can this break binding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8a830d8d-5a14-4c44-823e-5518c5cbc45b?mode=deep",
+    "timestamp": "2026-02-06 20:31:02.279418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Output Encoding] The challenge output is raw bytes - if FROST expects big-endian scalar representation but gets little-endian, can this weaken security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b2d3f4c2-c76a-4ad2-8287-c376d5d28b25?mode=deep",
+    "timestamp": "2026-02-06 20:31:18.306038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [Medium - Seed Bias] Truncating challenge output to 32 bytes - if the digest has non-uniform output distribution, can this introduce bias in DKG randomness?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f1097525-2965-487e-824e-c64a14733a7a?mode=deep",
+    "timestamp": "2026-02-06 20:31:35.587514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: new()] [Medium - Static Data Race] The &'static [u8] requirement prevents runtime labels - but can compilation with link-time optimization cause static data to be merged incorrectly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8ab1fc15-dbd5-4f29-a211-cc5d0b9e7db4?mode=deep",
+    "timestamp": "2026-02-06 20:31:54.710500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: domain_separate()] [Low - Static String Deduplication] If the compiler deduplicates static strings, can two logically different domain labels share the same address and cause confusion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cb833456-1f49-495a-9ac6-3e25e241c3c9?mode=deep",
+    "timestamp": "2026-02-06 20:32:14.013559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: SecureDigest] [High - Implementation Trust] SecureDigest is auto-implemented for any Digest with >=256-bit output - can a malicious or buggy Digest implementation break all transcript security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0c2577a1-ea18-42e4-8bc3-646adb57eeab?mode=deep",
+    "timestamp": "2026-02-06 20:32:34.625764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Finalize Idempotency] Does calling finalize() multiple times on a cloned digest produce identical output, or can state mutation cause different challenges?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_44370c54-8704-4118-a738-a6fc7d996071?mode=deep",
+    "timestamp": "2026-02-06 20:32:55.744806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [Medium - Update Buffering] If Digest::update() buffers data internally and flushes non-deterministically, can this cause validators to observe different intermediate states?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_61ddd94b-0964-4680-859d-260e2681a0da?mode=deep",
+    "timestamp": "2026-02-06 20:33:17.217991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 24-25] [Medium - Test Feature Leakage] The tests module is conditionally compiled - if production code accidentally depends on test-only behavior, can this cause consensus bugs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2d8208e5-721e-46f7-9405-3bbe14faf5fa?mode=deep",
+    "timestamp": "2026-02-06 20:33:41.347029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 1] [Low - No_std Compatibility] The #![no_std] attribute - are there std-dependent features in dependencies that could cause linking errors in some build configurations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c14c33c7-c237-4386-b5af-ea9ea6120495?mode=deep",
+    "timestamp": "2026-02-06 20:34:03.825201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Critical - Binding Factor Collision] In FROST, if multiple signing sessions use overlapping transcript states, can binding factors collide and enable signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e250fb84-21c9-4fde-a191-f0eb66ee7ad7?mode=deep",
+    "timestamp": "2026-02-06 20:34:27.022922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Critical - Participant Set Binding] If the set of FROST participants is not bound to the transcript before DKG, can an attacker perform a subset attack?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9b46e3c8-8930-4e0e-949a-2909e3353d05?mode=deep",
+    "timestamp": "2026-02-06 20:34:50.481693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [High - Group Commitment Binding] Are FROST group commitments properly bound to the transcript, or can an attacker substitute commitments from a different session?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_226db6ab-ed9c-4f4f-aeb4-859c98f9beb5?mode=deep",
+    "timestamp": "2026-02-06 20:35:14.209208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [High - Preprocess Generation] If preprocessed nonces use rng_seed() without session-specific binding, can preprocesses be reused across sessions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4439bda9-9e39-476a-aa29-f863134bf62d?mode=deep",
+    "timestamp": "2026-02-06 20:35:39.657901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Medium - Share Ordering] In DKG, if shares are added to the transcript in non-deterministic order (e.g., based on network timing), can this cause key derivation divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2a777417-69f6-4d38-a9b8-094ebdb46ff5?mode=deep",
+    "timestamp": "2026-02-06 20:36:05.248520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Type: Output<D>] [Medium - Type Erasure] The challenge returns Output<D> which is digest-specific - if code accidentally mixes outputs from different digests, can this cause type confusion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6dcac8c1-67fe-4b82-b6b2-44dce827ca8f?mode=deep",
+    "timestamp": "2026-02-06 20:36:31.747689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [Medium - Array Truncation Safety] The truncation to [u8; 32] uses [.. 32] - if Output<D> is somehow < 32 bytes despite SecureDigest bounds, this panics - is this possible?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_24c9554f-f584-42e5-a834-b0c3c8727d84?mode=deep",
+    "timestamp": "2026-02-06 20:36:58.774292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: Transcript] [Medium - Concurrent Challenge] If multiple threads call challenge() on clones of the same transcript simultaneously, can race conditions in the Digest implementation cause non-deterministic output?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d0cddf76-d7af-43c4-bcbf-e3e68cb67da3?mode=deep",
+    "timestamp": "2026-02-06 20:37:27.015973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Low - Concurrent Zeroize] If zeroize() is called while another thread is reading the transcript, can this cause data races?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_30fe721a-0f94-4029-b8f5-abd18b5cf41f?mode=deep",
+    "timestamp": "2026-02-06 20:37:56.089243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [High - Optimizer Bypass] The black_box() call is meant to prevent optimization, but newer Rust versions may have more aggressive optimizers - is this future-proof?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_451c93eb-5046-4754-a2b7-20ca6aa9cdb9?mode=deep",
+    "timestamp": "2026-02-06 20:38:24.556805",
+    "report_generated": false
+  }
+]
