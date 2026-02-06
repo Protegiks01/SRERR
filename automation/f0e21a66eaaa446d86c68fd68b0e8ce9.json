@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Critical - Integer Overflow] Can window parameter >= 32 cause 2_usize.pow(window.into()) to overflow on line 15, leading to panic or incorrect table size allocation with potential memory corruption?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d6ecb3f6-0039-4fa8-badc-b0e2c74d06a5?mode=deep",
+    "timestamp": "2026-02-06 21:03:43.489805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Memory Exhaustion DoS] Can an attacker provide window=16 to allocate 2^16=65536 group elements per pair on line 15, exhausting validator memory when processing FROST DKG commitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_02dd36fc-a2c3-489d-ab95-0cceb67a1f1a?mode=deep",
+    "timestamp": "2026-02-06 21:03:56.172698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Critical - OOB Write] In the loop at lines 17-20, can the index i reach tables[p].len() causing out-of-bounds write when tables[p][i] = accum is executed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b07741fe-4548-4849-9c7c-b627bbd8d377?mode=deep",
+    "timestamp": "2026-02-06 21:04:08.848300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Medium - Resource Exhaustion] When pairs.len() is large (e.g., 1000 validators), does the tables.push() allocation pattern on line 15 cause excessive memory fragmentation during FROST signing rounds?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8e5696c6-9d06-4cf6-b17e-af657f6a93de?mode=deep",
+    "timestamp": "2026-02-06 21:04:22.722701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Incorrect Accumulation] Does the accumulator starting from G::identity() on line 16 and adding pair.1 repeatedly guarantee correct table[i] = i * pair.1 for all i, or can group arithmetic edge cases cause incorrect multiples?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_015526fa-44ce-4448-88fc-356bedfdc69d?mode=deep",
+    "timestamp": "2026-02-06 21:04:37.216990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Low - Denial of Service] Can window=0 cause 2^0=1 element tables that waste computation, or does upstream validation prevent this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ce8f1018-7a79-4ee9-af43-8a4a19accbac?mode=deep",
+    "timestamp": "2026-02-06 21:04:52.300220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Critical - Signature Forgery] If table generation produces wrong multiples (e.g., table[5] != 5*G), could this allow threshold signature forgery when used in FROST nonce commitment multiexp?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ff3e8829-fd2a-479f-8730-28005ce8906c?mode=deep",
+    "timestamp": "2026-02-06 21:05:07.233921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Medium - Memory Leak] Are the allocated Vec<G> tables properly cleaned up on panic during table generation, or could exceptions during group operations leak sensitive key material?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_386b2535-9f62-467b-9989-d44ee7a9b5f3?mode=deep",
+    "timestamp": "2026-02-06 21:05:23.449130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Empty Input Handling] What happens if pairs is empty on line 12? Does tables remain empty, causing issues in straus() when accessing tables[s]?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a93e3b7a-3c94-4a78-b1cc-ae0970b64d62?mode=deep",
+    "timestamp": "2026-02-06 21:05:41.493235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Medium - Timing Side Channel] Does the loop at lines 17-20 run for a fixed number of iterations regardless of pair.1 value, or can special group elements (identity, small order) leak timing information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cf70d6ef-7a13-4507-b758-3576c7fbb3b2?mode=deep",
+    "timestamp": "2026-02-06 21:05:59.011124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Side Channel Attack] Does the constant-time variant on lines 27-50 truly maintain constant time? Can branch prediction on line 36 (if b != ...) leak bit position information during FROST signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b1d13112-211f-440f-859d-c912518b3e4d?mode=deep",
+    "timestamp": "2026-02-06 21:06:16.532717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - OOB Read] On line 43, can groupings[s][b] produce values >= tables[s].len() causing out-of-bounds read when indexing tables[s][usize::from(groupings[s][b])]?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b908054f-01ca-44c2-8da0-447ce1a0b29e?mode=deep",
+    "timestamp": "2026-02-06 21:06:35.251522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Incorrect Result] If groupings[0].len() is 0, does the loop at line 35 never execute, returning G::identity() incorrectly when pairs is non-empty?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ae1dc40a-35a6-4916-9767-79d64846da84?mode=deep",
+    "timestamp": "2026-02-06 21:06:54.326644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Timing Leak] Does the table lookup tables[s][usize::from(groupings[s][b])] on line 43 access memory in constant time, or can cache timing reveal which table entries are accessed during DKG key generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3ec4fd0-d9e7-4157-beb7-a40370d3b084?mode=deep",
+    "timestamp": "2026-02-06 21:07:13.677491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Integer Overflow] Can the window doubling loop at lines 37-39 overflow if window is too large, causing res.double() to be called more than 256 times?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fef47d82-1a2a-4ca3-ac30-8d3f5efdfbc9?mode=deep",
+    "timestamp": "2026-02-06 21:07:32.418669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Medium - Incomplete Zeroization] Are groupings and tables on lines 47-48 zeroized before potential panics on lines 38, 43, or 44, preventing secret scalar leakage?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1e99bf14-cfcf-495e-b21f-01f289bf1236?mode=deep",
+    "timestamp": "2026-02-06 21:07:50.125729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Empty Pairs Panic] If pairs is empty, does prep_bits or prep_tables on lines 31-32 panic, or does groupings[0].len() on line 35 cause index OOB?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_28d9af65-3c90-43ca-b810-6ede83b75156?mode=deep",
+    "timestamp": "2026-02-06 21:08:07.710130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Incorrect Window Count] Does the doubling loop at lines 37-39 execute exactly window times, or can off-by-one errors cause incorrect scalar multiplication affecting FROST signature generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4f34bad4-8a28-45a9-ab35-830f217c2dd2?mode=deep",
+    "timestamp": "2026-02-06 21:08:26.988173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Medium - Group Operation Exception] If res.double() on line 38 or += operation on line 43 panics due to group implementation issues, is zeroization on lines 47-48 bypassed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ef6637d-cb57-4540-bde3-78fc51bfe63e?mode=deep",
+    "timestamp": "2026-02-06 21:08:47.538820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Type Conversion Safety] Does usize::from(groupings[s][b]) on line 43 always succeed, or can u8 values >= tables[s].len() cause incorrect indexing on 32-bit systems?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_33e22d1c-ab5b-40e9-9b27-4f6ef073f457?mode=deep",
+    "timestamp": "2026-02-06 21:09:09.148052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Loop Bounds Verification] Is groupings[0].len() consistent with groupings[s].len() for all s? Can mismatched lengths on line 42 cause OOB access?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7faa4b7a-1ae1-41b7-b2e7-601e25d1e390?mode=deep",
+    "timestamp": "2026-02-06 21:09:30.867473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Medium - Special Case Window=0] If window=0, does the doubling loop never execute and tables[s][0] always return identity, breaking multiexp correctness?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_036059b1-c0c1-44c1-9ba5-09f72f370e57?mode=deep",
+    "timestamp": "2026-02-06 21:09:53.926316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Signature Correctness] Can rounding errors in the window-based algorithm cause res != sum(scalar[i] * point[i]), allowing FROST signature verification bypass?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3df050cd-e621-4b3e-8c71-09651beae3c3?mode=deep",
+    "timestamp": "2026-02-06 21:10:16.672024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Cache Timing on Table Access] Even if branches are constant-time, does accessing different table indices on line 43 leak information via cache timing attacks during threshold key generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cdb06266-8df5-43ce-b6d7-d35dbb6df613?mode=deep",
+    "timestamp": "2026-02-06 21:10:37.537896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Low - Excessive Memory Retention] Do groupings and tables remain in memory until line 47-48, potentially leaking sensitive data if the process is killed mid-execution?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_73d82bb3-996d-4dc4-98a9-952a9644d9ca?mode=deep",
+    "timestamp": "2026-02-06 21:11:00.089084",
+    "report_generated": false
+  }
+]
