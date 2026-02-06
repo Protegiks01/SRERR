@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Fund Loss] When batch-verifying threshold multisig output authorizations, can crafted invalid signatures pass verification, allowing unauthorized burns or withdrawals?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ddd8f62f-d336-4eda-920d-7a1c42785b46?mode=deep",
+    "timestamp": "2026-02-06 20:35:16.958575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Instruction Forgery] If used to verify instruction signatures, can an attacker queue malformed instructions that batch-verify but contain invalid cross-chain transfer data?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a1bbd297-70f9-4441-b57e-767fdc32ca13?mode=deep",
+    "timestamp": "2026-02-06 20:35:29.266339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify_with_vartime_blame()] [Critical - Consensus Bug] Can validator disagreement on which instruction is invalid (due to blame non-determinism) cause chain forks when processing cross-chain batches?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_49eec7a1-7d5e-4e25-9f72-4c35512cf02d?mode=deep",
+    "timestamp": "2026-02-06 20:35:42.260829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Economic Security] When batch-verifying validator stake proofs, can attackers bypass the 33% economic security threshold by crafting proofs that incorrectly verify in batch?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_90cf3c89-a18e-4fdc-9912-c40d29a4a654?mode=deep",
+    "timestamp": "2026-02-06 20:35:56.079352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Fund Loss] Can an attacker exploit batch verification during rotation to create outputs to old multisig addresses that shouldn't be valid, enabling theft?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4733dc4a-5fdc-4c26-b0ee-e4dc2d79ce6d?mode=deep",
+    "timestamp": "2026-02-06 20:36:09.973649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [High - Slashing] If blame_vartime() is used to identify validators submitting invalid blocks, can false attribution cause incorrect slashing and validator set corruption?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dd947ffc-1915-4c15-8c4e-212217a3fd02?mode=deep",
+    "timestamp": "2026-02-06 20:36:25.796678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: flat()] [Medium - Memory Safety] Can the collect() operation at line 18 cause allocation failures or undefined behavior if the total size exceeds usize::MAX?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_712625b3-9da8-4567-962e-063b7c54edb6?mode=deep",
+    "timestamp": "2026-02-06 20:36:42.335608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Low - Memory Safety] Does the Vec::push at line 88 properly handle allocation failures, or could OOM conditions leave the BatchVerifier in an inconsistent state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_29acec76-73ba-4c05-bcbd-c7d1e94d9b0a?mode=deep",
+    "timestamp": "2026-02-06 20:36:59.729376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Struct: BatchVerifier] [Medium - Memory Safety] Can the Zeroizing wrapper at line 25 fail to zero memory if drop() panics, leaving sensitive scalars in memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_08fb815f-2a71-4817-9560-02142a747785?mode=deep",
+    "timestamp": "2026-02-06 20:37:18.341443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Low - Integer Overflow] Could the scalar multiplication (scalar * u) at line 88 overflow in edge cases, even with field arithmetic, causing incorrect verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_65b9e9b4-5d96-4afb-83ed-f208360673bd?mode=deep",
+    "timestamp": "2026-02-06 20:37:37.006541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Medium - Integer Overflow] Can the slice.len() / 2 division at line 111 cause integer truncation issues with odd-length slices?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00012724-5c7c-4cc6-8b5b-6c17d40af255?mode=deep",
+    "timestamp": "2026-02-06 20:37:57.364384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Low - Panic Safety] Are there any unwrap() or expect() calls beyond lines 131 and 141 that could panic with malicious input?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_319083d2-5e88-44dc-95d2-4d6c512256a9?mode=deep",
+    "timestamp": "2026-02-06 20:38:19.173571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - Type Safety] Does the IntoIterator bound at line 39 properly constrain the input, or could malicious implementations bypass safety checks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2d8e6189-0ed1-4285-9ad4-ab036bd653ca?mode=deep",
+    "timestamp": "2026-02-06 20:38:41.489294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] If G::Scalar::random() at line 52 uses a weak or predictable PRNG, can attackers predict random weights and craft cancelling statements?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f648ea59-5212-430e-9943-b23b5b55f717?mode=deep",
+    "timestamp": "2026-02-06 20:39:05.048599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Does the zero check (weight.is_zero().into()) at line 83 properly handle all zero representations for different field types, or could alternative zeros bypass the check?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6807502d-00c6-433a-8ccc-4f21eafbbbe9?mode=deep",
+    "timestamp": "2026-02-06 20:39:28.309150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] Can the is_identity() check at line 94 be fooled by small-order subgroup elements that behave like identity in some contexts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_19865091-dc6e-42ac-a951-a2a0e1b1d5d4?mode=deep",
+    "timestamp": "2026-02-06 20:39:52.064902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: flat()] [High - Signature Forgery] Does the Copy trait for G and G::Scalar guarantee that copied values are cryptographically identical, or could implementation bugs introduce subtle differences?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_df645a80-7018-49db-aa2c-51c27dbd20e3?mode=deep",
+    "timestamp": "2026-02-06 20:40:15.527680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - Signature Forgery] Can field-specific properties (e.g., characteristics, cofactors) of G::Scalar cause unexpected behavior in scalar * u multiplication at line 88?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fe796370-bb44-4c93-997e-c61a93c296fa?mode=deep",
+    "timestamp": "2026-02-06 20:40:38.895476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] If the multiexp implementation doesn't handle the point at infinity correctly, could statements with infinity points pass verification incorrectly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f07c66c5-1959-41e8-a17a-2c370c3dfcc7?mode=deep",
+    "timestamp": "2026-02-06 20:41:03.482892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [High - Privacy] Do the PrimeFieldBits trait requirements ensure constant-time field operations, or could timing leaks expose scalar values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_21e0b8ca-08d5-4c34-b04d-0c5005c98394?mode=deep",
+    "timestamp": "2026-02-06 20:41:29.115646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - Cryptographic Weakness] Is the random scalar generation at line 52 uniformly distributed over the entire scalar field, or could bias enable cryptographic attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9ecad35b-237c-4fe0-b50c-3e4a9580dcf7?mode=deep",
+    "timestamp": "2026-02-06 20:41:55.989700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: new()] [Low - DoS] What happens if capacity is zero at line 35? Does this cause allocation issues or unexpected behavior?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8410071b-7ca1-4f26-a692-248f3d5b5f71?mode=deep",
+    "timestamp": "2026-02-06 20:42:21.186154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Can queue() be called with an empty iterator, and if so, does this create a degenerate statement that always verifies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_44fba48c-4570-45d8-87bb-f5f4f5a379dd?mode=deep",
+    "timestamp": "2026-02-06 20:42:48.047984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Medium - Signature Forgery] What happens if verify() is called on an empty BatchVerifier? Does it return true (empty batch valid) or false?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_edb51a76-4541-4280-8ac6-556e70c9700c?mode=deep",
+    "timestamp": "2026-02-06 20:43:14.181672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [High - DoS] If blame_vartime() at line 108 is called on an empty BatchVerifier, could this cause panics or incorrect None returns?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0c7f7a22-974b-4980-a928-a7baba9e80d0?mode=deep",
+    "timestamp": "2026-02-06 20:43:42.072696",
+    "report_generated": false
+  }
+]
