@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Integer Overflow - High] Can an attacker cause integer overflow by providing exactly u16::MAX + 1 keys, bypassing the TooManyKeysProvided error check at line 51-52 and causing undefined behavior in downstream u16 conversions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_331ec018-1336-45b3-a894-fb260b708776?mode=deep",
+    "timestamp": "2026-02-06 20:28:53.423525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [DoS - Medium] Can an attacker cause HashSet allocation failure or memory exhaustion by providing a keys array with length approaching usize::MAX (line 54), even before the u16 conversion check occurs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_29413fe5-9f9c-470e-8bf8-00c4e56a1b9c?mode=deep",
+    "timestamp": "2026-02-06 20:29:06.024313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Key Malleability - Critical] Can an attacker provide two public keys that have different point representations but serialize to the same bytes via to_bytes() (line 56), bypassing duplicate detection and enabling rogue key attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a43a47c8-ba91-4be4-9449-1ddfe6d1b697?mode=deep",
+    "timestamp": "2026-02-06 20:29:18.770481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Point Validation - Critical] Does check_keys() verify that all provided keys are valid curve points and not the identity element (zero point), which could enable cancellation attacks in the multiexp at line 56?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_959728ad-28c5-4828-9e31-e6b871074075?mode=deep",
+    "timestamp": "2026-02-06 20:29:32.631340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Timing Side Channel - Low] Does the HashSet insert operation (line 57) execute in variable time based on hash collisions, potentially leaking information about key similarity through timing analysis?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5a30e80a-4ae1-4923-bf40-4141738c5180?mode=deep",
+    "timestamp": "2026-02-06 20:29:46.406565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Resource Exhaustion - Medium] Can an attacker repeatedly call functions using check_keys() with maximum-length key arrays to cause excessive heap allocations and memory pressure on validator nodes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_607b9659-d254-4cc9-bcbd-e44c04f08b71?mode=deep",
+    "timestamp": "2026-02-06 20:30:01.366225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Error Handling - Low] Does the DuplicatedParticipant error (line 58) leak information about which specific key was duplicated, enabling targeted attacks on specific validators?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1f8d00cc-ec00-44ee-a12d-66d9a0a7366d?mode=deep",
+    "timestamp": "2026-02-06 20:30:16.798501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: check_keys()] [Edge Case - Medium] What happens if check_keys() receives an array containing only identity elements (zero points)? Will this pass validation but create unusable threshold keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_76c5a0f3-4133-4cf9-af5a-e10019d05542?mode=deep",
+    "timestamp": "2026-02-06 20:30:33.071578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Transcript Malleability - Critical] Can an attacker manipulate the context parameter (line 66) to create two different key sets that hash to the same binding factor transcript, enabling cross-context key reuse attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f2e413d9-eab1-4bd8-8bbb-77d874b4c5a2?mode=deep",
+    "timestamp": "2026-02-06 20:30:50.893029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Integer Encoding - High] Does the little-endian encoding of keys_len (line 74) create transcript collisions if an attacker crafts a context that ends with bytes matching a valid keys_len encoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_70dc1b7e-c1ed-4436-8bc3-fcec1eeb9903?mode=deep",
+    "timestamp": "2026-02-06 20:31:08.977871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Memory Safety - Medium] Can the Vec allocations in binding_factor_transcript() (line 72) fail silently or panic under memory pressure, causing inconsistent transcript generation across validators?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c0197cdd-bb9f-4cd3-9dfb-bd9161669283?mode=deep",
+    "timestamp": "2026-02-06 20:31:28.653802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Determinism - Critical] Is binding_factor_transcript() guaranteed to produce identical outputs on all platforms given the same inputs, or can endianness/serialization differences cause consensus failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8d3c187d-2f20-4579-bf82-7f0b2b76fb11?mode=deep",
+    "timestamp": "2026-02-06 20:31:49.565600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Domain Separation - High] Does the transcript lack sufficient domain separation between context, keys_len, and key bytes (lines 73-76), allowing attackers to craft inputs where one field's data bleeds into another?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6d49518c-2196-4cc0-9d80-48a10acd81bb?mode=deep",
+    "timestamp": "2026-02-06 20:32:10.302839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Debug Assertion - Medium] Can the debug_assert_eq! at line 70 be bypassed in release builds, allowing keys_len mismatch and incorrect transcript construction?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a599ab33-b835-4c24-be43-857b8a40ad27?mode=deep",
+    "timestamp": "2026-02-06 20:32:32.019126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Key Ordering - Critical] Does binding_factor_transcript() enforce a canonical ordering of keys, or can an attacker provide the same keys in different orders to generate different group keys for the same validator set?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4cbfaed6-e0b8-4b19-80c3-e17f59e802cd?mode=deep",
+    "timestamp": "2026-02-06 20:32:53.861346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor_transcript()] [Serialization - High] Can different curve implementations produce different to_bytes() outputs for the same logical point (line 76), causing validator consensus failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_33c3cb8c-6b97-4472-83e5-be021ab2f56f?mode=deep",
+    "timestamp": "2026-02-06 20:33:16.718439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Hash Collision - Critical] Can an attacker find two different (transcript, i) pairs that produce the same binding factor via C::hash_to_F (line 83), enabling them to forge threshold signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_442c27e3-53d2-4401-9590-4a53dc44c8e4?mode=deep",
+    "timestamp": "2026-02-06 20:33:40.500619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Index Manipulation - High] Can an attacker manipulate the participant index i (line 82) to cause transcript collision with another participant's binding factor, enabling key cancellation attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eb85da99-ae29-4eeb-b881-cf6f1f73a9f5?mode=deep",
+    "timestamp": "2026-02-06 20:34:04.718065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Domain String - Medium] Is the domain separation string 'dkg-musig' (line 83) unique across all Serai protocol usages, or could it collide with other hash_to_F calls in different contexts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1c8d0277-92fd-432d-a2ec-0b158df18cf3?mode=deep",
+    "timestamp": "2026-02-06 20:34:29.172399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Transcript Mutation - Critical] Does binding_factor() mutably extend the transcript (line 82) allowing the same transcript Vec to be reused unsafely if not properly cloned in calling code?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_812dc447-c28b-4992-ace9-5dcb33bb825c?mode=deep",
+    "timestamp": "2026-02-06 20:34:54.813652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Zero Binding Factor - High] Can hash_to_F ever return a zero field element, which would cause a participant's key to be completely cancelled in the multiexp aggregation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4cf51edf-cd8f-4f0e-8d81-8b35a5f20299?mode=deep",
+    "timestamp": "2026-02-06 20:35:22.065883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Index Encoding - Medium] Does the little-endian encoding of i (line 82) match the encoding used in all other protocol components, or can endianness mismatches cause binding factor divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5c3ba235-32ef-4b0a-8e72-9578d0c3e76e?mode=deep",
+    "timestamp": "2026-02-06 20:35:49.897389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: binding_factor()] [Ciphersuite Security - High] Does hash_to_F provide sufficient preimage resistance to prevent attackers from finding i values that produce target binding factors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e6421c1c-f823-483d-bf84-4a89314dbc63?mode=deep",
+    "timestamp": "2026-02-06 20:36:18.162780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: musig_key_multiexp()] [Index Off-by-One - Critical] Does the range 1..=keys_len (line 94) correctly map to keys[i-1] (line 95), or can off-by-one errors cause wrong keys to be assigned wrong binding factors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_737bca2e-791b-489b-9a43-772802ef9f53?mode=deep",
+    "timestamp": "2026-02-06 20:36:47.211411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/musig/src/lib.rs] [Function: musig_key_multiexp()] [Transcript Clone Safety - High] Is cloning the transcript in the loop (line 95) safe and efficient, or can repeated clones cause memory exhaustion or reference corruption?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5e30b560-752e-434c-b84b-7cea32d78559?mode=deep",
+    "timestamp": "2026-02-06 20:37:14.673565",
+    "report_generated": false
+  }
+]
