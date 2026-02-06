@@ -1,8 +1,0 @@
-[
-  {
-    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 35] [Field Element Zero - Medium] Is the zero scalar properly handled as a challenge? Zero challenges would trivially leak the nonce: s = r + 0*a means s = r?",
-    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_235ad2a9-b4eb-459c-b725-c40aa8851d41?mode=deep",
-    "timestamp": "2026-02-06 19:47:40.828289",
-    "report_generated": false
-  }
-]
