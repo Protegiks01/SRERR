@@ -1,8 +1,0 @@
-[
-  {
-    "question": "[File: crypto/schnorr/src/aggregate.rs] [Struct: SchnorrAggregate] [MEDIUM - Set Metadata] Does SchnorrAggregate include validator set metadata to prevent confusion between sets, or must this be tracked externally?",
-    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_50e92a84-9068-44c2-b62d-7f2d2ba37dad?mode=deep",
-    "timestamp": "2026-02-06 20:50:06.380881",
-    "report_generated": false
-  }
-]
