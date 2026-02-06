@@ -1,0 +1,6 @@
+[
+  "serai/networks/bitcoin/src/lib.rs",
+  "serai/networks/bitcoin/src/rpc.rs",
+  "serai/networks/bitcoin/src/wallet/mod.rs",
+  "serai/networks/bitcoin/src/wallet/send.rs"
+]
