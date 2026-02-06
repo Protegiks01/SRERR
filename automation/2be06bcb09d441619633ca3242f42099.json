@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: crypto/frost/src/lib.rs] [Function: validate_map()] [Critical - Post-Validation State] After validate_map returns Ok(()), are there additional checks performed before using the validated map, or could state changes between validation and use introduce TOCTOU vulnerabilities?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0c0053ba-0cdc-4ab7-bb52-dfb42925f2ce?mode=deep",
+    "timestamp": "2026-02-06 19:24:10.784795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/lib.rs] [Module: Re-export Safety] [High - Transitive Dependencies] Do the re-exported types from dkg (line 10) transitively expose any unsafe or unchecked operations that could be exploited through the FROST API?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7454044f-0b5c-4a9a-b21f-1b4e4e3ad13e?mode=deep",
+    "timestamp": "2026-02-06 19:24:23.058605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/lib.rs] [Error: InternalError String] [Medium - Static String Safety] Are all InternalError &'static str values at line 30 properly sanitized to not reveal sensitive implementation details or memory addresses?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_37bba252-0b99-4058-91a5-573325133319?mode=deep",
+    "timestamp": "2026-02-06 19:24:35.820008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/lib.rs] [Function: validate_map()] [High - Single Point of Validation] Is validate_map the only validation point for participant sets, or could callers bypass it and directly access signing functions with unvalidated inputs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bfe3d57c-bfa8-4d91-9423-aa1282299652?mode=deep",
+    "timestamp": "2026-02-06 19:24:49.070817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/lib.rs] [Integration: Cross-Module Invariants] [Critical - Invariant Preservation] Does lib.rs enforce invariants (e.g., threshold correctness, participant uniqueness) across module boundaries, or could submodules violate assumptions made in lib.rs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9d888bf3-060d-403b-be36-ceea2aaaf45f?mode=deep",
+    "timestamp": "2026-02-06 19:25:03.923714",
+    "report_generated": false
+  }
+]
