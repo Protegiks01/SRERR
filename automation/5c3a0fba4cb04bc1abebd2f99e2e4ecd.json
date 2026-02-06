@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Constant-Time Comparison] **MEDIUM** The ct_eq() check is constant-time, but is the overall loop structure constant-time, or could the number of iterations leak information via cache timing or branch prediction?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c10a5368-b571-4ea5-bab6-95a5c077aa2d?mode=deep",
+    "timestamp": "2026-02-06 19:51:58.005571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Seed Reuse in Loop] **HIGH** When the loop continues after finding zero, it generates a new seed - is the old seed properly zeroized before the new one, or could seed fragments remain in memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e36d09f3-acf7-4cb2-808f-766f388c1d29?mode=deep",
+    "timestamp": "2026-02-06 19:52:10.165250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Extension Operation] **MEDIUM** The seed.extend(repr.as_ref()) operation grows the seed vector - does this allocate new memory leaving old seed copies in heap memory without zeroization?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5e697a89-8bd0-43d1-baff-8332eda03be6?mode=deep",
+    "timestamp": "2026-02-06 19:52:23.083404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [repr Zeroization Timing] **MEDIUM** The repr.as_mut().zeroize() happens after the loop - if the loop panics or errors, is repr still properly zeroized, or could the secret leak?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_88638de8-4042-4ba7-b0ca-09d871d8d540?mode=deep",
+    "timestamp": "2026-02-06 19:52:36.831919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Zero Nonce Impact] **HIGH** The comment says zero nonces would leak the secret share - if rejection sampling fails and somehow returns zero, would higher-level code catch this before using it in signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0a198605-84db-4165-8f66-0a7462626047?mode=deep",
+    "timestamp": "2026-02-06 19:52:50.680459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [RNG Failure] **MEDIUM** If rng.fill_bytes() fails or produces all zeros, would this be detected, or could it lead to weak nonces being used?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f8426f68-3d24-4092-8b8b-13bf96200ba6?mode=deep",
+    "timestamp": "2026-02-06 19:53:05.460702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Nonce Correlation] **HIGH** Does the deterministic component (secret share) in nonce generation, combined with the random seed, properly ensure nonces are unique across different messages, or could related messages produce related nonces?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e2839f7a-2242-40e8-ad59-5e1df649853f?mode=deep",
+    "timestamp": "2026-02-06 19:53:21.359026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [H3 DST] **MEDIUM** The 'nonce' domain separation tag - does this properly separate nonce generation from other uses of hash_to_F to prevent cross-protocol attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_539737a4-e8e1-4d94-8ec0-1f1b4dbd0b47?mode=deep",
+    "timestamp": "2026-02-06 19:53:37.805035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Seed Vector Reallocation] **LOW** When seed is reset to vec![0; 32] in the loop, does Rust's allocator guarantee the old allocation is overwritten, or could old seed material remain in freed memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cdde3e41-c4e6-4058-9e3a-8ec82af5fa05?mode=deep",
+    "timestamp": "2026-02-06 19:53:56.019416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [Identity Point Bypass] **CRITICAL** Could an attacker provide a point representation that deserializes to identity but passes the is_identity() check due to non-canonical encoding or implementation bugs, breaking threshold signature verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f2c4640a-8769-4e8e-bb92-7b8721e82bf6?mode=deep",
+    "timestamp": "2026-02-06 19:54:14.736392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [Deserialization Panic] **HIGH** Does the underlying Ciphersuite::read_G() panic on invalid input, or could malformed point data cause unwinding that bypasses the identity check, allowing identity points to be used?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4310af38-ec1d-43df-87ed-9fefdb70e264?mode=deep",
+    "timestamp": "2026-02-06 19:54:33.744758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [Small Subgroup Attack] **CRITICAL** Does read_G() verify the point is in the correct prime-order subgroup, or could an attacker provide a small-subgroup point that passes the identity check but leaks secret shares during signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cf9a4304-afbb-45b5-a3bb-50811d339674?mode=deep",
+    "timestamp": "2026-02-06 19:54:52.970504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [Invalid Curve Point] **HIGH** Can read_G() accept a point that is not on the curve but passes initial validation, leading to invalid signature aggregation or key generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d5505c30-1cd3-496a-b2af-9842c02a71c4?mode=deep",
+    "timestamp": "2026-02-06 19:55:13.848456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [Error Handling] **MEDIUM** The function returns io::Result - do all callers properly handle Err cases, or could ignored errors lead to default/zero points being used?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_459acac3-ae5f-4b7e-86a0-25740e2e2708?mode=deep",
+    "timestamp": "2026-02-06 19:55:35.373430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [DoS via Invalid Points] **MEDIUM** Could an attacker flood the system with invalid point encodings, causing repeated deserialization failures and DoS during DKG or signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_272e02db-5dda-4820-8f12-d02365f97f53?mode=deep",
+    "timestamp": "2026-02-06 19:55:57.007788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: read_G()] [Identity Check Timing] **LOW** Is the is_identity() check constant-time, or could timing variations leak information about whether submitted points are close to identity?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0d1e20f4-2edb-4296-94a3-5f44a8be660b?mode=deep",
+    "timestamp": "2026-02-06 19:56:19.979155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Trait: Curve] [Missing Trait Bounds] **HIGH** Does the Curve trait properly constrain implementers to provide secure hash functions, or could a malicious implementation provide weak hash functions breaking all security properties?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bace337b-d1a9-4c35-98ae-616224303240?mode=deep",
+    "timestamp": "2026-02-06 19:56:42.471503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Trait: Curve] [Implementation Safety] **CRITICAL** Are there any trait safety invariants that implementations must uphold (e.g., H must be collision-resistant), and how are these enforced to prevent insecure curve implementations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ab1bedba-08c8-45dd-b966-b9654dea4a72?mode=deep",
+    "timestamp": "2026-02-06 19:57:05.601618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Trait: Curve] [Generic Over Ciphersuite] **HIGH** Since Curve extends Ciphersuite, could bugs in the underlying Ciphersuite implementation (field arithmetic, group operations) propagate through all Curve functions, compromising signature security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_894345ce-4259-4140-8d9d-30c2b056980b?mode=deep",
+    "timestamp": "2026-02-06 19:57:28.668917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Module: dalek] [Ristretto/Ed25519 Context] **HIGH** Do the Ristretto and Ed25519 implementations provide unique CONTEXT strings, or could context collision enable signature forgery across these curves?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1105f2e2-2f67-48b8-8880-a48931fd6233?mode=deep",
+    "timestamp": "2026-02-06 19:57:52.577516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Module: kp256] [Secp256k1/P256 Context] **CRITICAL** Given that Secp256k1 is used for Bitcoin and P256 for other chains, is there absolute certainty that their CONTEXT values differ to prevent cross-chain signature replay?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c40e6d74-05ec-4a0f-9110-ec2e0669dc4b?mode=deep",
+    "timestamp": "2026-02-06 19:58:15.938535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Module: ed448] [Ed448 Context] **MEDIUM** Does Ed448 provide sufficient domain separation from other Ed curves to prevent implementation confusion attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4e22c3f7-c04e-4c77-8e71-881afbce0c66?mode=deep",
+    "timestamp": "2026-02-06 19:58:40.840038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Zeroizing Type Usage] **HIGH** Are all intermediate values in random_nonce() properly wrapped in Zeroizing, or could temporary field elements leak secret material when dropped?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00b38bab-1b7d-4657-bcf0-db4769ff4dd0?mode=deep",
+    "timestamp": "2026-02-06 19:59:07.180542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Drop Order] **MEDIUM** When the function returns, are variables dropped in an order that ensures secrets are zeroized before the stack frame is cleaned, or could compiler optimizations reorder drops?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eadd469d-f006-4350-916b-ee9226fee29d?mode=deep",
+    "timestamp": "2026-02-06 19:59:32.216514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Overall] [Panic Safety] **HIGH** If any function panics (e.g., concat() OOM, hash digest failure), could unwinding leave sensitive data in an unzeroized state, leaking secrets?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_57bc7e1c-5927-49ca-9149-28f30ea7c4ed?mode=deep",
+    "timestamp": "2026-02-06 19:59:59.244578",
+    "report_generated": false
+  }
+]
