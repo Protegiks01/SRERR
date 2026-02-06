@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] Can an attacker exploit the RNG to force generation of a zero scalar weight by manipulating the CryptoRng implementation, bypassing the zero-check loop and causing queued statements to trivially pass verification regardless of validity (lines 46-86)?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_155e9340-a504-489e-8cfc-a555577c845e?mode=deep",
+    "timestamp": "2026-02-06 21:24:49.061043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] If the RNG becomes biased or compromised to repeatedly output zero or near-zero scalars, could the infinite loop at lines 50-84 cause a DoS while attempting to find non-zero weights, preventing legitimate batch verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_74689491-7fb1-4271-8c8f-c1f87a00c870?mode=deep",
+    "timestamp": "2026-02-06 21:25:01.559693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Does the random weight generation at line 52 provide sufficient entropy when multiple statements are queued rapidly in succession, or could predictable RNG state allow an attacker to craft colliding weights that cancel out invalid proofs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_88569591-2912-4742-9b64-7ee332882c98?mode=deep",
+    "timestamp": "2026-02-06 21:25:14.944346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] Can an attacker force the first queued statement (line 47) to always use weight ONE, allowing them to submit an invalid proof first that isn't randomized, potentially enabling algebraic cancellation attacks with subsequent weighted statements?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e1c73d3f-96a5-47c5-bdba-08724fc029aa?mode=deep",
+    "timestamp": "2026-02-06 21:25:28.048632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] If an attacker can influence the order of statement queueing, could they exploit the deterministic weight=ONE for the first statement (line 47) to construct a malicious proof sequence that sums to zero despite individual invalidity?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_694eea46-92e6-46ab-a5a6-f3f3731ed69c?mode=deep",
+    "timestamp": "2026-02-06 21:25:42.174473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - DoS] Can an attacker deliberately queue an extremely large number of statements to exhaust memory via the Vec allocation at line 88, causing validator crashes before batch verification completes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d001ed72-04a8-45ab-8389-0b6f0a5d4b2f?mode=deep",
+    "timestamp": "2026-02-06 21:25:58.214575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Does the scalar multiplication (scalar * u) at line 88 handle edge cases where scalar is the additive identity or other special values that could lead to algebraic cancellation in the final multiexp?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_22a86aed-8e90-46f2-aa0e-756a9d5851b8?mode=deep",
+    "timestamp": "2026-02-06 21:26:14.165066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Consensus Bug] If two validators have slightly different RNG states, will they generate different random weights for the same queued statements, causing them to potentially disagree on batch verification results and fork the chain?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d4003939-e6c5-4204-b324-0b6acbfbdfcd?mode=deep",
+    "timestamp": "2026-02-06 21:26:31.457474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Can an attacker submit statements with carefully chosen scalar values that, when multiplied by random weights at line 88, overflow or wrap around the field modulus, creating unexpected cancellations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7a5a30ea-83bc-4b72-a67c-c10ac138a041?mode=deep",
+    "timestamp": "2026-02-06 21:26:48.844075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - Privacy] Does the use of random weights at line 52 leak timing information through the while loop iteration count that could reveal information about RNG state or previously queued statement properties?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a13815e3-184c-42e0-a7f3-b48d95885c8f?mode=deep",
+    "timestamp": "2026-02-06 21:27:07.434441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Low - DoS] If the RNG quality degrades over time (e.g., entropy pool exhaustion), could the zero-check loop at lines 50-84 take exponentially longer, causing performance degradation in batch verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a878d826-c05a-47fe-90d6-2feaf564090e?mode=deep",
+    "timestamp": "2026-02-06 21:27:27.477786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Are there any field-specific values where scalar * u at line 88 could produce zero even when both scalar and u are non-zero, allowing invalid statements to be masked?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a307f883-e6ee-4ac3-9e0b-377f4abf788d?mode=deep",
+    "timestamp": "2026-02-06 21:27:48.161507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] Can an attacker exploit the commented-out bit-clearing optimization (lines 56-80) if it were ever re-enabled, by crafting scalars that interact dangerously with partially-cleared random weights?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ff4f8f6e-a32e-4b46-8417-9e262efca2d4?mode=deep",
+    "timestamp": "2026-02-06 21:28:10.453476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Medium - Consensus Bug] If the capacity hint in new() is significantly wrong, does the Vec reallocation during queue() operations introduce non-deterministic behavior that could affect consensus?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a7adf058-7db1-43a8-9eaf-e4d18b832a69?mode=deep",
+    "timestamp": "2026-02-06 21:28:32.737161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Can an attacker queue duplicate statements with the same Id but different scalar-point pairs, causing confusion in blame identification or allowing malicious proofs to cancel legitimate ones?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_03a82d95-e99f-49e3-8c25-61153d3549a5?mode=deep",
+    "timestamp": "2026-02-06 21:28:57.683756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Privacy Leak] Does the constant-time multiexp at line 94 actually execute in constant time for all input sizes and point types, or could variations in the number of queued statements leak through timing side channels?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_846a0867-0a61-4334-9b12-4c9a9d9b30e6?mode=deep",
+    "timestamp": "2026-02-06 21:29:21.502324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] Can the is_identity() check at line 94 be bypassed if the multiexp result is a small-order point rather than the identity, allowing invalid proofs to pass verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_95497aaa-7bdd-464a-8887-3d793810b19d?mode=deep",
+    "timestamp": "2026-02-06 21:29:44.014660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify_vartime()] [Medium - Privacy Leak] Does the variable-time multiexp_vartime at line 100 leak sensitive information about which statements are valid or invalid through execution timing patterns?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_200c9290-dacf-435e-bca8-31dccb50caee?mode=deep",
+    "timestamp": "2026-02-06 21:30:07.022717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Signature Forgery] If the underlying multiexp implementation has bugs with scalar zero handling, could an attacker exploit this by queueing statements with zero scalars that are incorrectly processed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5290f6d4-5aaa-4a22-8e99-e4b8c32669a9?mode=deep",
+    "timestamp": "2026-02-06 21:30:30.540079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Consensus Bug] Are there any edge cases where verify() and verify_vartime() could return different results for the same input, causing validators to disagree on statement validity?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_103f4dff-8265-4a48-af8b-c1114c679d0b?mode=deep",
+    "timestamp": "2026-02-06 21:30:55.561531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Medium - DoS] Can an attacker craft statements that cause the multiexp operation at line 94 to take exponentially long to compute, creating a DoS vector against batch verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bf4f2455-c94a-4951-be34-798609da2243?mode=deep",
+    "timestamp": "2026-02-06 21:31:21.548767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify_vartime()] [High - Signature Forgery] Does the variable-time optimization in verify_vartime potentially skip important validation steps that could allow malformed proofs to pass?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3348cbe9-a0a9-4816-8dd4-1cc903c66fe2?mode=deep",
+    "timestamp": "2026-02-06 21:31:47.747939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Low - Privacy] Can the boolean return value at line 94 be observed through side channels before it's explicitly returned, leaking verification results prematurely?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f7da6737-0979-42ff-96a4-6fbe18ae3520?mode=deep",
+    "timestamp": "2026-02-06 21:32:14.009207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] If the flat() function at line 94 produces an empty vector when all statements have been cancelled out, does is_identity() correctly return true or could this bypass validation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6fac08d5-cd44-43c7-9cd2-ad5ea9d9955d?mode=deep",
+    "timestamp": "2026-02-06 21:32:42.160630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Signature Forgery] Are there group-specific edge cases where is_identity().into() at line 94 could return true for non-identity elements, such as points at infinity or small-order subgroup elements?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e17b36d1-0fdd-49a3-9b5e-a3854e40d392?mode=deep",
+    "timestamp": "2026-02-06 21:33:10.861570",
+    "report_generated": false
+  }
+]
