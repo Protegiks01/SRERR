@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [Critical - Share Collection] Lines 377-395 collect shares in a Vec - if shares.push occurs after an early return from ?, could partial shares be created without corresponding signature machines? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6c283d11-129b-4ac6-bbb2-cdd33143d2a0?mode=deep",
+    "timestamp": "2026-02-06 19:34:03.318343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::cache()] [Medium - Unimplemented Panic] Lines 333-337 use unimplemented!() for cache - if any code path accidentally calls this, it causes an immediate panic and potential DoS. (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_53d1939d-7799-4400-9ccc-24921c8c98c6?mode=deep",
+    "timestamp": "2026-02-06 19:34:15.837455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::from_cache()] [Medium - Unimplemented Panic] Lines 340-348 use unimplemented!() for from_cache - could coordinator retry logic accidentally call this and crash the processor? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ba7fcec9-10a3-47af-8443-7be3726b5bdf?mode=deep",
+    "timestamp": "2026-02-06 19:34:28.569367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignatureMachine::complete()] [Critical - Share Ordering] Line 419 uses shares.remove(0) to get shares in order - if participants send shares in different orders, could this cause signatures to be assembled incorrectly? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_74687ecb-6f9c-4c7f-9ea0-eb6d7ab9886c?mode=deep",
+    "timestamp": "2026-02-06 19:34:42.470382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignatureMachine::complete()] [High - Witness Size] Lines 422-424 create a witness with a single signature - if the signature is not exactly 64 bytes due to encoding, does this cause transaction invalidity? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4e0ce16e-fe71-4c16-b46c-661129557cf4?mode=deep",
+    "timestamp": "2026-02-06 19:34:56.083539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignatureMachine::complete()] [Critical - Input Mutation] Line 417 mutates self.tx.input iteratively - if complete() is called twice, does it append duplicate witnesses or panic? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f800b2d4-4151-4bdc-a671-606e7cb1a81e?mode=deep",
+    "timestamp": "2026-02-06 19:35:10.960840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignatureMachine::complete()] [High - Signature Verification] complete() assembles signatures but doesn't verify them - could malformed shares pass through and create an invalid Bitcoin transaction? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_77f902aa-91f9-4037-bd2a-4611f0b0d87f?mode=deep",
+    "timestamp": "2026-02-06 19:35:27.192574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignatureMachine::complete()] [Medium - Iterator Exhaustion] Line 417 zips input.iter_mut() with sigs.drain(..) - if these have different lengths due to bugs, does the zip silently truncate or panic? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6ad1050f-c487-4291-bdba-d8fa6c468374?mode=deep",
+    "timestamp": "2026-02-06 19:35:44.632112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Cross-Function] [Critical - Key-Script Binding] If tweak_keys() at line 46 and p2tr_script_buf() at line 80 use different elliptic curve implementations, could they produce incompatible keys and scripts, making funds unspendable? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7e39983b-6e0b-4067-9448-f4de83691e07?mode=deep",
+    "timestamp": "2026-02-06 19:36:02.435674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Cross-Function] [High - Offset Consistency] ReceivedOutput stores offsets at line 92, Scanner::register_offset validates them at line 180, but does SignableTransaction::multisig at line 273 verify offsets haven't been tampered with? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_274662af-4cb3-45f6-90e3-1fe3b5c80a51?mode=deep",
+    "timestamp": "2026-02-06 19:36:20.219421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Cross-Function] [Critical - Fee Race Condition] If SignableTransaction::new() calculates fees at line 206 but the transaction is signed later, could network fee rates change causing the transaction to be stuck in mempool indefinitely? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7d5ff979-7ff5-4dd5-b582-3e2b4122e8ab?mode=deep",
+    "timestamp": "2026-02-06 19:36:39.098884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Cross-Function] [High - State Machine Transition] The state machine transitions from TransactionMachine -> TransactionSignMachine -> TransactionSignatureMachine - if any transition fails, is partial state cleaned up or could it leak sensitive nonces? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1451b3a9-5d15-4740-a07d-afeec97f70f0?mode=deep",
+    "timestamp": "2026-02-06 19:36:57.196572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [High - Side Channel] Does the conditional_select at lines 69-73 run in constant time, or could timing attacks reveal whether keys were negated? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a247e451-4b63-4a36-baae-776b4411e3a8?mode=deep",
+    "timestamp": "2026-02-06 19:37:16.727882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [Critical - Nonce Leakage] If taproot_key_spend_signature_hash at line 386 fails after nonces are committed but before signing completes, are the nonces safely disposed or could they be reused? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d53e76e5-373a-44d8-a085-9ef7c5864eb8?mode=deep",
+    "timestamp": "2026-02-06 19:37:37.622692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: Scanner::register_offset()] [High - Timing Side Channel] The loop at lines 184-195 takes variable time based on how many increments are needed - could an attacker measure this timing to learn about the offset? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b9785c93-40dd-45e0-b0a4-85c9ae670f2f?mode=deep",
+    "timestamp": "2026-02-06 19:37:59.133312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: Scanner::scan_block()] [Medium - Concurrent Scanning] If multiple threads scan the same block simultaneously, could they produce duplicate ReceivedOutputs that cause double-counting of deposits? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6b4088c9-52c0-4ae0-871e-9a257f3cbca1?mode=deep",
+    "timestamp": "2026-02-06 19:38:21.757799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [High - Reentrancy] If new() is called reentrantly with overlapping inputs, could the inputs.drain at line 253 cause one transaction to steal inputs from another? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_17f97757-b9ff-4d84-8fa4-081d2e64158f?mode=deep",
+    "timestamp": "2026-02-06 19:38:44.112031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::serialize()] [Low - Panic on Write] Line 146 uses unwrap() on write result - could this panic if the Vec allocation fails, causing validator crash? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_52f6b6da-ed68-4231-8ae8-a22229618bab?mode=deep",
+    "timestamp": "2026-02-06 19:39:07.624124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [High - Panic on Checked Math] Line 199 uses expect() on try_from for data - if this path is reachable, it causes a panic instead of returning TransactionError::TooMuchData. (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1904207b-0d98-4ac4-99ae-9980ed76c2b2?mode=deep",
+    "timestamp": "2026-02-06 19:39:30.925882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: tweak_keys()] [Critical - Panic on Zero] Line 74 expects scaling by ±1 never produces zero, but if subtle::ConditionallySelectable has a bug, could this panic during validator set initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ccf079a2-7aa9-4923-b471-ffd15698246f?mode=deep",
+    "timestamp": "2026-02-06 19:39:55.246354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/mod.rs] [Function: ReceivedOutput::write()] [Medium - Endianness] Lines 138-140 serialize offset, output, outpoint - are these all little-endian/big-endian consistent with Bitcoin's encoding? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00bdc487-0c54-47c3-b3a7-3aabec8ace21?mode=deep",
+    "timestamp": "2026-02-06 19:40:19.266874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::txid()] [High - Byte Order] Line 261 reverses txid bytes - is this consistently applied everywhere txids are compared, or could big-endian/little-endian confusion cause transaction mismatches? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a031fe48-1e48-4905-b37d-fcb7283c34a2?mode=deep",
+    "timestamp": "2026-02-06 19:40:42.752889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [High - Fee Griefing] If fee_per_vbyte at line 155 is set very low, line 211-213 checks against DEFAULT_MIN_RELAY_TX_FEE - could an attacker force validators to create unrelayable transactions? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b5513f47-d6c7-4a77-a07b-a9288e37cc98?mode=deep",
+    "timestamp": "2026-02-06 19:41:07.429096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [Critical - DUST Attack] An attacker could deposit many outputs just above DUST (547 sats) then later withdraw, forcing validators to spend many inputs with high fees - is there UTXO consolidation logic? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9d41a053-5d76-4cd7-a2c4-78abcf1375df?mode=deep",
+    "timestamp": "2026-02-06 19:41:32.017553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [High - Change Address Griefing] If change address is None at line 153, all excess becomes fee - could an attacker manipulate inputs to force no change output and burn user funds? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b467f651-7646-40e4-b725-9430ae1728ac?mode=deep",
+    "timestamp": "2026-02-06 19:41:55.416763",
+    "report_generated": false
+  }
+]
