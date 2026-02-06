@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Line 187] [Nonce Binding - Critical] Is the formula generator.0[0] + (generator.0[1] * rho) mathematically correct per FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f50d05e3-8558-48a1-8fef-86c76050aeb2?mode=deep",
+    "timestamp": "2026-02-06 20:02:51.875697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Line 204] [Identity Start - High] Is initializing D to C::G::identity() the correct neutral element for aggregation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2971433b-4b04-4d38-8ca7-541618d3ef5b?mode=deep",
+    "timestamp": "2026-02-06 20:03:04.602639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Line 206] [Unwrap Chain - High] Could binding_factors.as_ref().unwrap()[n] panic with out-of-bounds or None?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bce26bae-1ef4-4e2f-bf3e-fa64412af5fe?mode=deep",
+    "timestamp": "2026-02-06 20:03:17.486877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Protocol] [Nonce Freshness - Critical] How is nonce freshness enforced across the entire FROST signing protocol?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_92c3b5f7-3483-4101-97f6-6b223e1b14f8?mode=deep",
+    "timestamp": "2026-02-06 20:23:43.286110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Protocol] [Rogue Key Attack - High] Do nonce commitments include proofs-of-knowledge to prevent rogue key attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_64056848-b565-407d-8bec-226824aad36d?mode=deep",
+    "timestamp": "2026-02-06 20:23:56.608277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/nonce.rs] [Protocol] [Commitment Binding - Critical] Are nonce commitments cryptographically bound to prevent substitution after seeing others' commitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d2c58c10-c5a8-4c05-94fa-dbd9dd4cff6b?mode=deep",
+    "timestamp": "2026-02-06 20:24:09.584622",
+    "report_generated": false
+  }
+]
