@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Type Safety] [Participant Type - Medium] Does the Participant type properly validate participant IDs to prevent out-of-bounds access in share arrays or malformed participant sets?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_36ef251b-993c-46e9-83f6-7fbac98f304a?mode=deep",
+    "timestamp": "2026-02-06 19:18:05.237656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Type Safety] [Scalar Type - Low] Can Scalar values overflow, wrap around, or produce the zero scalar in ways that break signing security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c8941cfe-f69a-4438-98dd-b45808a27372?mode=deep",
+    "timestamp": "2026-02-06 19:18:17.470426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Serialization] [Signature Encoding - High] When signatures are serialized for Bitcoin transaction inclusion, is the byte ordering and encoding format exactly BIP-340 compliant?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_db21cdf8-0b33-4274-a377-966b932bb8be?mode=deep",
+    "timestamp": "2026-02-06 19:18:30.330510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Serialization] [Point Serialization - Medium] Does point serialization for nonce commitments use a canonical encoding that prevents different representations of the same point?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2d143ccb-0701-4483-a072-8caa52f702cd?mode=deep",
+    "timestamp": "2026-02-06 19:18:43.456417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Serialization] [Addendum Reading - Low] Does read_addendum() properly validate that the read data is well-formed before passing it to process_addendum()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eb783784-7e31-4446-8725-516ea40ff461?mode=deep",
+    "timestamp": "2026-02-06 19:18:57.243876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [DoS] [Signature Verification - Medium] Can an attacker force validators to perform expensive signature verification operations repeatedly by submitting invalid signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9f4a7f15-fbbf-4d0f-8662-913d18374dc2?mode=deep",
+    "timestamp": "2026-02-06 19:19:12.380989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [DoS] [Nonce Generation - Low] Is there a limit on how many nonces can be preprocessed per session to prevent memory exhaustion from unbounded preprocessing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7280f525-8f4b-4fe0-b138-adae3c441447?mode=deep",
+    "timestamp": "2026-02-06 19:19:28.153395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [DoS] [Hash Engine - Low] Can the SHA256 hash engine be exploited with pathological inputs to cause excessive CPU usage during challenge computation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_50e50f16-dc39-4ddf-99e0-a1e4d6a0f581?mode=deep",
+    "timestamp": "2026-02-06 19:19:45.545470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Cross-Network] [Key Reuse - Critical] If the same threshold key is used for both Bitcoin and Ethereum (or other networks), can signature reuse or key extraction attacks work across networks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ad33bbf3-1e1d-441a-8aba-af9fc1097af9?mode=deep",
+    "timestamp": "2026-02-06 19:20:04.843992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Cross-Network] [Challenge Domain - High] Is the BIP-340 challenge computation properly domain-separated from other network signature schemes to prevent cross-network signature validity?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_18da43bf-b4f9-40fd-af7b-3fc7bfa98650?mode=deep",
+    "timestamp": "2026-02-06 19:20:24.172480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Cross-Network] [Format Confusion - Medium] Can an attacker craft a message that produces valid signatures on multiple networks simultaneously, bypassing network-specific validation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8dad8a96-2392-4bd8-abbf-61856bac3bc8?mode=deep",
+    "timestamp": "2026-02-06 19:20:44.381989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Economic] [Signature Withholding - Medium] Can malicious validators refuse to provide signature shares for valid transactions to extort fees or cause DoS without being slashed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e2467948-3e2d-406d-b34b-1bf61d47f7a4?mode=deep",
+    "timestamp": "2026-02-06 19:21:05.655490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Economic] [MEV Extraction - Low] Can validators who control signature share ordering or timing extract MEV by selectively signing or delaying certain Bitcoin transactions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0e6d54d5-47a2-4df2-b78d-70bd61450dff?mode=deep",
+    "timestamp": "2026-02-06 19:21:27.391120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Advanced Crypto] [Lattice Attacks - Low] If partial nonce information leaks through side-channels, can lattice-based attacks recover the full private key from multiple signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f61f6bd6-fa18-4996-bf50-03d2be0aa29f?mode=deep",
+    "timestamp": "2026-02-06 19:21:49.529324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Advanced Crypto] [Fault Injection - Medium] Can fault injection attacks during sign_share() computation cause validators to produce shares that leak key information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ed465fe9-be4e-4418-b10f-5db557019383?mode=deep",
+    "timestamp": "2026-02-06 19:22:11.580708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Advanced Crypto] [Quantum Resistance - Low] While secp256k1 is not quantum-resistant, does the threshold signing introduce additional quantum vulnerabilities beyond standard ECDSA?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6b2bad05-9dda-493c-99cd-629ff7e57ef9?mode=deep",
+    "timestamp": "2026-02-06 19:22:35.070435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Edge Cases] [Zero Signature - Medium] Can the signing process ever produce a zero s value in the signature, and if so, is this handled correctly by Bitcoin nodes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6d37170b-9ab2-42a8-8534-3989ba1d9183?mode=deep",
+    "timestamp": "2026-02-06 19:22:59.762585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Edge Cases] [Maximum Scalar - Low] What happens if the challenge computation produces a scalar equal to the curve order, and is this handled without panics?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_93a89545-b8b6-4a30-a38c-1bdcc7dc1ca2?mode=deep",
+    "timestamp": "2026-02-06 19:23:26.522586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Edge Cases] [Identity Point - Medium] Can the signing process ever use the identity point (point at infinity) as the nonce, and would this be detected before signature generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9e6d4e36-d0eb-47e3-9713-845b53809aa3?mode=deep",
+    "timestamp": "2026-02-06 19:23:54.624036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 14] [DoS - High] The to_encoded_point(true) call for compressed encoding - can malformed ProjectivePoint internal state cause this to return None even for non-infinity points?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8c1e9906-4d2a-4830-b9f2-6d3bb618894e?mode=deep",
+    "timestamp": "2026-02-06 19:24:20.888593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 15] [DoS - Critical] The expect on x() extraction assumes the point is not at infinity, but is there any validation earlier in the call chain to guarantee this invariant?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a227346a-64c6-4140-a262-eb0e49c972f2?mode=deep",
+    "timestamp": "2026-02-06 19:24:48.408943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 22] [DoS - High] XOnlyPublicKey::from_slice() can fail if the 32 bytes don't represent a valid x-coordinate - are there curve membership checks before this point?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_878ed8e7-e702-4ee8-a56f-576ce01b4271?mode=deep",
+    "timestamp": "2026-02-06 19:25:15.413548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 27] [Timing - High] The u8::from() conversions in ct_eq - do these preserve constant-time properties, or can the type conversion leak information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6116baad-b071-44ac-8821-a1b89da85d3f?mode=deep",
+    "timestamp": "2026-02-06 19:25:42.442572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 60] [Correctness - Critical] The const_hash of 'BIP0340/challenge' must exactly match BIP-340 - has this been validated against the reference implementation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_04d225e4-a75d-4d13-a0fc-644e91a4b2e7?mode=deep",
+    "timestamp": "2026-02-06 19:26:09.782540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 63-67] [Ordering - High] The SHA256 input order (TAG, TAG, x(R), x(A), m) must exactly match BIP-340 - is this order verified against test vectors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e59c5d26-f441-42c8-9e0c-f2c12c538994?mode=deep",
+    "timestamp": "2026-02-06 19:26:36.905165",
+    "report_generated": false
+  }
+]
