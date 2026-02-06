@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Memory: Type G, Line 37] **MEDIUM**: Does Zeroize on G properly clear all point coordinates, including any cached precomputation tables used for scalar multiplication?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9ec4b9cf-0fe4-4bc3-b8ce-680e26f71e64?mode=deep",
+    "timestamp": "2026-02-06 20:59:40.078406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Panic: read_F(), Line 76] **MEDIUM**: If read_exact() panics due to unexpected EOF, could unhandled panics during batch processing leave the validator in an inconsistent state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_330cb2b0-1026-408d-9402-ef29f3dfe4c3?mode=deep",
+    "timestamp": "2026-02-06 20:59:52.239895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Panic: read_G(), Line 93] **MEDIUM**: Same panic risk as read_F() - could panics during key confirmation cause some validators to accept and others to reject the same key?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0b50709e-06a2-418e-a40e-752a5fdc4660?mode=deep",
+    "timestamp": "2026-02-06 21:00:05.069582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Panic: random_nonzero_F(), Lines 64-67] **LOW**: The while loop - could integer overflow in loop counter (if that exists) cause a panic?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4a532da7-5954-4e06-a18a-f556ac8081ac?mode=deep",
+    "timestamp": "2026-02-06 21:00:18.291097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Error: read_F(), Line 80] **LOW**: The error message uses io::Error::other() - is this the correct error type, or could it be confused with actual IO errors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dbfacd1f-86cd-40f7-a23e-84e7d50a0fbb?mode=deep",
+    "timestamp": "2026-02-06 21:00:32.331899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Error: read_G(), Lines 96-99] **LOW**: Two different error paths ('invalid point' vs 'non-canonical point') - could distinguishing them leak information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a29e2514-a8b1-4dd2-9948-1c0d2708a298?mode=deep",
+    "timestamp": "2026-02-06 21:00:48.288250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Consensus: hash_to_F(), Lines 49-58] **CRITICAL**: If different validators use different ciphersuite implementations with different hash_to_F() behaviors, could they compute different challenge values and reject each other's signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a0dec31a-c887-4141-9e71-bcbc41639429?mode=deep",
+    "timestamp": "2026-02-06 21:01:03.920764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Consensus: read_F(), Lines 74-83] **HIGH**: The canonicalization check relies on from_repr() returning Option::None for non-canonical values - what if implementations differ on what's canonical?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fcf5298c-4aee-4723-9c46-01257500c58d?mode=deep",
+    "timestamp": "2026-02-06 21:01:21.011785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Consensus: read_G(), Lines 91-101] **HIGH**: The to_bytes() round-trip check assumes deterministic serialization - could floating-point-style non-determinism break this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d2c59f06-965a-40e4-9cd1-d03c15c3ce73?mode=deep",
+    "timestamp": "2026-02-06 21:01:39.006840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Consensus: generator(), Line 47] **HIGH**: If generator() is not deterministic across platforms, could validators generate different threshold keys for the same session?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c423cf61-3301-4bd3-86d1-5afc20f158f2?mode=deep",
+    "timestamp": "2026-02-06 21:01:57.480247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Consensus: ID, Line 43] **MEDIUM**: If different validator binaries use different ID values for the same curve, would they reject each other's signatures as invalid?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6d0dc405-4d79-4ecb-b971-12b816b37dd6?mode=deep",
+    "timestamp": "2026-02-06 21:02:16.344597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [DoS: random_nonzero_F(), Lines 64-67] **MEDIUM**: Could an adversary who controls the RNG force the rejection sampling loop to run indefinitely, causing validator DoS?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0fbdb786-ad97-4371-a848-ae8857ff3f0c?mode=deep",
+    "timestamp": "2026-02-06 21:02:36.005029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [DoS: hash_to_F(), Lines 49-58] **LOW**: Could extremely large DST or msg inputs cause memory exhaustion when hashing during batch processing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_12c5d341-9b26-461e-8a69-899fbcb3fe4a?mode=deep",
+    "timestamp": "2026-02-06 21:02:56.428702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [DoS: read_G(), Line 95] **MEDIUM**: Could crafted point encodings that are expensive to decode (but still valid) cause CPU exhaustion during key confirmation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_88c85266-88e2-4202-a05c-47d1568793e3?mode=deep",
+    "timestamp": "2026-02-06 21:03:17.642278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [DoS: read_F(), Line 79] **LOW**: Could repeatedly submitting non-canonical scalars cause validators to waste CPU checking and rejecting them?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e0ee108a-6c88-454d-a607-fdf9d07fa33e?mode=deep",
+    "timestamp": "2026-02-06 21:03:39.868013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [FROST: hash_to_F() DST collision, Lines 49-58] **CRITICAL**: In FROST, could DST='FROST-nonce'||session_id collide with DST='FROST'||'-nonce'||session_id, allowing nonce reuse across sessions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_12befe7f-df06-4216-9513-74ef803e40f5?mode=deep",
+    "timestamp": "2026-02-06 21:04:03.154759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [FROST: generator() consistency, Line 47] **CRITICAL**: If different validators use different generators due to ciphersuite version mismatch, would the aggregated threshold key be invalid?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_50c732f2-cec0-428d-8c3e-c033a8bd49f8?mode=deep",
+    "timestamp": "2026-02-06 21:04:26.960709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [DKG: read_G() for key shares, Lines 91-101] **CRITICAL**: If a validator submits a maliciously crafted key share that passes read_G() checks but is actually the identity point in disguise, could the aggregated key be breakable?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3d5a4f54-b678-4976-b356-5875aa4e56e9?mode=deep",
+    "timestamp": "2026-02-06 21:04:52.107323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [DKG: random_nonzero_F() for secrets, Lines 62-69] **CRITICAL**: If the DKG uses random_nonzero_F() to generate secret polynomial coefficients, could RNG prediction allow an attacker to learn all shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_86a7228e-d01e-4cb6-a521-1a323b751ff5?mode=deep",
+    "timestamp": "2026-02-06 21:05:18.609077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [MuSig: hash_to_F() for key aggregation, Lines 49-58] **HIGH**: In MuSig-style key confirmation, if hash_to_F() is used to compute aggregation coefficients, could DST manipulation create rogue-key attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_81aef654-4fac-4c37-bc72-4223068ad1da?mode=deep",
+    "timestamp": "2026-02-06 21:05:44.892399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Type: Repr, Lines 75-93] **MEDIUM**: The Repr::default() calls - do they guarantee zero-initialized buffers? Could uninitialized memory leak into read operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4d07945d-c46e-407e-b031-3e5177a06915?mode=deep",
+    "timestamp": "2026-02-06 21:06:11.832004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Type: Option, Lines 79-95] **LOW**: The Option::<T>::from() conversions - could the None case leave partial data in the Option's discriminant?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_df51307b-b4df-4db7-b15d-87f946c9cea9?mode=deep",
+    "timestamp": "2026-02-06 21:06:40.597387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Type: Choice, Line 66] **MEDIUM**: The Choice type from subtle - does its conversion to bool preserve constant-time properties on all platforms?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_15540e4c-f8a8-4696-a1a5-230661ae0a1f?mode=deep",
+    "timestamp": "2026-02-06 21:07:12.176917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Generic: <R: Read>, Lines 74-93] **LOW**: Could malicious Read implementations return partial data or hang indefinitely, breaking read_F() and read_G()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a3adc5fc-f6d9-4127-b5af-e6e14aea4826?mode=deep",
+    "timestamp": "2026-02-06 21:07:41.447404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Crypto: Field modulus, Line 35] **HIGH**: Does PrimeField guarantee that the modulus is actually prime? Could composite moduli break discrete log security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b4067ade-2e3e-49ff-9f3b-fad17f3d5a66?mode=deep",
+    "timestamp": "2026-02-06 21:08:11.087182",
+    "report_generated": false
+  }
+]
