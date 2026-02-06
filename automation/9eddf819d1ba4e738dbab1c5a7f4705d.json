@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Session Binding - HIGH] Each validator session should have unique key material. Can hash_to_F collisions cause session keys to overlap, allowing validators to reuse old session keys in new sessions? [Severity: HIGH]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e996889f-f3ce-414c-9c5b-022f87868dd7?mode=deep",
+    "timestamp": "2026-02-06 20:30:32.327020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Extrinsic Replay - HIGH] Substrate extrinsics may use signatures derived from hash_to_F. Can dst/data transposition enable replay attacks across different extrinsic types or blocks? [Severity: HIGH]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2922b51a-6bd8-4344-bfac-2ec28f7cffe2?mode=deep",
+    "timestamp": "2026-02-06 20:30:44.577311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Pallet Confusion - MEDIUM] Different Substrate pallets (validator-sets, coins, dex, in-instructions) may use hash_to_F. Can an attacker cause confusion between pallet contexts via dst/data boundary manipulation? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_77ea9290-6563-49f4-ac67-84e653868683?mode=deep",
+    "timestamp": "2026-02-06 20:30:58.190744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [State Transition Forgery - HIGH] Can hash_to_F collisions allow an attacker to forge state transition signatures, causing validators to diverge on chain state and break consensus? [Severity: HIGH]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_79ce5907-eda2-4471-9172-4f99ae607479?mode=deep",
+    "timestamp": "2026-02-06 20:31:11.413013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Stake Calculation Bypass - HIGH] Economic security checks involve signing stake amounts. Can dst/data manipulation allow an attacker to bypass the 33% stake limit, enabling validator sets to control more external funds than their stake justifies? [Severity: HIGH]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_baf3b1fd-300e-4fd7-89d9-80999c6b3b3f?mode=deep",
+    "timestamp": "2026-02-06 20:31:25.185909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Slashing Bypass - HIGH] Slashing conditions may be signed using hash_to_F-derived challenges. Can an attacker prevent slashing by manipulating the signature to appear valid for a non-slashable condition? [Severity: HIGH]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cfa73d30-e243-40f8-9599-e8e79bf910f3?mode=deep",
+    "timestamp": "2026-02-06 20:31:39.976104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Mint/Burn Imbalance - CRITICAL] Mint and burn operations must maintain solvency. Can hash_to_F collisions allow an attacker to create valid signatures for mints without corresponding deposits, or burns without corresponding withdrawals? [Severity: CRITICAL]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b00bb56b-63ee-48c9-9689-20de2c783fcc?mode=deep",
+    "timestamp": "2026-02-06 20:31:55.398957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Resource Exhaustion - MEDIUM] The concat() operation allocates memory proportional to dst.len() + data.len(). Can an attacker submit extremely large dst or data values to cause memory exhaustion in validators during signature verification? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a0354092-b070-4f61-80bf-ba60566605a3?mode=deep",
+    "timestamp": "2026-02-06 20:32:12.724774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Hash Collision DoS - MEDIUM] If an attacker can craft inputs that cause hash_to_F to produce pathological scalars (e.g., very close to zero), can this cause signing operations to fail repeatedly, stalling batch processing? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c1fdc0ac-d9b7-4774-bb60-c89a96830efd?mode=deep",
+    "timestamp": "2026-02-06 20:32:31.436920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: generator()] [Generator Caching DoS - LOW] If generator() is called repeatedly without caching, can this cause performance degradation? Conversely, if it is cached, can cache poisoning cause DoS? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8da28302-aa3d-4f73-86c3-83ecddcfd7e2?mode=deep",
+    "timestamp": "2026-02-06 20:32:49.845457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [SHA512 Weak Inputs - LOW] Are there known weak inputs to SHA512 that could cause hash_to_F to produce biased or predictable outputs, reducing cryptographic security? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8f795573-6fd4-4952-8159-bbf3de9e9cd9?mode=deep",
+    "timestamp": "2026-02-06 20:33:09.055607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Type: Sha512] [Hash Length Extension - LOW] Although SHA512 is used, is there any risk of length extension attacks if dst or data are reused across different contexts with varying lengths? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_289fdc82-f51e-49b9-b39a-d368480a4b1a?mode=deep",
+    "timestamp": "2026-02-06 20:33:30.326644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Endianness Issues - LOW] Does Scalar::from_hash() handle endianness correctly across different platforms (x86, ARM, etc.)? Can endianness mismatches cause validators on different architectures to derive different scalars? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e1d27ac8-16f7-4432-869c-5270ee5cab13?mode=deep",
+    "timestamp": "2026-02-06 20:33:51.582056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Macro: dalek_curve!] [Compilation Footgun - MEDIUM] If the macro is invoked with incorrect parameters (e.g., wrong ID for Point type), will this cause a compile-time error, or will it compile successfully but produce runtime crypto failures? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_81bd4dcd-91d1-4151-bea9-3f29548ef0bc?mode=deep",
+    "timestamp": "2026-02-06 20:34:13.684957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [FROST Spec Deviation - HIGH] The FROST specification likely mandates specific domain separation for hash_to_F. Does Serai's implementation with naive concatenation deviate from the spec in ways that break interoperability or security assumptions? [Severity: HIGH]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_445621fd-5cdb-4166-ac4a-e4806bcbcf89?mode=deep",
+    "timestamp": "2026-02-06 20:34:36.649629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [RFC-8032 Compliance - MEDIUM] For Ed25519, RFC-8032 specifies exact hash-to-scalar procedures. Does the concatenation-based hash_to_F comply, or does it create incompatibility with standard Ed25519 implementations? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dd88eb4a-e85e-47df-96ad-13af7df8021f?mode=deep",
+    "timestamp": "2026-02-06 20:34:59.874764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Constant: ID] [Ciphersuite Registry - LOW] Are the ID values 'ristretto' and 'edwards25519' registered in any standard ciphersuite registry, or could they collide with other protocols using the same ciphersuite trait? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d3268733-0788-4d8e-9048-2e662896312c?mode=deep",
+    "timestamp": "2026-02-06 20:35:22.173855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [DST Leakage - LOW] Since dst is concatenated in plaintext before hashing, can network observers distinguish between different protocol operations (DKG vs signing vs verification) by analyzing dst patterns? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3e295e5d-8797-440e-ac70-f2438cc9ead3?mode=deep",
+    "timestamp": "2026-02-06 20:35:46.641717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Data Pattern Analysis - LOW] Can traffic analysis on concatenated [dst, data] buffers leak information about transaction sizes, instruction types, or validator set sizes before cryptographic operations complete? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d5a34ab7-93c7-4aca-a76a-b581fc6d4a0c?mode=deep",
+    "timestamp": "2026-02-06 20:36:10.706884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Constant: ID] [Protocol Fingerprinting - LOW] The hardcoded ID values 'ristretto' and 'edwards25519' could allow network observers to fingerprint Serai traffic. Is this acceptable, or should IDs be more generic? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_84d72181-f947-439e-810d-9dd4a6b0979a?mode=deep",
+    "timestamp": "2026-02-06 20:36:33.679810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Empty Input Handling - MEDIUM] What happens if dst or data (or both) are empty? Can this cause unexpected scalar values or panics in downstream FROST operations? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dbc18d0e-94ae-429b-8e2e-bcc70a64eaae?mode=deep",
+    "timestamp": "2026-02-06 20:36:57.553719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Maximum Size Handling - LOW] Is there a maximum size for dst or data? Can extremely large inputs cause performance degradation or integer overflow in length calculations? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c7cabe37-ecb9-4c5b-819a-8853ecec9e61?mode=deep",
+    "timestamp": "2026-02-06 20:37:20.042590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Unicode and Non-ASCII - LOW] If dst or data contain non-ASCII or invalid UTF-8, does this affect hash_to_F behavior or cause unexpected scalar derivation? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c63a7e5d-5f71-40cb-bf35-e6e02e5e11b9?mode=deep",
+    "timestamp": "2026-02-06 20:37:42.988653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: generator()] [Identity Element - MEDIUM] What happens if generator() somehow returns the identity element? Can this cause all derived keys to be trivial and break security? [Severity: MEDIUM]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bb1ab5fc-3379-4d5b-8dbc-5efd812e3dd8?mode=deep",
+    "timestamp": "2026-02-06 20:38:06.683533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/ciphersuite.rs] [Function: hash_to_F()] [Differential Cryptanalysis - LOW] Can differential analysis of hash_to_F with varying dst/data boundaries reveal patterns that reduce the effective security from 256 bits to a lower value? [Severity: LOW]",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a174127c-727c-478a-ad4b-0f52f0361ff1?mode=deep",
+    "timestamp": "2026-02-06 20:38:29.597651",
+    "report_generated": false
+  }
+]
