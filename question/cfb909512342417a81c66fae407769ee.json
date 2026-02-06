@@ -1,3 +1,0 @@
-[
-  "[File: crypto/schnorr/src/aggregate.rs] [Struct: SchnorrAggregate] [MEDIUM - Set Metadata] Does SchnorrAggregate include validator set metadata to prevent confusion between sets, or must this be tracked externally?"
-]
