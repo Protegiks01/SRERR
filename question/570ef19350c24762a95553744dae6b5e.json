@@ -1,3 +1,0 @@
-[
-  "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 35] [Field Element Zero - Medium] Is the zero scalar properly handled as a challenge? Zero challenges would trivially leak the nonce: s = r + 0*a means s = r?"
-]
