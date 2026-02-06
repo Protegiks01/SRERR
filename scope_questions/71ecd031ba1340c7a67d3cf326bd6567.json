@@ -1,0 +1,127 @@
+[
+  {
+    "question": "serai/crypto/ciphersuite/kp256/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_1d0aef86-a8af-4b6c-a1a0-f20ae0cc990b?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/ciphersuite/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_c03fdffd-9a1f-4bbe-8fbe-c2ea812db390?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/dalek-ff-group/src/ciphersuite.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_e25a6e43-a8ea-432d-aa2a-0fdfc3e85e16?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/dalek-ff-group/src/field.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_7940ccb9-328d-40e8-8733-768bb34ba6a8?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/dalek-ff-group/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_5308c96c-5870-4671-a82a-72308ac1e116?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/dkg/musig/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_96aaabd0-cf25-4bae-ac02-e20ecd562cbd?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/dkg/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_904439c0-24bb-4b56-b21e-f5abea08bac0?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/algorithm.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_1f818379-9d1e-4776-b634-5ae8944133db?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/curve/dalek.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b7c5f153-d66f-4721-a00b-c59066a3e9ea?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/curve/ed448.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_346c4ad2-3b70-420b-a041-1925e4f208dd?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/curve/kp256.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_5d42169d-8aab-4dd8-8294-41b6c56fc387?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/curve/mod.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_7ae32c05-cebf-4163-acc9-ae3d89b4be3d?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_3f1f61a2-4260-4a41-9f1a-5bf5da13f15d?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/nonce.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_2876cd09-88d5-4287-9543-acd2c90c66f2?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/frost/src/sign.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_3a0554fd-3d67-4a84-b77f-3dca2e7bfc27?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/multiexp/src/batch.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_329eeec1-8194-48cd-8fa9-9a2eec2b5fec?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/multiexp/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_2068f3e2-8340-4fee-a096-1aa9a7997c15?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/multiexp/src/pippenger.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_633d0db3-bb8a-460e-9027-8923e0334050?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/multiexp/src/straus.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_92a604e9-c88d-4e98-9413-d0ced2d02371?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/schnorr/src/aggregate.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_fde8d836-68d1-4b3f-8ea4-a58d234534d8?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/schnorr/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b9df6bff-ce6c-4e02-9beb-47c78e372562?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/schnorrkel/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_bf77a170-cf55-45fb-a381-d41b70cd08f1?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/transcript/src/lib.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_cdc9bd75-b49f-40e8-98d6-c8979a0caee0?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/crypto/transcript/src/merlin.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_eeda3200-27ae-4045-8e77-c679199594ff?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "serai/networks/bitcoin/src/crypto.rs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_a9fea482-e98c-4aed-a93b-687980609d53?mode=deep",
+    "questions_generated": false
+  }
+]
