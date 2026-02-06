@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 325-329: Sum for &FieldElement] [Low - Iterator Efficiency] Does copying elements before summing introduce unnecessary overhead or potential bugs compared to summing by reference?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_613bdf8a-36d8-448a-9d7f-abe0074c3779?mode=deep",
+    "timestamp": "2026-02-06 19:13:34.015031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 341-345: Product for &FieldElement] [Low - Iterator Efficiency] Does copying elements before multiplying introduce unnecessary overhead or potential bugs compared to multiplying by reference?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bcb67728-cb6e-4756-9bf8-b2506a0c97f8?mode=deep",
+    "timestamp": "2026-02-06 19:13:46.998618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 104-105: ZERO and ONE] [Critical - Identity Element Error] Do ResidueType::ZERO and ResidueType::ONE represent the correct additive and multiplicative identities, or could wrong constants break all FROST arithmetic?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_419fb2e6-fc62-4711-a16b-54c014d69c8d?mode=deep",
+    "timestamp": "2026-02-06 19:13:59.789226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 167: TWO_INV] [High - Inversion Error] Does TWO_INV correctly equal (p+1)/2, or could an error break operations that depend on division by 2 in FROST polynomial operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eeaa898d-2e17-48bb-aa2d-384601cd55fd?mode=deep",
+    "timestamp": "2026-02-06 19:14:13.702136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 171: MULTIPLICATIVE_GENERATOR] [High - Generator Validity] Is 2 truly a multiplicative generator of the field, or could a wrong generator cause PrimeField operations to fail for FROST implementations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c0f2d6de-d5cd-4347-8c49-9ae8871832c1?mode=deep",
+    "timestamp": "2026-02-06 19:14:27.731181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 174: S value] [Medium - Root of Unity Order] Does S=2 correctly represent the 2-adicity of p-1, or could a wrong value break root of unity calculations used in FFT-based FROST operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7bd44656-9233-4ec6-9bfd-606e1277c976?mode=deep",
+    "timestamp": "2026-02-06 19:14:43.553629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 178-180: ROOT_OF_UNITY] [High - Root Validity] Does the hardcoded ROOT_OF_UNITY equal 2^((p-1)/4), or could an incorrect value break FFT-based polynomial operations in FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e1d7e54f-78d3-49ff-b896-e8aa29b42f40?mode=deep",
+    "timestamp": "2026-02-06 19:14:59.932679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 182: ROOT_OF_UNITY_INV] [High - Inverse Correctness] Does ROOT_OF_UNITY_INV correctly equal the multiplicative inverse of ROOT_OF_UNITY, or could an error break inverse FFT operations in FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_86c92c51-61c5-4c84-9eab-8be63da5db4c?mode=deep",
+    "timestamp": "2026-02-06 19:15:17.813538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 186-188: DELTA] [Medium - Delta Correctness] Does DELTA = 2^4 = 16 correctly equal MULTIPLICATIVE_GENERATOR^(2^S), or could a wrong value break PrimeField trait requirements used by FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b9c13ba3-9150-40eb-bcb4-92dde69b4783?mode=deep",
+    "timestamp": "2026-02-06 19:15:34.864106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 162: MODULUS string] [Medium - String Encoding] Does the MODULUS string",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4db5e971-5080-4e8c-aec1-0a25e609a046?mode=deep",
+    "timestamp": "2026-02-06 19:15:52.536402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 164-165: NUM_BITS and CAPACITY] [Low - Bit Count] Do NUM_BITS=255 and CAPACITY=254 correctly represent the field size, or could wrong values break bit-level operations in FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_af0e4cb9-e696-4bb5-b0ae-8bec1d19888e?mode=deep",
+    "timestamp": "2026-02-06 19:16:10.498002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 73-87: from_wrapper! macro] [Medium - Integer Conversion] Do the From implementations for u8/u16/u32/u64/u128 correctly convert to field elements, or could truncation or sign extension cause wrong FROST constants?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_71977dbd-5442-44bb-b7d1-590285cc6c71?mode=deep",
+    "timestamp": "2026-02-06 19:16:31.572724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 202-204: from_u128()] [Low - Redundancy] Does from_u128 add any validation beyond the From<u128> implementation, or is it redundant code that could diverge causing FROST bugs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b43ef9e5-24fd-4528-afb6-dd1eb988285d?mode=deep",
+    "timestamp": "2026-02-06 19:16:52.499089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 207-217: PrimeFieldBits] [High - Bit Representation] Does to_le_bits() return bits in the correct order for FROST bit operations, or could endianness confusion cause signature verification failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_41400feb-70ad-4c6b-9566-ab6f0cba59b4?mode=deep",
+    "timestamp": "2026-02-06 19:17:14.102057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 210-212: to_le_bits()] [Medium - Bit Conversion] Does self.to_repr().into() correctly convert bytes to bits, or could padding or truncation errors cause wrong bit sequences for FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9d030c81-0744-44d8-aea4-d32c15914b0a?mode=deep",
+    "timestamp": "2026-02-06 19:17:36.780934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 214-216: char_le_bits()] [Medium - Modulus Bits] Does MODULUS.to_le_bytes().into() correctly represent the field characteristic in bits, or could errors break bit-level FROST operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_869afcb9-394d-4257-b23e-722df9e91963?mode=deep",
+    "timestamp": "2026-02-06 19:18:00.511552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 38-40: FieldElement struct] [Medium - Memory Layout] Does #[repr(transparent)] ensure FieldElement has the same ABI as ResidueType, or could calling convention mismatches cause FROST FFI bugs?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_834b1ecb-314d-4f68-85de-50f3f7358be1?mode=deep",
+    "timestamp": "2026-02-06 19:18:23.093858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 38-40: FieldElement struct] [Low - Derivation Correctness] Do the derived traits (Clone, Copy, PartialEq, Eq, Default, Debug, Zeroize) have correct semantics for cryptographic field elements used in FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_beb683b4-7f52-40e5-adac-923610bd05fa?mode=deep",
+    "timestamp": "2026-02-06 19:18:46.968458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 64: constant_time! macro] [Critical - Constant-Time Guarantee] Does the constant_time! macro actually enforce constant-time comparisons for FieldElement, or could it allow timing leaks that reveal FROST secret shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9e5abbd9-eb3f-417f-8b9e-c2363aa74316?mode=deep",
+    "timestamp": "2026-02-06 19:19:11.033815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 64: constant_time! macro] [High - ConstantTimeEq Implementation] Does ConstantTimeEq::ct_eq for FieldElement operate in constant time regardless of input values, or could early exits leak FROST key equality?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fc6c78e4-0c86-4f90-af60-d0733d2ee083?mode=deep",
+    "timestamp": "2026-02-06 19:19:35.976286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 64: constant_time! macro] [Medium - ConditionallySelectable] Does ConditionallySelectable correctly select between field elements without leaking the choice bit, preventing FROST timing attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ab833d3a-aa58-4466-bb1a-581d7c3b5f7e?mode=deep",
+    "timestamp": "2026-02-06 19:19:59.781230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 29-35: ResidueType definition] [High - Modular Arithmetic Correctness] Does crypto_bigint's Residue implementation correctly perform modular arithmetic, or could bugs cause field operations to produce out-of-range results that break FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d0ec0662-d4e1-4c65-a306-ced7de3fa6c0?mode=deep",
+    "timestamp": "2026-02-06 19:20:24.844298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 29-35: ResidueType definition] [Medium - Constant-Time Implementation] Does crypto_bigint's Residue guarantee constant-time operations, or could variable-time optimizations leak FROST secrets through timing side-channels?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ad32cea-e98e-41b9-86d2-70aa0c7c5ea7?mode=deep",
+    "timestamp": "2026-02-06 19:20:51.136186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 347-352: test_wide_modulus] [Medium - Constant Verification] Does test_wide_modulus correctly verify WIDE_MODULUS matches MODULUS, or could the test pass with wrong constants that break wide_reduce()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ebcac09f-b613-4ee7-a41a-928fa4fd6e0f?mode=deep",
+    "timestamp": "2026-02-06 19:21:17.323083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 354-369: test_sqrt_m1] [Medium - Constant Verification] Does test_sqrt_m1 verify SQRT_M1 against both the magic constant and the formula, or could discrepancies between the two go undetected?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_22b2b0d3-8ede-4bbd-8ab5-9e1e5b170294?mode=deep",
+    "timestamp": "2026-02-06 19:21:44.491931",
+    "report_generated": false
+  }
+]
