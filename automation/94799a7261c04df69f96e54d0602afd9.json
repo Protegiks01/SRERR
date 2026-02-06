@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [Medium - Constant Time Comparison] Is the verification implemented in constant time to prevent timing side-channel attacks that leak information about private keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5d38941c-ddc3-4af7-b9e3-b39f7eb5ab15?mode=deep",
+    "timestamp": "2026-02-06 20:22:26.417164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify_share()] [Critical - Verification Share Validation] Is verification_share validated to be a valid curve point derived correctly from the participant's public key share?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1193e0e4-218b-443d-8732-9a7d09d89d69?mode=deep",
+    "timestamp": "2026-02-06 20:22:38.848353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify_share()] [High - Batch Verification Correctness] The function returns pairs that 'should sum to zero' - can incorrect pair construction enable invalid shares to verify successfully?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fe231f02-5019-4e84-ad8c-19f20e1988e2?mode=deep",
+    "timestamp": "2026-02-06 20:22:51.712201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify_share()] [High - Unit Error Semantics] The function returns Result<_, ()> - does the unit error type lose important context about why share verification failed, hindering debugging?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5cff2139-1fe0-48b8-a2b5-123e5c9f7668?mode=deep",
+    "timestamp": "2026-02-06 20:23:06.246652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify_share()] [Medium - Share Replay Protection] Can old shares from previous signing sessions be replayed and pass verification, enabling share reuse attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b5afb687-ab60-4c39-8ed5-973c396386af?mode=deep",
+    "timestamp": "2026-02-06 20:23:20.488266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::new()] [Critical - Label Ignored] The new() function ignores its label parameter - can this enable cross-protocol attacks where different protocols using IETF transcripts produce identical transcript states?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5681ee6a-4c95-42ab-b214-912b2c367864?mode=deep",
+    "timestamp": "2026-02-06 20:23:35.651909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::domain_separate()] [Critical - No Domain Separation] domain_separate() is a no-op - can attackers craft messages that cause transcript collisions across different signing contexts or protocols?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9849ebdd-2ce6-41ee-8d6f-c2cd9bd600d3?mode=deep",
+    "timestamp": "2026-02-06 20:23:51.809998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::append_message()] [Critical - Label Ignored] append_message() ignores the label parameter and only appends the message - can this cause collisions when different labeled fields have the same values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ecf1b831-b518-43ac-b293-97908db9df26?mode=deep",
+    "timestamp": "2026-02-06 20:24:09.120623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::append_message()] [High - Transcript Collision] Can carefully crafted messages cause transcript collisions, e.g., append_message(",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7ecce18a-0784-4b42-bc96-4757ab5de82b?mode=deep",
+    "timestamp": "2026-02-06 20:24:27.956097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::challenge()] [High - Challenge Label Ignored] challenge() ignores its label and returns a clone of the entire transcript - can this enable challenge reuse across different signing operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f2b1ee88-d4b3-40f4-92d5-adbb75916908?mode=deep",
+    "timestamp": "2026-02-06 20:24:46.838119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::challenge()] [Medium - Challenge Cloning Cost] Does cloning the entire transcript vector on each challenge() call create performance issues or enable DoS through memory exhaustion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_607ecf23-24d2-4275-af9b-4cfa3b7a1420?mode=deep",
+    "timestamp": "2026-02-06 20:25:06.141774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfTranscript::rng_seed()] [High - Unimplemented Panic] rng_seed() is unimplemented and will panic - can this be triggered through API misuse and cause denial of service?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2d6afa85-9cd1-4918-9553-401cdc9a7d0a?mode=deep",
+    "timestamp": "2026-02-06 20:25:26.389841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Struct: IetfTranscript] [High - Naive Transcript Warning] The documentation states this is 'incredibly naive and should not be used within larger protocols' - are there safeguards preventing its misuse in security-critical contexts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0c853a92-2f9b-45c3-a457-5dfcbbdd0ae4?mode=deep",
+    "timestamp": "2026-02-06 20:25:48.318150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::new()] [Medium - Initial State] Does the Schnorr struct initialize c to None correctly? Can uninitialized state cause panics or incorrect verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_04e5a94a-0b6e-45ca-bc6a-9b3e91374c7f?mode=deep",
+    "timestamp": "2026-02-06 20:26:10.856802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: IetfSchnorr::ietf()] [Medium - Empty Transcript] Does initializing with an empty IetfTranscript vector create any security issues in subsequent operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7f3ef44c-445e-4309-b5d7-df65b30c635d?mode=deep",
+    "timestamp": "2026-02-06 20:26:33.788086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Type: IetfSchnorr] [High - Offset Incompatibility] The documentation warns 'Usage of this with key offsets will break the intended compatibility' - are there runtime checks preventing this unsafe combination?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_39e76951-fef0-4fa5-9aaf-4dbaab080b9e?mode=deep",
+    "timestamp": "2026-02-06 20:26:58.065302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::transcript()] [Medium - Mutable Access] Can external code misuse the mutable transcript reference to corrupt the signing state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c34c7ead-4a6e-42eb-8460-15a412f3172c?mode=deep",
+    "timestamp": "2026-02-06 20:27:23.159793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::nonces()] [High - Single Nonce] The implementation returns only a single nonce with the base generator - is this sufficient for all Schnorr variants, or can some attack scenarios require multiple nonces?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_693aaf1c-813d-48e2-ae04-40fe291d1b0c?mode=deep",
+    "timestamp": "2026-02-06 20:27:49.251023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::nonces()] [Medium - Generator Hardcoding] Is using C::generator() hardcoded safe, or should the generator be parameterized to prevent cross-curve attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eda406e8-5050-4c00-8393-bce1235627ca?mode=deep",
+    "timestamp": "2026-02-06 20:28:16.042229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::preprocess_addendum()] [Low - Empty Addendum] The Schnorr implementation uses () as addendum - does this create any interoperability issues with other Algorithm implementations expecting real addendums?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6cd3fa05-4731-4295-bbd5-13cbf514fe4f?mode=deep",
+    "timestamp": "2026-02-06 20:28:43.706667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::read_addendum()] [Low - Trivial Deserialization] Always returning Ok(()) - is this safe or can it mask errors in mixed-algorithm scenarios?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a58cdabd-5002-4ddf-90fe-133123f3a362?mode=deep",
+    "timestamp": "2026-02-06 20:29:11.591155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::process_addendum()] [Low - No Validation] The no-op implementation accepts any participant and params without validation - is this assumption safe?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b4df3d73-a316-4a20-9768-702901bf089e?mode=deep",
+    "timestamp": "2026-02-06 20:29:39.927223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [Critical - Challenge Calculation] Is the H::hram() function guaranteed to be collision-resistant and prevent challenge forgery through birthday attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1ef023be-5a26-4ce9-8d99-30f9e8909190?mode=deep",
+    "timestamp": "2026-02-06 20:30:08.493698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [Critical - Challenge Storage] The challenge is stored in self.c and used later in verify() and verify_share() - can state corruption between these calls enable forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_95f21298-846d-4410-9501-022b62c83a87?mode=deep",
+    "timestamp": "2026-02-06 20:30:38.091726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Schnorr::sign_share()] [Critical - Nonce Index] swap_remove(0) assumes the first nonce is correct - can nonce ordering mismatches cause the wrong nonce to be used, leaking keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0fb89e7d-a317-4c19-8db8-dab214739319?mode=deep",
+    "timestamp": "2026-02-06 20:31:06.841787",
+    "report_generated": false
+  }
+]
