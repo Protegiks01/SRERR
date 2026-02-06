@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Signature Uniqueness] After bit manipulation, are there multiple byte representations that verify as the same signature, allowing replay with different encodings? (Severity: Medium - Replay Variant)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_935f3f30-aa4a-4501-8c38-d5acd079971f?mode=deep",
+    "timestamp": "2026-02-06 20:10:23.400633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [Documentation] Is the bit 7 modification documented, or could future maintainers remove it not knowing its purpose? (Severity: Low - Maintenance Risk)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5411fecd-617f-4b3a-9a04-34b94eb815ea?mode=deep",
+    "timestamp": "2026-02-06 20:10:35.609338",
+    "report_generated": false
+  }
+]
