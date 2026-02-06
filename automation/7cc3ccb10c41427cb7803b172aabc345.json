@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify_vartime_with_vartime_blame()] [Critical - DoS] If verify_vartime() at line 138 returns false but blame_vartime() at line 141 returns None, does the unwrap() crash the validator, creating a DoS vector?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dc59acad-23f4-4584-b028-f2e1a07109d6?mode=deep",
+    "timestamp": "2026-02-06 20:14:38.984259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify_with_vartime_blame()] [Medium - Signature Forgery] Can an attacker exploit the fact that verify() is constant-time but blame is variable-time to gain information and craft subsequent attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8ed8a71f-0726-4513-9692-a4678dbede9d?mode=deep",
+    "timestamp": "2026-02-06 20:14:51.187131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Struct: BatchVerifier] [High - Privacy] Does the Clone implementation at line 23 properly zeroize the old instance when cloning, or could sensitive scalar data leak through multiple copies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7464a166-6d3c-4875-97bd-251abfd17e79?mode=deep",
+    "timestamp": "2026-02-06 20:15:03.808798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Struct: BatchVerifier] [Medium - Privacy] Is the Zeroize derivation at line 23 sufficient to clear all sensitive data when BatchVerifier is dropped, including nested Vec elements?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4b66cce7-ad09-4d04-ac10-fbcfbb40139a?mode=deep",
+    "timestamp": "2026-02-06 20:15:17.201382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Struct: BatchVerifier] [Critical - Signature Forgery] Can an attacker exploit the fact that Id must only be Copy + Zeroize (line 24), with no uniqueness guarantee, to queue multiple statements with duplicate Ids that confuse verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_58ab4357-aacc-4df1-8ef2-0953afcd5d42?mode=deep",
+    "timestamp": "2026-02-06 20:15:31.768877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Struct: BatchVerifier] [High - Signature Forgery] Does the PrimeFieldBits constraint at line 24 guarantee that all field operations are performed correctly, or could non-prime fields or fields with special structures bypass security checks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2aaca3d1-4db3-4f7c-8c88-c23fa0c5655e?mode=deep",
+    "timestamp": "2026-02-06 20:15:47.489206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Critical - Consensus Bug] If different validators use different RNG implementations that produce different random weights in queue(), will they compute different batch verifications and diverge?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_588c9506-0578-4445-8e53-e4186364497c?mode=deep",
+    "timestamp": "2026-02-06 20:16:02.550164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [High - Signature Forgery] Can the lack of transcript binding or domain separation in the batch verification allow cross-protocol or cross-context attacks where proofs from one context are replayed in another?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2e559e8d-9c28-4b2b-bcf7-29f295de1637?mode=deep",
+    "timestamp": "2026-02-06 20:16:19.845100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Medium - DoS] Are there any panic paths in the code beyond the unwrap() calls that could be triggered by malicious input, causing validator crashes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2a49d0e5-af35-486a-bd3d-1af4a733a983?mode=deep",
+    "timestamp": "2026-02-06 20:16:38.359147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Critical - Signature Forgery] If the underlying multiexp and multiexp_vartime functions have different security properties or edge case handling, could an attacker exploit these differences?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8b4d93e7-4950-4fbd-bb03-61637a8d4f90?mode=deep",
+    "timestamp": "2026-02-06 20:16:56.080110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [High - Privacy] Does the variable-time multiexp_vartime leak information that could be used to deanonymize validators or extract sensitive protocol state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f98920de-dec9-44c1-95b7-f762c7786aa0?mode=deep",
+    "timestamp": "2026-02-06 20:17:15.082321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] When used in FROST threshold signature verification, can an attacker queue statements with manipulated nonce commitments that, when batch-verified, bypass individual signature checks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_937afac0-ae00-4acd-9529-037d1c7ebefe?mode=deep",
+    "timestamp": "2026-02-06 20:17:34.532926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] If BatchVerifier is used to verify FROST signature shares, can malicious participants craft shares that individually fail but batch-verify due to algebraic cancellation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d838fef4-44cd-4c21-b6f6-f518696cab02?mode=deep",
+    "timestamp": "2026-02-06 20:17:55.033498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] In FROST DKG verification, can an attacker exploit random weight generation to make invalid commitments appear valid when batch-verified with legitimate ones?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6258adfb-ae10-4102-9447-40528c8e0095?mode=deep",
+    "timestamp": "2026-02-06 20:18:16.757321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Critical - Consensus Bug] If blame_vartime() is used to identify malicious FROST participants, can an attacker frame innocent parties by carefully constructing statements that blame the wrong Id?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_29881ae0-97a2-49a1-8600-aa21f5ef54c7?mode=deep",
+    "timestamp": "2026-02-06 20:18:38.295540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Signature Forgery] When batch-verifying FROST binding factors and nonce proofs, can the lack of statement ordering guarantees cause replay attacks or out-of-order verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cab02d9c-ff41-40c6-9e03-3572c970a553?mode=deep",
+    "timestamp": "2026-02-06 20:19:01.826633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Signature Forgery] Can an attacker exploit the deterministic weight=ONE for the first statement (line 47) in FROST protocols to bypass proof-of-possession checks if they control statement ordering?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6235760a-314f-48d4-9ffe-057556783209?mode=deep",
+    "timestamp": "2026-02-06 20:19:25.798088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify_with_vartime_blame()] [High - Consensus Bug] If different validators blame different participants due to blame_vartime() non-determinism, could this cause validator set disputes or incorrect slashing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7d1df0ea-c178-497c-ae6f-11171027e805?mode=deep",
+    "timestamp": "2026-02-06 20:19:50.130119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Critical - Signature Forgery] When batch-verifying Schnorr signatures in MuSig key confirmation, can rogue key attacks succeed if batch verification doesn't enforce proper proof-of-knowledge binding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_53b0e5b2-6a74-4560-bbd3-b1bfc70d5536?mode=deep",
+    "timestamp": "2026-02-06 20:20:15.388160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Signature Forgery] Can an attacker submit FROST preprocess shares with specially crafted scalars that, when batch-verified, allow reuse of nonces across multiple signing sessions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_887295dd-842e-40e9-b46e-b881942e4563?mode=deep",
+    "timestamp": "2026-02-06 20:20:41.718193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Signature Forgery] If batch verification is used for DLEq proofs in FROST, can an attacker create fake equality proofs that pass batch checks but fail individual verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f5ee8e24-c010-454b-b4e4-e5bd0fb0fabb?mode=deep",
+    "timestamp": "2026-02-06 20:21:07.318213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Fund Loss] When batch-verifying Bitcoin UTXO spend signatures, can an attacker queue invalid signatures that pass due to weight cancellation, enabling unauthorized fund transfers?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7ead9a43-9914-4fce-94db-a27c74573eba?mode=deep",
+    "timestamp": "2026-02-06 20:21:38.534709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Fund Loss] If used to verify Monero ring signatures in batch, can algebraic attacks allow double-spends by crafting signatures that sum to identity despite individual invalidity?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0e584fef-4e37-4f3f-a39d-4a1fe9cfe8d3?mode=deep",
+    "timestamp": "2026-02-06 20:22:06.956491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [High - Consensus Bug] When identifying invalid external chain deposit proofs, can blame_vartime() incorrectly blame legitimate deposits, causing wrongful rejection and fund loss?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a0b79c48-9d8a-415f-b9c8-add505ee0697?mode=deep",
+    "timestamp": "2026-02-06 20:22:37.231424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Mint/Burn Imbalance] If batch verification is used for synthetic asset mint proofs, can an attacker exploit random weighting to mint sriXYZ without corresponding external deposits?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cead3931-5280-4761-91ca-a196df8ba6e6?mode=deep",
+    "timestamp": "2026-02-06 20:23:06.614773",
+    "report_generated": false
+  }
+]
