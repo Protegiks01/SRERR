@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [Medium - Input Depletion] Line 253 uses inputs.drain(..) to move outputs - if this function is called twice accidentally due to a bug, does the second call with empty inputs cause a panic or return an error? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e3fcd514-9863-4928-8754-16714d7df2e3?mode=deep",
+    "timestamp": "2026-02-06 19:58:37.163437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [High - Payment Saturation] At line 187, payment_sat sums all payments with .sum::<u64>() - if payments total > 21M BTC equivalent, does this overflow and wrap around? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6a40aadd-87ab-4aa0-b992-6a678e881dba?mode=deep",
+    "timestamp": "2026-02-06 19:58:49.400178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::new()] [Low - Empty Payments] Lines 161-163 allow payments to be empty if change or data exists, but does this create any weird edge cases with fee calculation or UTXO management? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_aab4d51b-fded-4808-a311-bbb45b032452?mode=deep",
+    "timestamp": "2026-02-06 19:59:02.221901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::calculate_weight_vbytes()] [High - Weight Miscalculation] Lines 68-99 construct a template transaction with placeholder values - if the actual transaction differs (e.g., variable-length integers for output count), could the weight be wrong? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_824f533e-fe44-4561-9510-434ab8b714b4?mode=deep",
+    "timestamp": "2026-02-06 19:59:15.324624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::calculate_weight_vbytes()] [Critical - Signature Size Assumption] Line 81 assumes a 64-byte signature, but if FROST signatures can be larger or if multiple signatures are needed per input, does this underestimate weight and cause insufficient fees? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9925dd90-a658-4957-bafa-543f747cc1aa?mode=deep",
+    "timestamp": "2026-02-06 19:59:29.329157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::calculate_weight_vbytes()] [Medium - VBytes Rounding] Lines 106-125 implement ceildiv for vbytes, but the comment mentions 'get_virtual_tx_size' has additional considerations - could this rounding error accumulate across many transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_afb87bc6-09fc-4afb-989c-3accc24407c7?mode=deep",
+    "timestamp": "2026-02-06 19:59:45.357600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::calculate_weight_vbytes()] [High - Change Output Weight] At line 95-99, change output is added with Amount::ZERO - does this exactly match the weight when the actual change amount is set, or could VarInt encoding of the amount differ? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7abfae8e-0bd2-468d-823a-9441ac68231e?mode=deep",
+    "timestamp": "2026-02-06 20:00:01.422252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::calculate_weight_vbytes()] [Low - Witness Structure] Line 81 uses Witness::from_slice with a single 64-byte signature - does this match the actual witness structure, including any push data opcodes? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_83caf826-cc45-4828-8306-79939994c3a7?mode=deep",
+    "timestamp": "2026-02-06 20:00:17.650002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::fee()] [Critical - Integer Overflow] Line 139-140 sums prevouts and outputs then subtracts - if these sums individually overflow u64, the final fee calculation could wrap and appear valid while actually being negative? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_15f8f593-4307-4ff3-8474-7cccd0726734?mode=deep",
+    "timestamp": "2026-02-06 20:00:35.428276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::fee()] [High - Fee/Value Mismatch] The actual fee() at lines 138-141 can differ from needed_fee() at lines 133-135 - could this mismatch cause the transaction to be rejected by the network or exploit fee overpayment? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_977a00ce-32eb-4c63-89fb-d8f9f5a296ce?mode=deep",
+    "timestamp": "2026-02-06 20:00:54.227919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::needed_fee()] [Medium - Fee Underestimation] needed_fee is calculated once at construction, but if the transaction is later modified (e.g., inputs added), does needed_fee become stale and inaccurate? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_601bf65f-3f66-4e5d-9d9b-a3f039c17f29?mode=deep",
+    "timestamp": "2026-02-06 20:01:14.257996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::txid()] [High - TXID Malleability] Lines 259-262 reverse the txid bytes - is this the correct endianness for all consumers, or could endianness confusion cause transaction tracking failures? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_390baa22-d0dd-441a-b64e-a0612a39babd?mode=deep",
+    "timestamp": "2026-02-06 20:01:35.862624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::txid()] [Medium - Witness Exclusion] compute_txid() excludes witnesses per BIP-141 - but do all parts of Serai handle this correctly, or could code expect wtxid instead? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dec37216-b748-4519-a0c9-6cf95e7c1dd7?mode=deep",
+    "timestamp": "2026-02-06 20:01:56.949593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::multisig()] [Critical - Key Offset Mismatch] Lines 276-278 verify that offset keys match prevout scripts - if this fails and returns None, is the error handled gracefully or could partial state updates leak? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_17333076-3fb7-4d66-8eb7-706912e1bcba?mode=deep",
+    "timestamp": "2026-02-06 20:02:17.530899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::multisig()] [High - Input Ordering] Line 275 assumes self.offsets[i] corresponds to self.tx.input[i] - if inputs were reordered after construction, would this cause wrong keys to be used? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ecc1b624-2634-4639-a8ae-008e9e6e9215?mode=deep",
+    "timestamp": "2026-02-06 20:02:40.143033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::multisig()] [Critical - AlgorithmMachine Reuse] Line 281 creates a new AlgorithmMachine for each input - if these machines share any state or nonces, could this leak private key information? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7ab87dcf-697e-4c46-b5d2-43cda79c1671?mode=deep",
+    "timestamp": "2026-02-06 20:03:03.306429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: SignableTransaction::multisig()] [High - Schnorr Security] AlgorithmMachine uses Schnorr::new() - does this ensure fresh randomness for each signature attempt, or could nonce reuse across retries break security? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c60ce96b-0f7b-441b-b9d7-19fab2b78edd?mode=deep",
+    "timestamp": "2026-02-06 20:03:25.165666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionMachine::preprocess()] [Critical - Nonce Reuse] Lines 302-315 call sig.preprocess(rng) for each input - if the RNG state is weak or repeats, could nonces be reused across different inputs or transactions? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3a1e3e6-31eb-4771-83eb-ddd3b23c85ed?mode=deep",
+    "timestamp": "2026-02-06 20:03:47.786147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionMachine::preprocess()] [High - Preprocess Caching] The comment at line 290-291 states preprocesses can't be cached - but what if a caller accidentally reuses a TransactionMachine? Does it panic or silently create insecure signatures? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0f631360-0680-4155-86ce-f745d355ef8a?mode=deep",
+    "timestamp": "2026-02-06 20:04:10.606148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionMachine::preprocess()] [Medium - Vec Capacity] Line 306 pre-allocates capacity for preprocesses - if sigs.len() is very large, could this allocation fail and cause a panic? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_01d7aad4-4405-4540-ad31-38079fd36cc1?mode=deep",
+    "timestamp": "2026-02-06 20:04:34.327976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [Critical - Commitment Ordering] Lines 364-371 remap commitments by index - if different participants send commitments for inputs in different orders, could this cause signature failure or worse, incorrect message signing? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6f844d54-7288-467e-a899-c292bc1af342?mode=deep",
+    "timestamp": "2026-02-06 20:04:56.346044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [High - Message Binding] Line 360-362 panics if msg is non-empty, but what if a caller provides a non-empty message? Could this be a DoS vector if triggered remotely? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e07af7c2-71b6-43c9-b41c-56c7863980ba?mode=deep",
+    "timestamp": "2026-02-06 20:05:19.707984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [Critical - Sighash Failure] Line 385-390 calls taproot_key_spend_signature_hash with an expect - if prevouts structure is wrong, this panics instead of returning an error, causing potential DoS. (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0f93baaf-e45f-44e3-97b6-648be67d5406?mode=deep",
+    "timestamp": "2026-02-06 20:05:42.922907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [High - Prevouts Binding] Line 375 creates Prevouts::All binding - does this commit to ALL inputs, and could an attacker manipulate non-spending inputs to change the sighash? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_24d52712-d962-465b-850a-e42ee7bb20f7?mode=deep",
+    "timestamp": "2026-02-06 20:06:08.413197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/wallet/send.rs] [Function: TransactionSignMachine::sign()] [Medium - SighashCache State] SighashCache is created at line 373 and used in a loop - could this cache produce inconsistent hashes if the transaction was modified between construction and signing? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_baaacd41-7057-4af5-858a-b2a90faa41d5?mode=deep",
+    "timestamp": "2026-02-06 20:06:33.033899",
+    "report_generated": false
+  }
+]
