@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Certificate Validation - High] If HTTPS is used, are certificate validation and pinning properly configured to prevent MITM attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cf8b78ba-103f-49da-baed-085ca0404956?mode=deep",
+    "timestamp": "2026-02-06 20:07:08.496563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [Atomic View - Critical] Is there a mechanism to ensure a consistent view of Bitcoin blockchain state across multiple sequential RPC calls, or can intermediate state changes cause inconsistencies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_444c5328-4055-4773-a41a-592aad73c5ce?mode=deep",
+    "timestamp": "2026-02-06 20:07:21.206154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [Mempool Interference - Medium] Can mempool transactions affect the results of blockchain queries in ways that break assumptions about finalized state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_badad679-f416-49dd-9012-1d3ec7354196?mode=deep",
+    "timestamp": "2026-02-06 20:07:34.290693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [RPC State - Medium] Does the Bitcoin RPC server maintain any stateful information between calls that could affect Serai's operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a11ed38b-0e8d-464b-91c4-53ec6bdb28db?mode=deep",
+    "timestamp": "2026-02-06 20:07:47.485970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Struct: Rpc] [Connection Cleanup - Low] When an Rpc instance is dropped, are connections properly cleaned up, or can they leak?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_943864de-a870-4433-ac28-9308a854fe18?mode=deep",
+    "timestamp": "2026-02-06 20:08:01.396762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: rpc_call()] [Response Body Cleanup - Low] Is the response body fully consumed and cleaned up even on error paths?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ad1c463-b840-4b5c-a475-cd784b125bec?mode=deep",
+    "timestamp": "2026-02-06 20:08:17.203236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Error Visibility - Low] Are RPC errors properly logged for operators to detect node connectivity or consistency issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b41e9ef8-1ccd-4fd1-b17a-0c94d4463ffc?mode=deep",
+    "timestamp": "2026-02-06 20:08:32.890298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Request Tracing - Low] Can RPC requests be traced for debugging consensus issues without exposing sensitive data?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_43c7241f-2b8b-4e96-aa2b-7b58583e33f0?mode=deep",
+    "timestamp": "2026-02-06 20:08:49.748300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: send_raw_transaction()] [Signet/Testnet - Low] Can network magic bytes differ between mainnet/testnet causing cross-network transaction broadcasts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b18e001f-ed6e-410c-9332-9fff819bfe41?mode=deep",
+    "timestamp": "2026-02-06 20:09:07.246316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block()] [Pruned Node - High] Can the Bitcoin node be running in pruned mode where historical blocks are unavailable, causing get_block() to fail for old deposits?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0caf8ab7-30e6-45f9-ad73-5183a5336e3c?mode=deep",
+    "timestamp": "2026-02-06 20:09:26.011975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [BIP Support - Medium] Are BIPs (Bitcoin Improvement Proposals) like BIP-141 (SegWit), BIP-341 (Taproot) properly supported in all operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_507adf9c-1f5c-4a2b-b2fb-e3f01b108bbc?mode=deep",
+    "timestamp": "2026-02-06 20:09:45.870587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: rpc_call()] [Unwrap Safety - Medium] The serde_json::to_vec() at line 114 uses unwrap()—can this panic if the json!() macro produces non-serializable values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c69ab785-59a1-4e9e-89ed-e96683036817?mode=deep",
+    "timestamp": "2026-02-06 20:10:06.141282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: rpc_call()] [Request Building Panic - Low] The hyper::Request building at line 111-118 uses unwrap()—can malformed URLs or body cause panics?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0db09d25-9901-44bc-92ca-4973c4720313?mode=deep",
+    "timestamp": "2026-02-06 20:10:27.344488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: new()] [Method Name Unwrap - Low] The split(' ').next().unwrap_or('') at line 91 could return empty string—can empty method names in expected_methods cause issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_80817713-ca30-4dce-a418-843e025477cd?mode=deep",
+    "timestamp": "2026-02-06 20:10:49.111257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block()] [Deserialization Performance - Low] Can deserializing large blocks cause performance degradation that affects batch processing deadlines?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1b30cfce-c451-475a-a850-ce097fffa96d?mode=deep",
+    "timestamp": "2026-02-06 20:11:12.005517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: rpc_call()] [Connection Reuse - Low] Are HTTP connections properly reused through keep-alive to minimize latency?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b1772008-6a6b-44eb-82f8-e0ed6bc42b91?mode=deep",
+    "timestamp": "2026-02-06 20:11:35.659042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Network Separation - High] If Serai supports multiple Bitcoin-like networks (Bitcoin, Litecoin), can network identifier confusion cause cross-chain transaction issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fd75e6f7-60d7-4576-98b4-f79c49c162ee?mode=deep",
+    "timestamp": "2026-02-06 20:11:57.214567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Address Format - Medium] Are network-specific address formats (mainnet vs testnet) properly validated to prevent cross-network confusion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1b85bc8c-5510-4c90-924f-2002dee799c3?mode=deep",
+    "timestamp": "2026-02-06 20:12:20.244631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block()] [Block Weight/Size - Medium] Are block weight and size limits validated to ensure compliance with Bitcoin consensus rules?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8b0c766b-1efd-41fb-9bba-b2d616b032a4?mode=deep",
+    "timestamp": "2026-02-06 20:12:43.758617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Witness Discount - Medium] Is witness data discount (SegWit) correctly applied in any fee or size calculations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_83bbd135-6818-4be9-895b-a5b65202a6e0?mode=deep",
+    "timestamp": "2026-02-06 20:13:08.685050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: send_raw_transaction()] [Dust Limit - Low] Can transactions with outputs below dust limit be broadcast, potentially causing economic inefficiency?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a90d7a91-ba5d-4fd2-943a-aba4b18f9902?mode=deep",
+    "timestamp": "2026-02-06 20:13:33.391948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block()] [Block Timestamp Range - Medium] Can future block timestamps or past timestamp violations be detected to prevent time-based attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2e52dac6-4db9-4f1a-9d69-944699beb446?mode=deep",
+    "timestamp": "2026-02-06 20:13:56.200215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Median Time Past - Medium] Are relative lock times (BIP-68/112/113) properly considered when validating transactions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a6d0d63b-ed24-448b-989b-a75d7891e229?mode=deep",
+    "timestamp": "2026-02-06 20:14:20.330797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Script Validation - High] Does transaction retrieval include validation of script opcodes to prevent non-standard script execution assumptions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0ededcdd-683e-4f6a-bbf7-12ff2e676eea?mode=deep",
+    "timestamp": "2026-02-06 20:14:45.220049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: send_raw_transaction()] [Script Size - Medium] Are script size limits enforced to prevent relay rejection or consensus violations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0ce01fb9-673d-48a3-8442-e64e3d7683cb?mode=deep",
+    "timestamp": "2026-02-06 20:15:09.990283",
+    "report_generated": false
+  }
+]
