@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 134-156: Field::sqrt_ratio()] [Critical - Incorrect Ratio Root] Does sqrt_ratio(u, v) correctly compute sqrt(u/v) per RFC 8032, or could errors allow invalid Ed25519 y-coordinates to produce points not on the curve, breaking FROST verification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_adfcc069-0f0c-4403-a0cf-787b977d9e8a?mode=deep",
+    "timestamp": "2026-02-06 20:57:21.530781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 140-141: sqrt_ratio() v powers] [High - Arithmetic Error] Do v3 = v.square() * v and v7 = v3.square() * v correctly compute v^3 and v^7, or could multiplication order errors cause sqrt_ratio to return wrong values for FROST group element decompression?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_834061ee-c5cf-4f3c-ab8f-82bf6764a029?mode=deep",
+    "timestamp": "2026-02-06 20:57:33.924132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 142: sqrt_ratio() candidate root] [High - Exponentiation Error] Does (u * v3) * (u * v7).pow(MOD_5_8) correctly compute the candidate root, or could pow() bugs cause sqrt_ratio to fail for valid inputs needed in Ed25519 operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3dbbb761-d7d2-4afe-b55f-2775652ee2f6?mode=deep",
+    "timestamp": "2026-02-06 20:57:47.215420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 145-147: sqrt_ratio() correctness checks] [Critical - Logic Error] Do correct_sign, flipped_sign, and flipped_sign_i checks correctly detect which root adjustment is needed, or could logic errors allow sqrt_ratio to return non-roots that break Ristretto encoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d19a5bfa-3a29-4c09-a63d-5a408ceb78d1?mode=deep",
+    "timestamp": "2026-02-06 20:58:00.334999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 149: sqrt_ratio() conditional assignment] [High - Selection Error] Does r.conditional_assign(&(r * i), flipped_sign | flipped_sign_i) correctly multiply by sqrt(-1) when needed, or could incorrect conditions return wrong roots for Ed25519 point decoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3b0de043-45bb-439e-b87c-06830a712a65?mode=deep",
+    "timestamp": "2026-02-06 20:58:14.835623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 151-152: sqrt_ratio() sign normalization] [Medium - Canonicalization Error] Does r.conditional_negate(r.is_odd()) correctly ensure the even root is returned, or could sign errors cause non-canonical Ed25519 point representations in FROST?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_62f9565f-17a0-4b3f-bc25-4aaa44512e34?mode=deep",
+    "timestamp": "2026-02-06 20:58:29.609723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 154: sqrt_ratio() return value] [Medium - Boolean Logic Error] Does (correct_sign | flipped_sign) correctly indicate success, or should it be (correct_sign | flipped_sign | flipped_sign_i) to match Ristretto's extended acceptance criteria?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7b5697d5-8e1b-4d5a-adb7-3303d120ddd2?mode=deep",
+    "timestamp": "2026-02-06 20:58:44.977429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 134-156: Field::sqrt_ratio()] [Low - Side-Channel] Do all operations run in constant time regardless of whether u/v is a square, or could timing leak whether an Ed25519 point is valid, potentially revealing FROST signing activity?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e19e04d7-f5b9-4b37-8108-c53cb6553e27?mode=deep",
+    "timestamp": "2026-02-06 20:59:02.555171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 190-193: PrimeField::from_repr()] [Critical - Range Check Bypass] Does res.ct_lt(&MODULUS) correctly reject bytes >= p, or could a comparison bug allow out-of-range field elements that break FROST signature verification when deserializing shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_99c7d738-2929-4b26-9df7-23881ad933c0?mode=deep",
+    "timestamp": "2026-02-06 20:59:20.077619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 190-193: PrimeField::from_repr()] [High - Endianness Error] Does U256::from_le_bytes() correctly interpret little-endian input, or could big-endian confusion cause field element corruption when deserializing FROST messages?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3cbdcacf-0dc5-4747-a6a8-7182c0f54f9d?mode=deep",
+    "timestamp": "2026-02-06 20:59:38.976689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 190-193: PrimeField::from_repr()] [High - Constant-Time Violation] Is the ct_lt comparison truly constant-time, or could timing leak information about whether deserialized FROST shares are close to the modulus?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b63218eb-6bc5-4db6-b9ef-6076c4fadbd1?mode=deep",
+    "timestamp": "2026-02-06 20:59:58.487713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 190-193: PrimeField::from_repr()] [Medium - Reduction Error] Does ResidueType::new(&res) correctly reduce res modulo p even when res >= p, or could it store out-of-range values if ct_lt check is bypassed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d489d02d-7883-4a36-a9d8-bbf1d746ba5b?mode=deep",
+    "timestamp": "2026-02-06 21:00:18.686915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 194-196: PrimeField::to_repr()] [Medium - Canonicalization Error] Does self.0.retrieve().to_le_bytes() always return the canonical reduced representation, or could it return values >= p that fail to deserialize, breaking FROST message encoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_35ab7a52-e01a-43c8-8d00-25c7212ae95a?mode=deep",
+    "timestamp": "2026-02-06 21:00:39.631023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 194-196: PrimeField::to_repr()] [Medium - Side-Channel] Does retrieve() run in constant time, or could it leak information about secret FROST shares through timing when serializing for network transmission?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fba174c4-c4e2-4689-9489-a792fbc0fb72?mode=deep",
+    "timestamp": "2026-02-06 21:01:01.802638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 194-196: PrimeField::to_repr()] [Low - Endianness Consistency] Does to_le_bytes() match the endianness expected by from_repr(), or could endianness mismatch cause round-trip serialization failures for FROST shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ffc37cad-f15a-46b8-b744-0a485bd076f1?mode=deep",
+    "timestamp": "2026-02-06 21:01:23.813869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 198-200: PrimeField::is_odd()] [High - Constant-Time Violation] Does self.0.retrieve().is_odd() run in constant time, or could timing leak the parity of secret FROST scalars, potentially revealing key bits through side-channel analysis?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f42ddb97-5d85-4e04-891a-818a8cc7ebd4?mode=deep",
+    "timestamp": "2026-02-06 21:01:48.205843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 198-200: PrimeField::is_odd()] [Medium - Correctness Error] Does is_odd() check the least significant bit of the canonical representation, or could it check a non-reduced value causing incorrect parity for Ed25519 operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bf977da3-2c98-4e63-b4c8-967e2be4bb05?mode=deep",
+    "timestamp": "2026-02-06 21:02:13.445874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 235-270: FieldElement::pow()] [Critical - Side-Channel] Does the windowed exponentiation algorithm run in constant time, or do conditional branches and table lookups leak the exponent bits, allowing attackers to recover FROST secret keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_870195a2-3fe7-4280-b76a-b0115beded2d?mode=deep",
+    "timestamp": "2026-02-06 21:02:40.189775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 236-240: pow() table initialization] [High - Table Computation Error] Does the table computation table[i] = table[i-1] * self correctly build powers of self, or could off-by-one errors cause wrong exponentiations that break FROST key derivation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ec854a0-56bf-45ce-99eb-b78eea10aeb1?mode=deep",
+    "timestamp": "2026-02-06 21:03:06.685901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 244-248: pow() bit extraction] [Critical - Timing Leak] Does the bit iteration and accumulation leak timing information about the exponent, potentially revealing FROST nonces or secret shares through cache timing attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c6c0ff1b-29e9-40ef-a4bf-76e2ddd72622?mode=deep",
+    "timestamp": "2026-02-06 21:03:35.026866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Line 246: pow() u8_from_bool] [Medium - Conversion Error] Does u8_from_bool correctly extract bit values, or could it introduce errors that cause pow() to compute wrong exponentiations for FROST operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2e0b1d88-f855-4630-9a5f-a084c02536d2?mode=deep",
+    "timestamp": "2026-02-06 21:04:03.412931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 250-267: pow() windowing logic] [High - Window Accumulation Error] Does the 4-bit windowing with (i+1) % 4 boundary checking correctly accumulate exponent bits, or could off-by-one errors skip or duplicate bits causing wrong FROST computations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_472513ab-bd6e-4625-a146-e290d731176d?mode=deep",
+    "timestamp": "2026-02-06 21:04:32.561924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 251-255: pow() squaring loop] [Medium - Squaring Count Error] Does the if i != 3 check correctly skip initial squaring, or could incorrect squaring counts cause pow() to compute self^(k*2^n) instead of self^k?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_afdafc11-c7d8-446c-a4a6-ff9c889e24d6?mode=deep",
+    "timestamp": "2026-02-06 21:05:00.480191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 257-264: pow() table lookup] [Critical - Cache Timing] Does the conditional_select loop over all 16 table entries leak which entry is selected through cache access patterns, revealing FROST exponent values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_725684c9-d6be-4de1-84f9-879a4cfadc10?mode=deep",
+    "timestamp": "2026-02-06 21:05:28.469324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dalek-ff-group/src/field.rs] [Lines 257-264: pow() table lookup] [High - Selection Logic Error] Does bits.ct_eq(&(i as u8)) correctly select the right table entry, or could casting errors or off-by-one bugs cause wrong table lookups that break FROST signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2511cd25-9a21-4e07-991d-d5bebc31badc?mode=deep",
+    "timestamp": "2026-02-06 21:05:57.253194",
+    "report_generated": false
+  }
+]
