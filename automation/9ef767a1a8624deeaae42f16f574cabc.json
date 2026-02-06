@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 28-39] [Trait Hram - Medium] Does the Hram trait require Send + Sync bounds? In multi-threaded FROST signing, could race conditions occur if Hram state is shared across threads?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fec834a3-718d-490a-b3d3-28b4a785ed49?mode=deep",
+    "timestamp": "2026-02-06 20:31:19.257904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 30] [Lifetime Parameters - Low] Are there hidden lifetime parameters in the references &C::G for R and A that could cause use-after-free if these references are invalidated during hash computation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a5f64576-874c-4f58-a9e2-6a87ac06143c?mode=deep",
+    "timestamp": "2026-02-06 20:31:31.743672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 30] [Type Aliasing - Low] Does the type alias Scalar from dalek_ff_group::Scalar have different properties than expected? Could this cause subtle type mismatches with other FROST code?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b60a4ead-6ad4-4ccb-a629-48de3d1c785a?mode=deep",
+    "timestamp": "2026-02-06 20:31:44.550922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 31] [Hash Algorithm - High] The code uses <$Curve as Ciphersuite>::H which should be SHA-512 for both curves. Is this guaranteed? Could a misconfiguration use a weaker hash like SHA-256 that doesn't provide 256-bit security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5a0e681e-a1fa-4733-95ae-e5b006aad9eb?mode=deep",
+    "timestamp": "2026-02-06 20:31:58.204720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 31] [Hash Initialization - Medium] Does H::new() properly initialize the hash state? Could uninitialized state from previous computations leak into the hash?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ecfa7eeb-b575-4914-bf45-30e47dd49ef0?mode=deep",
+    "timestamp": "2026-02-06 20:32:12.002545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 31-36] [Hash Finalization - Medium] Is the hash properly finalized before passing to from_hash? Could partial hash state be used that doesn't include all input bytes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b88a8069-1428-438b-9ca6-a5f8c2dcb430?mode=deep",
+    "timestamp": "2026-02-06 20:32:27.242629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 31] [Hash Collision Resistance - Medium] Does SHA-512 provide sufficient collision resistance for the security level (256 bits)? Birthday attacks on the challenge space could reduce effective security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_57e44dde-b72a-408c-b034-1925cdfba95c?mode=deep",
+    "timestamp": "2026-02-06 20:32:43.528463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 44] [IETF Compliance - High] The CONTEXT string includes 'IETF' prefix via IetfRistrettoHram. Does the implementation fully comply with IETF draft-irtf-cfrg-frost? Deviations could break interoperability or introduce vulnerabilities?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f9c7f0f8-fdb9-4893-9c7f-10da77705e90?mode=deep",
+    "timestamp": "2026-02-06 20:33:00.910578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 47] [Ed25519 IETF - High] For Ed25519, the empty $chal parameter differs from Ristretto. Is this consistent with RFC 8032 and IETF FROST? Inconsistencies could break compatibility with other implementations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4d37206d-34e7-49fb-bdf3-cf01e7c4c8b3?mode=deep",
+    "timestamp": "2026-02-06 20:33:19.216791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 33] [Challenge Prefix - Medium] The IETF spec may require specific prefixes for challenge computation. Does prepending [$CONTEXT, $chal] match the spec exactly? Off-by-one errors in prefix length could cause incompatibility?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_99dff88d-a265-4f70-8dd2-6a891a88153f?mode=deep",
+    "timestamp": "2026-02-06 20:33:38.000705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Function: hram()] [H2 Function - Medium] The IETF FROST spec defines H2 as the challenge hash function. Does this hram() implementation match H2's requirements including input encoding and domain separation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_459f4b74-1f5e-4d71-97cc-a6c126215388?mode=deep",
+    "timestamp": "2026-02-06 20:33:57.636528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 36] [Memory DoS - Medium] Could an attacker provide an extremely large message m that causes the concat() operation to allocate excessive memory, leading to OOM and DoS?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5252e6e0-ebe3-4e5e-bf81-2a3fb00dec3d?mode=deep",
+    "timestamp": "2026-02-06 20:34:18.013168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Function: hram()] [Hash DoS - Low] Could repeatedly calling hram() with varying inputs cause excessive CPU usage for hash computation? Are there rate limits on challenge computation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a26b0325-42c9-4688-817f-c6ef5abbc126?mode=deep",
+    "timestamp": "2026-02-06 20:34:39.642570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 35] [from_hash Performance - Low] Does Scalar::from_hash perform expensive modular reduction? In high-throughput signing, could this become a bottleneck that affects performance?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0622fb64-d95e-4f1e-a47b-1b5035d71d91?mode=deep",
+    "timestamp": "2026-02-06 20:35:02.203428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Function: hram()] [Panic Conditions - Medium] Does compress() or to_bytes() ever panic? If R or A are invalid, could this cause validator DoS during FROST signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9edfa488-8de8-4cb8-9b84-76eced942b02?mode=deep",
+    "timestamp": "2026-02-06 20:35:26.021754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 35] [from_hash Panic - Medium] Could Scalar::from_hash panic on malformed hash output? This would be critical in a consensus context where panics cause chain halts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d11b80ae-daca-4d72-934b-03b79ce3c51c?mode=deep",
+    "timestamp": "2026-02-06 20:35:49.714476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 33] [Concat Panic - Low] Could the .concat() operation panic on allocation failure? In resource-constrained environments, this could cause signing failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d9bbaf9e-a981-4f22-88e9-6e982d4104e0?mode=deep",
+    "timestamp": "2026-02-06 20:36:13.305598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Lines 44, 47] [Cross-Curve - Critical] Given that Ristretto and Ed25519 share the same underlying Curve25519, could an attacker exploit mathematical relationships between the curves to transfer signatures or keys from one curve to the other?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9c180a62-b9e5-43d0-a792-6f720641bbd2?mode=deep",
+    "timestamp": "2026-02-06 20:36:38.521574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Lines 44, 47] [Context Collision - High] Are the CONTEXT strings sufficiently different to prevent any collision in the hash space that could allow cross-curve signature replay?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7d598b0d-7954-4e6f-baae-384d8c51d582?mode=deep",
+    "timestamp": "2026-02-06 20:37:03.796617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Function: hram()] [Group Isomorphism - Medium] Since Ristretto is a quotient group of Ed25519, could the isomorphism be exploited to create valid challenges in one curve that verify in the other?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a6d5e714-22df-4c40-804e-1d0244c277eb?mode=deep",
+    "timestamp": "2026-02-06 20:37:30.312571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 30] [Parameter Binding - High] Are R, A, and m cryptographically bound in the hash input such that no component can be substituted without detection? Weak binding could enable forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_29254102-9b51-4ff8-821f-695e8abcc0a6?mode=deep",
+    "timestamp": "2026-02-06 20:37:58.590567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Function: hram()] [Session Binding - Medium] Does the challenge computation bind to a specific FROST session ID or network identifier? Without session binding, signatures from test networks could be replayed on mainnet?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_59c226f0-8994-42c7-9a86-8f6f412bc242?mode=deep",
+    "timestamp": "2026-02-06 20:38:27.444310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 22] [CONTEXT Binding - Medium] Is the CONTEXT constant used consistently across all FROST operations (DKG, signing, verification)? Inconsistent context usage could break binding and enable attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d4e61bc0-7832-47d7-860a-067f2591ca53?mode=deep",
+    "timestamp": "2026-02-06 20:38:56.277915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 35] [Scalar Range - High] Does the challenge scalar have the full range [0, L) where L is the curve order? Restricted ranges could reduce security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bc3f2eb3-01a2-4b0b-9c33-676363e3797c?mode=deep",
+    "timestamp": "2026-02-06 20:39:23.863793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/dalek.rs] [Line 35] [Modular Arithmetic - Medium] Are scalar operations (implicit in FROST signing equation) properly reduced modulo the curve order? Improper reduction could cause signature verification failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e969452e-79bb-44db-9a0b-6843733f4b32?mode=deep",
+    "timestamp": "2026-02-06 20:39:52.272666",
+    "report_generated": false
+  }
+]
