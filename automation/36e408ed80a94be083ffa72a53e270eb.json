@@ -1,0 +1,134 @@
+[
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: send_raw_transaction()] [Multisig Validation - High] When broadcasting Serai's threshold multisig transactions, can malformed signatures cause partial validation failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5e2b006e-cc99-4207-ac3a-83bf1bbfa172?mode=deep",
+    "timestamp": "2026-02-06 19:31:21.114293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Multisig Detection - Medium] Can multisig transaction outputs be correctly identified to track Serai's controlled funds?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_034c5e88-f642-451b-9a0b-51d2396fdcf8?mode=deep",
+    "timestamp": "2026-02-06 19:31:33.442489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Deposit Verification - Critical] When scanning blocks for deposits to Serai multisig addresses, can transaction malleability cause deposit tracking inconsistencies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d1a44b79-a6ba-4044-9d9b-6558f96e5581?mode=deep",
+    "timestamp": "2026-02-06 19:31:46.130974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Withdrawal Confirmation - Critical] When broadcasting withdrawals, can network propagation delays cause validators to have inconsistent views of transaction status?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8c77b1eb-94a2-4865-9e81-1ce5630d68e7?mode=deep",
+    "timestamp": "2026-02-06 19:31:59.504900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Change Output - High] Are change outputs from multisig transactions properly tracked to prevent loss of funds during UTXO management?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_57eb5fda-4eaa-4809-82a8-37cd6c59d373?mode=deep",
+    "timestamp": "2026-02-06 19:32:13.119574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Hard Fork - High] Can Bitcoin hard forks cause consensus rule divergence where validators on different fork versions process blocks differently?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3551eeab-d40d-4000-91dd-2279f29a6438?mode=deep",
+    "timestamp": "2026-02-06 19:32:28.366184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Soft Fork - Medium] Can soft fork activation (e.g., Taproot) cause older Bitcoin nodes to accept transactions that newer rules would reject?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_299d4ea6-c3e6-425b-8240-4106642dbb6c?mode=deep",
+    "timestamp": "2026-02-06 19:32:43.935911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_latest_block_number()] [Chain Selection - Critical] If a validator's Bitcoin node is on a minority chain fork, can this cause Serai consensus failure?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_49e24d0a-39f2-4e71-a11f-bd9d73a85ab8?mode=deep",
+    "timestamp": "2026-02-06 19:33:01.176100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block()] [Deserialization Partial Failure - Medium] If block deserialization fails after partial success, can corrupt data structures remain?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3371bb81-c6ab-4852-bc5d-abec6343d180?mode=deep",
+    "timestamp": "2026-02-06 19:33:18.898219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Missing Transaction - High] Can requesting a non-existent transaction hash cause errors that are indistinguishable from network issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6ef4444a-0cc4-4afb-acab-e4519b6eff93?mode=deep",
+    "timestamp": "2026-02-06 19:33:37.621726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: send_raw_transaction()] [Broadcast Failure Recovery - Medium] If transaction broadcast fails, is there retry logic that could lead to duplicate broadcasts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b5889df2-d5a7-41e7-814c-3cf7f170fc7d?mode=deep",
+    "timestamp": "2026-02-06 19:33:57.502800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Node Redundancy - Medium] Is there support for fallback Bitcoin nodes if the primary becomes unavailable?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8c8d154f-3937-4983-9ede-25c94e90e98e?mode=deep",
+    "timestamp": "2026-02-06 19:34:19.398072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Health Checking - Low] Are there periodic health checks to detect degraded Bitcoin node performance?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b235ab37-9cb6-467b-93cc-c5f6b170736e?mode=deep",
+    "timestamp": "2026-02-06 19:34:39.770857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [RPC Rate Limits - Medium] Can Bitcoin node rate limiting cause request failures during high-volume batch processing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_373029ee-d291-4de2-9c99-6bc4948297e5?mode=deep",
+    "timestamp": "2026-02-06 19:35:01.583322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Request Queuing - Low] Is there request queuing to handle burst traffic without overwhelming the Bitcoin node?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_816d4dc3-5ce0-464e-9e88-19617aa6a9d4?mode=deep",
+    "timestamp": "2026-02-06 19:35:25.737178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: new()] [Method Deprecation - Medium] Can deprecated Bitcoin RPC methods be removed in future versions, breaking the expected_methods validation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3aca0ce7-9955-41c5-b3cb-9d1bbab0053d?mode=deep",
+    "timestamp": "2026-02-06 19:35:48.792297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Response Format Changes - Medium] Can Bitcoin Core updates change response formats in ways that break deserialization?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_56193c70-14c2-477a-a6b0-19b4a0856990?mode=deep",
+    "timestamp": "2026-02-06 19:36:10.093069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Fee Market - Medium] Can Bitcoin fee market volatility affect Serai's ability to broadcast transactions with appropriate fees?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_95cdb3cf-0e85-47c5-8c97-37222fae3812?mode=deep",
+    "timestamp": "2026-02-06 19:36:29.900791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: send_raw_transaction()] [Fee Overpayment - Low] Can fee calculation errors cause Serai to overpay fees, draining economic security funds?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e6f19541-d25b-4a77-b069-34582e7a2558?mode=deep",
+    "timestamp": "2026-02-06 19:36:46.255944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block_hash()] [Input Sanitization - Low] Is the number parameter validated to prevent extremely large values that could cause Bitcoin Core issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_85216cb2-adcb-4d79-a330-93ed371522c9?mode=deep",
+    "timestamp": "2026-02-06 19:37:01.219673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block_number()] [Hash Validation - Medium] Is the input hash validated to be exactly 32 bytes before hex encoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4333f2eb-b6a3-41de-b1f4-909a5b66818b?mode=deep",
+    "timestamp": "2026-02-06 19:37:17.154413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Transaction Hash Validation - Low] Is the input hash validated for correct length and format?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fbc3ca1c-98a6-4cec-a7fd-11a92133e936?mode=deep",
+    "timestamp": "2026-02-06 19:37:34.471516",
+    "report_generated": false
+  }
+]
