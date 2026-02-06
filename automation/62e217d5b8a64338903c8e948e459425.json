@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Medium - Large Pairs Array] Can processing 10,000+ validator commitments in a single straus() call cause stack overflow when prep_bits/prep_tables allocate large vectors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6ceb29f3-e9d1-4802-8657-7c5049bb4ae9?mode=deep",
+    "timestamp": "2026-02-06 19:54:41.224960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Low - Allocation Timing] Does the vec![G::identity(); size] allocation on line 15 take time proportional to the window size, leaking window parameter through timing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ac26811d-fd9f-4d92-887d-c028a7f34cbb?mode=deep",
+    "timestamp": "2026-02-06 19:54:53.573152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Zeroization Timing] Do groupings.zeroize() and tables.zeroize() on lines 47-48 take time proportional to data size, potentially leaking information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b6159361-c03f-44e9-87e2-15d31bed3ca2?mode=deep",
+    "timestamp": "2026-02-06 19:55:06.359702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [Medium - No Resource Cleanup] Does straus_vartime() drop groupings and tables without explicit zeroization, leaving scalars in allocator memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0b73458a-caed-4511-af2a-ec76b4e7f10d?mode=deep",
+    "timestamp": "2026-02-06 19:55:19.812999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Critical - Point Addition Correctness] Can group addition (accum += pair.1) on line 18 produce incorrect results due to exceptional cases (identity, negation)?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e1e71ff5-a539-4b28-bc45-23b4c4a132be?mode=deep",
+    "timestamp": "2026-02-06 19:55:34.708226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Doubling Correctness] Does res.double() on line 38 correctly implement point doubling for all group elements, including identity and points of small order?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3831794d-e6b5-4128-a611-313eaefac026?mode=deep",
+    "timestamp": "2026-02-06 19:55:49.527523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Addition Commutativity] Does the addition order on line 43 (res += tables[s][...]) affect the final result? Can non-commutative operations break correctness?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e0511d24-a189-4584-a713-03fb4c7e2860?mode=deep",
+    "timestamp": "2026-02-06 19:56:05.340036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [Medium - Identity Handling] When res is None and groupings[s][b] is 0, does line 72 correctly skip or handle the identity element?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cec8c5e0-ae4d-4633-8788-dbbc6a67aa50?mode=deep",
+    "timestamp": "2026-02-06 19:56:22.146342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Off-by-One in Loop] Does the loop range 1..tables[p].len() on line 17 correctly compute all table entries, or does it miss index 0 or overflow at len()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_702fcd40-deb1-421a-886a-f356a3b56d8d?mode=deep",
+    "timestamp": "2026-02-06 19:56:39.668363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Medium - u8 to usize Cast] On line 43, can usize::from(groupings[s][b]) cause issues on platforms where usize is smaller than expected table size?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2f23d787-f294-4a60-b0d7-ec29745cca58?mode=deep",
+    "timestamp": "2026-02-06 19:56:58.648392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Window Type Safety] Is window: u8 always safe for 2^window calculation, or can window=64 on 32-bit systems cause unexpected behavior?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f046e53b-7c0c-4951-ae39-028607ffb618?mode=deep",
+    "timestamp": "2026-02-06 19:57:18.190357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [Low - Option Unwrap Safety] Is unwrap_or_else(G::identity) on line 78 always safe, or are there cases where this default is incorrect?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f598fd11-11e2-4dee-b018-12e8131623b2?mode=deep",
+    "timestamp": "2026-02-06 19:57:38.347106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Medium - Thread Safety] Are groupings and tables on lines 31-32 thread-safe? Can concurrent straus() calls share mutable state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_56bf4e64-3221-4d4d-ab44-fbe51f35ea39?mode=deep",
+    "timestamp": "2026-02-06 19:57:59.360711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Low - Mutation Safety] Does prep_tables() mutate any shared state, or is it pure and safe for concurrent execution?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_765087e3-fd0e-44b5-b2cb-05af18e57561?mode=deep",
+    "timestamp": "2026-02-06 19:58:20.229509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [Medium - Reentrant Safety] Can straus_vartime() be called recursively without causing stack overflow or corruption?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3d2690cf-ff8f-4fa2-8bc4-717f8aff51dd?mode=deep",
+    "timestamp": "2026-02-06 19:58:42.463057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [High - Panic on Empty Pairs] Does prep_tables() panic when pairs.len() is 0, leaving calling code in inconsistent state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7bf31be0-b5a4-4c95-9788-3b3d471d0e9a?mode=deep",
+    "timestamp": "2026-02-06 19:59:04.413324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Panic Leaves Secrets] If line 38 or 43 panics, are groupings and tables zeroized by drop handlers, or do secrets leak?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_409c0de5-651e-4e2c-997c-2373f828d4ad?mode=deep",
+    "timestamp": "2026-02-06 19:59:26.577935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [Medium - Unwrap Safety] Does line 78's unwrap_or_else handle all cases correctly, or can it mask errors that should propagate?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_11eb36e8-a425-4c6c-a575-db25d99ed517?mode=deep",
+    "timestamp": "2026-02-06 19:59:48.206411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Low - Vector Growth] Can Vec::push() on line 13 reallocate and fail, causing panic without proper cleanup?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c72ed416-86a1-480c-b6a3-6cf5444083d2?mode=deep",
+    "timestamp": "2026-02-06 20:00:10.146244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Groupings Index Safety] Is groupings[s][b] on line 43 always in-bounds, or can s >= groupings.len() or b >= groupings[s].len() cause panic?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f1c9e93a-783b-406d-9918-82ff5a492a83?mode=deep",
+    "timestamp": "2026-02-06 20:00:31.658333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Tables Index Safety] Is tables[s] on line 43 always in-bounds, or can s >= tables.len() cause panic during multiexp?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_25fa0302-9977-4fdd-9e04-df7dee999e20?mode=deep",
+    "timestamp": "2026-02-06 20:00:54.509256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus_vartime()] [High - Double Index Safety] Does line 70 perform two unchecked indices (tables[s] then [usize::from(...)]) that could both fail?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1e664298-4a3b-42df-9fc3-f6adb4370ca1?mode=deep",
+    "timestamp": "2026-02-06 20:01:18.069745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: prep_tables()] [Medium - Table Length Assumption] Does line 19 assume tables[p].len() == 2^window always holds, or can it be violated?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6f8d224f-b649-404e-9c2d-53ca9ee429d1?mode=deep",
+    "timestamp": "2026-02-06 20:01:42.803011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [Critical - Reverse Iteration] Does iterating b from high to low on line 35 correctly implement Straus algorithm, or should it be forward?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0e9981a6-f7a2-4e9f-8d80-dc09fcdcb189?mode=deep",
+    "timestamp": "2026-02-06 20:02:09.364129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/straus.rs] [Function: straus()] [High - Window Bit Ordering] Does processing windows in the order on lines 35-44 match the bit grouping order from prep_bits()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2796df76-fdeb-41a7-943c-f19451356700?mode=deep",
+    "timestamp": "2026-02-06 20:02:35.714764",
+    "report_generated": false
+  }
+]
