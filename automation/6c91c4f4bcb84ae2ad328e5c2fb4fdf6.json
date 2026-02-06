@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify_share()] [Share Error] Returning Result<_, ()> provides no error context. Could this make debugging Byzantine behavior impossible during live sessions? (Severity: Low - Debuggability)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0af2bf75-6a69-4971-a642-137c6a5cd43d?mode=deep",
+    "timestamp": "2026-02-06 20:02:04.309116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: read_addendum()] [IO Error] read_addendum() returns io::Result<()>. If this is called with a non-empty reader, does it silently ignore data or error? (Severity: Low - API Misuse)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f3718579-882e-4e38-8bac-a594e727cbaa?mode=deep",
+    "timestamp": "2026-02-06 20:02:16.689210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Message Binding] The message is bound to the transcript via .bytes(). Does this bind the full message byte-for-byte, or could padding/encoding allow malleability? (Severity: High - Message Malleability)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_73e6307e-d4d5-4971-9afe-dd45318f9e57?mode=deep",
+    "timestamp": "2026-02-06 20:02:29.624317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Point Commitment] Points are committed as compressed. If an attacker provides an equivalent point with different compression, could this bypass transcript checks? (Severity: Medium - Point Encoding)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d1dc5d97-af4f-46d0-877f-524c62f11e22?mode=deep",
+    "timestamp": "2026-02-06 20:02:43.831487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Nonce Binding] Nonces are passed to schnorr.sign_share(). Does the underlying implementation bind nonces to the specific message, or could nonce reuse across messages enable key recovery? (Severity: Critical - Key Recovery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d2c4b963-2a4d-45fb-86be-a019b4e3d793?mode=deep",
+    "timestamp": "2026-02-06 20:02:56.761957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [External Asset Signing] If this code signs Bitcoin/Ethereum transactions, could a malicious message cause validators to sign transactions spending more funds than intended? (Severity: Critical - Fund Loss)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7a91a1ad-5cda-471a-b5ea-a8a4eb8b3c4c?mode=deep",
+    "timestamp": "2026-02-06 20:03:12.172193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Batch Verification] Serai signs transaction batches. If verify() is called once per batch but sign_share() was called for multiple messages, could msg confusion cause incorrect verification? (Severity: Critical - Batch Confusion)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_166a0edf-170c-4f6b-b9db-6e5801a73e48?mode=deep",
+    "timestamp": "2026-02-06 20:03:26.755001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Instruction Encoding] If the message contains SCALE-encoded instructions, could malformed encoding cause sign_share() to concatenate attacker-controlled data into the signed payload? (Severity: Critical - Instruction Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a3462b3d-dd95-4f93-ac2c-8d8f3a5b471a?mode=deep",
+    "timestamp": "2026-02-06 20:03:45.079103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [sriXYZ Minting] If signatures authorize minting synthetic assets, could signature forgery lead to unbacked sriXYZ creation? (Severity: Critical - Insolvency)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d43a1234-87f6-448d-ad33-39b8987834bf?mode=deep",
+    "timestamp": "2026-02-06 20:04:03.231138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Challenge Scalar] The challenge scalar is derived from transcript.challenge_scalar(). If the transcript state is manipulated before this call, could a weak or predictable challenge be produced? (Severity: Critical - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_561fe062-aadb-48a6-afc0-21404168feea?mode=deep",
+    "timestamp": "2026-02-06 20:04:20.347024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Group Key Validation] The group_key is assumed valid. If DKG produces a point at infinity or identity, could all signatures verify incorrectly? (Severity: Critical - Universal Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cc167d0f-ab51-437f-9d2d-03aeb493badf?mode=deep",
+    "timestamp": "2026-02-06 20:04:40.696931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Scalar Overflow] When computing the signature share, could intermediate scalar additions overflow the modulus, producing incorrect shares? (Severity: High - Invalid Signature)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_85de7b30-8112-4fd3-b65f-f8fe27baf2ba?mode=deep",
+    "timestamp": "2026-02-06 20:05:02.255280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Proto Name] The transcript uses proto_name(b'Schnorr-sig'). Is this label globally unique, or could other Schnorr implementations clash? (Severity: Medium - Label Collision)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_100e1caf-6d6d-4d39-8e75-d4c326f99036?mode=deep",
+    "timestamp": "2026-02-06 20:05:24.214965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Bit 7 Semantics] Setting bit 7 of byte 63 modifies the signature. What does this bit represent in schnorrkel (e.g., point sign), and could flipping it change signature validity? (Severity: High - Signature Format)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e949218d-fe76-4a96-a95f-c9c038bb9f93?mode=deep",
+    "timestamp": "2026-02-06 20:05:46.904102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [Ciphersuite Mismatch] If other parts of Serai use Ed25519 while this uses Ristretto, could curve mismatch lead to cross-protocol attacks? (Severity: Medium - Protocol Confusion)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_af3b5cb6-95c7-45e0-9669-52c6e70853de?mode=deep",
+    "timestamp": "2026-02-06 20:06:09.731110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Context Lifetime] The context has 'static lifetime, but is it guaranteed to remain constant across validator restarts or upgrades? (Severity: High - Context Drift)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a6609485-b598-4a4f-b101-56cdbd6b2c51?mode=deep",
+    "timestamp": "2026-02-06 20:06:33.526905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Commitment Order] Committing pk before R differs from standard Schnorr (R then pk). Could this enable known attacks like Wagner's algorithm? (Severity: High - Algorithm Security)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3cd234b0-902a-443a-b78b-b551135d2b88?mode=deep",
+    "timestamp": "2026-02-06 20:06:57.624952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Verification Time] Does verify() run in constant time, or could timing side-channels leak whether a signature is close to valid? (Severity: Medium - Side Channel)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6981cdda-49eb-4f76-90e0-b4cb728fa2dc?mode=deep",
+    "timestamp": "2026-02-06 20:07:21.414762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [Library Audit] Has the schnorrkel library been formally audited for FROST compatibility, or could subtle incompatibilities exist? (Severity: High - Third-Party Risk)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fd8d6db9-15a9-40f2-b8c1-b5ab44a3d121?mode=deep",
+    "timestamp": "2026-02-06 20:07:46.582145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Context Encoding] The context is taken from m[4..(4+ctx_len)]. If ctx_len is manipulated to overlap with the message, could context bytes be attacker-controlled? (Severity: Critical - Context Injection)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_696a9dd4-cbb1-4bc5-a999-ed43ba7adb20?mode=deep",
+    "timestamp": "2026-02-06 20:08:11.467899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Nonce Count] Does the function validate that nonces.len() equals the expected number of signing rounds, or could mismatched nonce counts cause incorrect signatures? (Severity: High - Nonce Mismatch)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_66341d25-899e-4c0a-9dd3-4f7f75090e6f?mode=deep",
+    "timestamp": "2026-02-06 20:08:39.049458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Nonces Array] The function expects nonces as &[Vec<RistrettoPoint>]. If this is empty or has unexpected structure, does it panic or return None? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_79118a5f-5d30-406f-9e4b-7cc0e748886f?mode=deep",
+    "timestamp": "2026-02-06 20:09:07.134757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [Test Coverage] Are there tests for malformed messages, edge-case contexts, and Byzantine participants, or could untested paths hide vulnerabilities? (Severity: Medium - Testing Gap)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_67e70614-b6a9-43cf-9e88-c099a715ee40?mode=deep",
+    "timestamp": "2026-02-06 20:09:34.763775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: process_addendum()] [No-op Risk] This function does nothing but return Ok. If FROST requires participant validation here, could skipping it allow invalid participants? (Severity: Medium - Validation Skip)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5c723227-6059-4eab-a16a-3ac5e51224c9?mode=deep",
+    "timestamp": "2026-02-06 20:10:01.331656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Scalar Reduction] Is the challenge scalar correctly reduced modulo the group order, or could a too-large challenge cause signature failures? (Severity: High - Invalid Challenge)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_27dc68c0-fd37-4181-a58b-3b9c3e964668?mode=deep",
+    "timestamp": "2026-02-06 20:10:28.114311",
+    "report_generated": false
+  }
+]
