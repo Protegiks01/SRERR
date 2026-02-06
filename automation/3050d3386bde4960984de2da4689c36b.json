@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Identity Point] **HIGH**: Does read_G() reject the identity point? If accepted as a key share, would the aggregated threshold key be trivially breakable?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d434709a-c05e-4922-953f-4ec86f2b9748?mode=deep",
+    "timestamp": "2026-02-06 19:26:49.624816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Timing] **HIGH**: The canonicalization check on lines 97-98 uses != comparison - is this constant-time, or could timing leak information about the point's encoding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d9783fa8-c372-4c2c-8f8a-073152928de5?mode=deep",
+    "timestamp": "2026-02-06 19:27:02.123579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Invalid Curve] **CRITICAL**: Does from_bytes() verify that the point is actually on the curve? Could invalid-curve attacks allow key recovery if validators accept off-curve points?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_25987921-2964-4950-bfc9-e1a2dfa6c6db?mode=deep",
+    "timestamp": "2026-02-06 19:27:15.987994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Zeroization] **HIGH**: Unlike read_F(), read_G() doesn't explicitly zeroize the encoding buffer - could point data leak from memory after deserialization?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_91744b75-bd0c-4671-826c-695d82c8eee6?mode=deep",
+    "timestamp": "2026-02-06 19:27:29.276444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Error Ordering] **MEDIUM**: Line 96 checks for invalid points before line 97-98 checks canonicalization - could an attacker distinguish between the two error types to gain information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_05db78f9-ac15-4970-a922-7240f3393b69?mode=deep",
+    "timestamp": "2026-02-06 19:27:42.787358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Compression] **MEDIUM**: If the encoding uses point compression, does the decompression process verify the sign bit? Could sign bit flipping create signature malleability?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_22c85f06-aed3-42a6-b62b-71aa3d4548f6?mode=deep",
+    "timestamp": "2026-02-06 19:27:57.427633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [DoS] **MEDIUM**: Could an attacker send points that decode slowly (e.g., requiring expensive square root computation), causing DoS during batch key confirmation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b57d9b99-d16b-49a4-ace5-4d3eac1ce909?mode=deep",
+    "timestamp": "2026-02-06 19:28:12.073175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Buffer Overflow] **MEDIUM**: Line 93 reads exactly Repr::default().len() bytes - what if the encoding size doesn't match the curve's point size?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b5f47924-15fe-483d-b875-899c8e56ee41?mode=deep",
+    "timestamp": "2026-02-06 19:28:28.101599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Endianness] **HIGH**: Similar to read_F(), does Repr enforce consistent byte order for points? Could endianness differences cause validators to deserialize different public keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_545c42d1-1374-4ffb-976e-e697362be940?mode=deep",
+    "timestamp": "2026-02-06 19:28:46.120488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Function: read_G(), Lines 91-101] [Panic] **LOW**: What if to_bytes() on line 97 panics for malformed points? Could this crash validators during key aggregation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2295db05-c541-496d-bff2-a650f983cd13?mode=deep",
+    "timestamp": "2026-02-06 19:29:04.844060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Functions: hash_to_F() + random_nonzero_F(), Lines 49-69] [Nonce Generation] **CRITICAL**: In FROST signing, if hash_to_F() is used for deterministic nonces and random_nonzero_F() for random nonces, could mixing the two create nonce reuse that breaks signature security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_adef41bd-e695-4226-a024-05eaea987cd1?mode=deep",
+    "timestamp": "2026-02-06 19:29:24.776599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Functions: read_F() + read_G(), Lines 74-101] [Deserialization Order] **HIGH**: If key shares are deserialized as (scalar, point) pairs, could reversing the order cause validators to accept (point, scalar) and create invalid threshold keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ec768c14-402a-4e4d-b640-dbcc5197b183?mode=deep",
+    "timestamp": "2026-02-06 19:29:45.437694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Functions: generator() + read_G(), Lines 47-101] **HIGH**: If an attacker submits read_G() data that claims to be the generator but isn't, could downstream code trust it without re-checking against generator()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_525b14cc-7bd5-4026-8711-828ccd4a1e84?mode=deep",
+    "timestamp": "2026-02-06 19:30:06.289895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Functions: hash_to_F() + read_F(), Lines 49-83] **MEDIUM**: Could an attacker pre-compute hash_to_F() collisions and submit them via read_F() to forge challenge values in Schnorr signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9e8f4715-bf51-4e20-a6c2-485d57d7c8a9?mode=deep",
+    "timestamp": "2026-02-06 19:30:28.534911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Type: F + Function: random_nonzero_F(), Lines 35-69] **HIGH**: If PrimeField's random() implementation is flawed, could random_nonzero_F() produce predictable scalars even with a good RNG?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1311c19e-636f-4f56-953a-01506b250553?mode=deep",
+    "timestamp": "2026-02-06 19:30:51.337008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Type: G + Function: read_G(), Lines 37-101] **HIGH**: The ConstantTimeEq bound on G - is it actually used in read_G()'s canonicalization check, or does line 97 use variable-time comparison?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3d3673c5-20df-4875-a3b5-2935268f744e?mode=deep",
+    "timestamp": "2026-02-06 19:31:14.932643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Trait Bounds: PrimeField + Zeroize, Line 35] **HIGH**: Does the PrimeField trait guarantee that operations are constant-time? Could Zeroize be implemented but not actually called, leaving secrets in memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b985dce6-b97b-4d84-a59b-019d0bb5a5e7?mode=deep",
+    "timestamp": "2026-02-06 19:31:39.378969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Trait Bounds: Group + PrimeGroup, Line 37] **MEDIUM**: Is there a semantic difference between Group and PrimeGroup that could be exploited if a ciphersuite implementation confuses them?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ceed3554-7335-4f92-ad75-26822896b6d5?mode=deep",
+    "timestamp": "2026-02-06 19:32:05.495951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Trait Bounds: Send + Sync, Line 31] **HIGH**: If F or G contains !Send or !Sync types internally, could this break thread safety guarantees during concurrent FROST signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c6a17dda-8108-44ec-b6b2-2cebbd6a8bce?mode=deep",
+    "timestamp": "2026-02-06 19:32:30.718069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Trait Bounds: Clone + Copy, Line 31] **MEDIUM**: Could shallow copying of ciphersuite instances during DKG create aliasing bugs where zeroizing one instance doesn't zeroize cloned secrets?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_43d33cb3-3164-43a2-9fc3-428751f0aa44?mode=deep",
+    "timestamp": "2026-02-06 19:32:57.047080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Trait Bounds: PartialEq + Eq, Line 31] **LOW**: Could malicious implementations violate reflexivity or transitivity of Eq, breaking set-based deduplication of key shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_05fbd8ae-5cef-4038-a56d-ef0836259025?mode=deep",
+    "timestamp": "2026-02-06 19:33:24.433026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Zeroize: read_F(), Line 81] **HIGH**: Is the zeroization on line 81 sufficient? Could compiler optimizations eliminate the zeroize() call, leaving scalar data in memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_54ed2eb9-8e08-4617-adc7-bdca3b45e18a?mode=deep",
+    "timestamp": "2026-02-06 19:33:51.862455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Zeroize: read_G(), Lines 91-101] **HIGH**: read_G() doesn't explicitly zeroize - is this intentional? Could public keys persist in memory and leak validator set information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cb4f4829-ab65-456c-99e0-ce47b63739d5?mode=deep",
+    "timestamp": "2026-02-06 19:34:19.360065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Zeroize: random_nonzero_F(), Lines 62-69] **MEDIUM**: The 'res' variable is returned without being cloned - does Rust's move semantics guarantee no copies are left behind?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_88e8d638-04ea-47d4-92d8-274d2bc515e7?mode=deep",
+    "timestamp": "2026-02-06 19:34:46.601238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/ciphersuite/src/lib.rs] [Memory: Type F, Line 35] **HIGH**: The Zeroize bound on F - is it applied to all temporary scalars, or only to explicit variables? Could intermediate values leak during arithmetic operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_12d3cd3a-2914-4b26-8a32-ae5ac7654790?mode=deep",
+    "timestamp": "2026-02-06 19:35:15.220282",
+    "report_generated": false
+  }
+]
