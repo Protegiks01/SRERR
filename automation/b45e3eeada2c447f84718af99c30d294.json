@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Low - Finalize Timing] Does finalize() run in constant time, or can timing differences leak information about the final transcript state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_76f5614d-0193-4c30-869b-ac409b29d529?mode=deep",
+    "timestamp": "2026-02-06 20:39:12.395438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [Critical - Panic on Overflow] The unwrap() on u64::try_from(value.len()) will panic if length > u64::MAX - can an attacker cause this panic during DKG to force validator set divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eac6af89-8729-4fdb-a11f-ec92c47824c3?mode=deep",
+    "timestamp": "2026-02-06 20:39:24.616806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [High - Truncation Panic] The seed.copy_from_slice(&self.challenge(label)[.. 32]) panics if challenge output < 32 bytes - can a custom digest violating SecureDigest bounds cause this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_93416f37-08ff-4ee5-b610-35f91438783e?mode=deep",
+    "timestamp": "2026-02-06 20:39:38.205841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Div Ceil Panic] The div_ceil() operation could panic on some platforms - is this safe for all possible block sizes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e994e468-2a34-429a-9db1-66a7fed3f6ba?mode=deep",
+    "timestamp": "2026-02-06 20:39:52.169331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Low - AsRef Panic] If an AsRef<[u8]> implementation panics, this propagates to transcript operations - is this acceptable during consensus-critical operations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4373ec3c-051a-4b13-a294-c621fddfbead?mode=deep",
+    "timestamp": "2026-02-06 20:40:05.319925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: new()] [High - Name Uniqueness] How is uniqueness of the &'static [u8] name enforced across different Serai protocols? Can two protocols accidentally use b'serai' and cause transcript collision?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_de609a61-3b2e-4efc-94dd-e3facd130381?mode=deep",
+    "timestamp": "2026-02-06 20:40:21.407450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: domain_separate()] [High - Domain Hierarchy] If domain_separate() is called multiple times, is there a hierarchical structure, or can domains be reordered to cause collision?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6e544594-a200-40f5-924c-e6129c973f16?mode=deep",
+    "timestamp": "2026-02-06 20:40:37.926996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Medium - Label Namespace] Is there a global label namespace registry? What prevents two different FROST implementations from using the same label strings for different purposes?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_416c1790-1744-42f0-bbf1-7d2a8025dd14?mode=deep",
+    "timestamp": "2026-02-06 20:40:55.354481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Challenge Label Collision] If challenge() is called with labels that are prefixes of each other (e.g., 'key' and 'key-confirmation'), can this weaken security?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fb4be22a-b8f7-4278-bf48-f19b91d15da7?mode=deep",
+    "timestamp": "2026-02-06 20:41:13.265541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 18-21] [High - Feature Parity] If MerlinTranscript is used in some contexts and DigestTranscript in others, can this cause cross-implementation attacks where the same logical transcript produces different challenges?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_43dac621-bf43-4927-b0ba-a4908bed8418?mode=deep",
+    "timestamp": "2026-02-06 20:41:32.309598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 18-21] [Medium - Feature Flag Safety] The merlin feature is conditional - if different validators compile with different feature flags, can this cause consensus divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_babe9b99-c9e2-46b4-a116-1226cf80dce3?mode=deep",
+    "timestamp": "2026-02-06 20:41:52.295033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 176-177] [High - Blake2b512 Assumptions] RecommendedTranscript uses Blake2b512 - if a Blake2b vulnerability is discovered, is there a migration path that doesn't break existing signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0fd1ca11-b704-4acd-9c02-2ff3be58da20?mode=deep",
+    "timestamp": "2026-02-06 20:42:13.118004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 176-177] [Medium - Feature Flag Dependency] RecommendedTranscript is behind the 'recommended' feature - what happens if validators deploy without this feature enabled?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1cc4f9e9-24ac-4ef0-acef-e553eeccb473?mode=deep",
+    "timestamp": "2026-02-06 20:42:34.367049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Critical - Multi-Challenge Length Extension] If an attacker can influence the sequence of challenge() calls, can they perform a length extension attack across the Continued marker by predicting internal padding?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4eb14475-14ed-4ef2-9dd6-9c4a5264c528?mode=deep",
+    "timestamp": "2026-02-06 20:42:57.260937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [High - Padding Oracle] Does the digest padding interact with the custom length prefixing in a way that could enable padding oracle attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_92823152-bd1c-48ae-a760-8576343e5215?mode=deep",
+    "timestamp": "2026-02-06 20:43:20.511863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Fork Marker Collision] The Continued (5) and Challenged (6) markers are single bytes - can an attacker craft a message that ends with byte 5 or 6 to simulate a fork?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_13997a3f-98d8-4d26-abb0-938b04eb02ec?mode=deep",
+    "timestamp": "2026-02-06 20:43:44.027816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [High - Update Atomicity] If Digest::update() is not atomic and can be interrupted, can this cause partial transcript updates that lead to state divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_38048710-da31-482d-8400-4096f4403385?mode=deep",
+    "timestamp": "2026-02-06 20:44:07.447390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [High - Clone Consistency] When self.0.clone() is called, if the source and clone diverge due to internal caching, can this cause challenges to differ from continued transcripts?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d4129d61-751c-4b5d-b44d-4a3693941919?mode=deep",
+    "timestamp": "2026-02-06 20:44:31.205954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Struct: DigestTranscript] [Medium - Internal State Visibility] The internal Digest state is not exposed - can this hide state corruption that would be detectable with explicit state checks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7d56a724-f17d-4340-b04f-736e9297fd16?mode=deep",
+    "timestamp": "2026-02-06 20:44:55.272564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Enum: DigestTranscriptMember] [High - Enum Exhaustiveness] The enum has 7 variants (0-6) - if a future update adds variant 7, will existing signatures remain valid or will there be a hard fork?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_973589a8-3750-41fc-bb58-4f75d0fd5c80?mode=deep",
+    "timestamp": "2026-02-06 20:45:20.549987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: as_u8()] [Medium - Variant Numbering] The sequential numbering 0-6 is manually assigned - if variants are reordered in source code, will this change the u8 encoding and break compatibility?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_70c7ea5d-4713-439a-b013-db2831516711?mode=deep",
+    "timestamp": "2026-02-06 20:45:45.349529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Enum: DigestTranscriptMember] [Low - Match Exhaustiveness] The as_u8() match is exhaustive, but if compiled with different Rust versions having different match semantics, can this cause divergence?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eec59a8c-f487-4530-bee8-71c0d8b0cf8c?mode=deep",
+    "timestamp": "2026-02-06 20:46:11.221995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [High - Memory Exhaustion] If an attacker supplies extremely large messages (approaching u64::MAX), can this cause memory exhaustion when Digest::update() buffers data?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ea9b0062-55d3-4ba3-a399-39994ad57006?mode=deep",
+    "timestamp": "2026-02-06 20:46:36.531573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Clone Cost DoS] If challenge() is called repeatedly and Digest cloning allocates memory, can this be used to exhaust validator memory?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6f76fbba-57a4-453b-b98d-b584b147b717?mode=deep",
+    "timestamp": "2026-02-06 20:47:04.381869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Zeroization Cost] The zeroize() loop updates 2*block_size worth of data - for large block sizes, can this cause noticeable delays during consensus?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_74d6fcee-483d-468a-ad42-b29c16d8c063?mode=deep",
+    "timestamp": "2026-02-06 20:47:32.600344",
+    "report_generated": false
+  }
+]
