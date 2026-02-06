@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Deserialization Attack - High] Can malicious transaction data exploit vulnerabilities in encode::deserialize to cause crashes or memory corruption?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_60e5c16a-c1d9-441b-b611-ab7b90847aed?mode=deep",
+    "timestamp": "2026-02-06 19:53:57.237381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Hex Decoding Validation - Medium] Can FromHex::from_hex be exploited with specially crafted hex strings to cause buffer issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ab3f1dd-04d0-44d3-a17c-c07dc892d51f?mode=deep",
+    "timestamp": "2026-02-06 19:54:09.432805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_transaction()] [Transaction Witness Data - Medium] Does deserialization properly handle witness data for SegWit transactions, or can witness malleability affect txid calculations?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e1868ab5-4f09-4d4f-930e-f304a9213eae?mode=deep",
+    "timestamp": "2026-02-06 19:54:22.207460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Error Type: RpcError] [Error Information Leakage - Low] Do error messages expose sensitive information about internal Bitcoin node state or configuration that could aid attackers?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d9984943-6428-4a23-98e8-212476f4bae8?mode=deep",
+    "timestamp": "2026-02-06 19:54:36.183290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Error Type: RpcError] [Error Code Exhaustiveness - Medium] Are all possible Bitcoin RPC error codes handled appropriately, or can unknown error codes cause panics or undefined behavior?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_731de031-b177-4db6-8e3c-519689c91477?mode=deep",
+    "timestamp": "2026-02-06 19:54:50.162533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [RpcResponse Enum] [Untagged Deserialization - High] The #[serde(untagged)] attribute can cause ambiguous deserialization—can response structures be crafted to deserialize as Ok when they should be Err?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5ed56c73-b4ee-46e7-aa3d-561432528006?mode=deep",
+    "timestamp": "2026-02-06 19:55:04.820029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Error Struct] [Error Message Injection - Low] Can malicious error messages from the Bitcoin node contain escape sequences or formatting that breaks logging or monitoring systems?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_47b63a4c-3bb9-4837-9d5a-6de35687199a?mode=deep",
+    "timestamp": "2026-02-06 19:55:20.722619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Struct: Rpc] [Connection Pool Safety - Medium] Is the Client connection pool thread-safe and does it prevent request/response mixing under concurrent access?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c68985dd-21bd-49db-95f4-769e57cd533d?mode=deep",
+    "timestamp": "2026-02-06 19:55:37.028632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Struct: Rpc] [Clone Safety - Medium] The Rpc struct derives Clone—can cloning cause issues with connection state or authentication credentials?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6c87b5f8-e7d6-4dd7-a36f-98125021b26b?mode=deep",
+    "timestamp": "2026-02-06 19:55:54.112503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [Race Condition - High] If multiple validators call get_latest_block_number() -> get_block_hash() -> get_block() in sequence during a reorg, can they end up with inconsistent views of the chain state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_407b074b-0bf6-4cd7-b09d-eca27916ad81?mode=deep",
+    "timestamp": "2026-02-06 19:56:12.416289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall Design] [Finality Assumption - Critical] Does this RPC client enforce CONFIRMATIONS depth before returning blocks as finalized, or must all callers implement this check separately?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c79b9e9b-5862-4009-97c0-2b065fc86c84?mode=deep",
+    "timestamp": "2026-02-06 19:56:31.594245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall Design] [Block Scanning - Critical] If the processor scans blocks using these RPC calls, can block reorganizations cause duplicate processing of deposits or missed withdrawals?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d67f6b9b-f376-4035-9cc1-bf97435da914?mode=deep",
+    "timestamp": "2026-02-06 19:56:51.931384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall Design] [Batch Ordering - High] When processing multiple blocks, can inconsistent RPC responses cause batch ordering violations that break Serai's sequential processing requirement?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_596d4109-aa9c-4600-939e-75d38460aa49?mode=deep",
+    "timestamp": "2026-02-06 19:57:11.666399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall Design] [Node Trust Model - Critical] The implementation trusts the Bitcoin node responses after basic validation—what happens if a validator runs a compromised Bitcoin node?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_155cdd69-83d9-4f38-b344-fce5c940677c?mode=deep",
+    "timestamp": "2026-02-06 19:57:32.942411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall Design] [Network Partition - High] During Bitcoin network partitions, can validators see different blockchain tips leading to consensus failure in Serai?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c0118ea2-9c9d-4c49-8c80-97e70f485b5b?mode=deep",
+    "timestamp": "2026-02-06 19:57:56.088402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [Hash Collision - Low] Are SHA-256 hash collisions considered in the hash validation logic, or is hash uniqueness assumed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4b27176f-aae0-4dfd-b3f3-24dc6ce1a0a7?mode=deep",
+    "timestamp": "2026-02-06 19:58:18.328566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block_hash()] [Canonical Encoding - Medium] Does the hash byte reversal maintain canonical encoding such that the same logical hash always produces the same byte representation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d89f8fd0-5e65-44d0-8167-bb138231038f?mode=deep",
+    "timestamp": "2026-02-06 19:58:43.762355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [Deterministic Serialization - High] Are Bitcoin's consensus serialization rules strictly followed to ensure deterministic results across all validators?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bb234a48-3ff0-443a-a7d2-a748dabe02b0?mode=deep",
+    "timestamp": "2026-02-06 19:59:08.136800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: rpc_call()] [Response Size Attack - High] Can the Bitcoin node return multi-gigabyte responses for getblock or getrawtransaction causing memory exhaustion?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_da064dcd-4eaa-4b56-931c-c92b29fa84d8?mode=deep",
+    "timestamp": "2026-02-06 19:59:32.584727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: new()] [Connection Exhaustion - Medium] Can rapidly creating new Rpc instances exhaust connection pools or file descriptors?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_82c7113f-f984-44b8-a4f1-10698918cbc3?mode=deep",
+    "timestamp": "2026-02-06 19:59:57.892613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Function: get_block()] [CPU Exhaustion - Medium] Can deserializing extremely complex blocks (e.g., with maximum witness data) cause CPU starvation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f3600ead-d8f3-4bb5-b166-487e80c3614b?mode=deep",
+    "timestamp": "2026-02-06 20:00:23.865661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Multiple Functions] [Network DoS - Medium] Can an attacker cause the Bitcoin node to become unresponsive, blocking all Serai operations that depend on these RPC calls?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_68ed6d68-b963-4a8b-9981-11efa3effa22?mode=deep",
+    "timestamp": "2026-02-06 20:00:51.433467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [SegWit Handling - High] Are SegWit transaction formats including nested SegWit properly handled in serialization and txid calculation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_429560dd-f9a2-4fd6-98d0-800533c54fdf?mode=deep",
+    "timestamp": "2026-02-06 20:01:19.436610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Taproot Support - Medium] Does the deserialization properly support Taproot (P2TR) transactions and scripts introduced in Bitcoin Core 22.0?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1adb106e-d1fa-4f04-92d5-23c739ae3b4f?mode=deep",
+    "timestamp": "2026-02-06 20:01:48.534291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/networks/bitcoin/src/rpc.rs] [Overall] [Version Compatibility - Medium] Can Bitcoin Core version differences cause incompatible RPC responses or method signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a8868864-9339-4917-ae57-a52aeb134af1?mode=deep",
+    "timestamp": "2026-02-06 20:02:16.283891",
+    "report_generated": false
+  }
+]
