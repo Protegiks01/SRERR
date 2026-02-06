@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Stack Spillage] The finalized challenge in mark_read() is stack-allocated - can this spill sensitive data to stack memory that isn't zeroized?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7f9d21e9-0210-4878-b39c-bb4d1c768f29?mode=deep",
+    "timestamp": "2026-02-06 20:43:39.183197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Low - Return Value Cleanup] The challenge Output<D> is returned directly - is it the caller's responsibility to zeroize it, or can it leak?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dbe4350d-079f-46cc-8da1-a58d0d2a373d?mode=deep",
+    "timestamp": "2026-02-06 20:43:51.349784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Struct: DigestTranscript] [High - Cross-Version Compatibility] If different Serai validators run different versions of this code, and the append() or challenge() logic changes, can this cause consensus failure?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eb834377-98d3-4dd4-bae8-76e599b099cf?mode=deep",
+    "timestamp": "2026-02-06 20:44:04.638439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Fork Compatibility] If a hard fork changes the Continued/Challenged marker bytes, will old signatures remain valid?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bea08eba-f549-4fd6-887e-423d994c25ba?mode=deep",
+    "timestamp": "2026-02-06 20:44:17.647678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: Transcript] [Critical - Message Ordering in DKG] During FROST DKG Round 2, if participants append their commitments in different orders, can this cause different group keys?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fdb94968-fdfc-4de0-8d67-39c338250b04?mode=deep",
+    "timestamp": "2026-02-06 20:44:31.555704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Critical - Nonce Reuse Prevention] If FROST nonce generation uses rng_seed() with insufficient binding to message/session, can nonce reuse occur?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8c9b56f9-1cef-4478-9a6e-365d7c943e03?mode=deep",
+    "timestamp": "2026-02-06 20:44:46.380071",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [High - DKG Blame Protocol] During DKG, if blame data is added to the transcript, can an attacker manipulate the order to frame innocent participants?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_647332c7-4c35-4a3d-a8e8-db5a58401109?mode=deep",
+    "timestamp": "2026-02-06 20:45:02.070748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: domain_separate()] [High - Key Rotation Binding] If validator set rotations reuse transcripts without proper domain separation by epoch, can old key material leak into new sessions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_23a0fdc2-e84a-4c95-a64f-4a7a63126337?mode=deep",
+    "timestamp": "2026-02-06 20:45:18.942041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Proof-of-Possession Uniqueness] Can two participants generate identical proof-of-possession challenges if their IDs are not bound?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ce9ecce1-a789-4a0d-b2be-4c3a6fa24e68?mode=deep",
+    "timestamp": "2026-02-06 20:45:36.950089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [High - Zero-Length Messages] If append() is called with an empty slice, does the length prefix (8 bytes of zeros) still provide sufficient domain separation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_493dc9b0-0fdb-4894-a10f-c4af66cf8c81?mode=deep",
+    "timestamp": "2026-02-06 20:45:55.805977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Medium - Null Label] If label is empty (&[]), can this cause label collision with zero-length domain separators?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_756af672-11dd-44e6-9d00-c42c6ae2fb00?mode=deep",
+    "timestamp": "2026-02-06 20:46:16.039339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [Medium - Empty Transcript Challenge] If challenge() is called immediately after new() without any messages, is the challenge sufficiently unpredictable?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_39d2bc1f-4503-4f6c-b7c1-480b46f1e928?mode=deep",
+    "timestamp": "2026-02-06 20:46:36.787178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: rng_seed()] [Low - Seed Reuse] If rng_seed() is called multiple times with the same label, is each output independent?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e6992173-8fd5-4adc-879f-b21ec8fa36f6?mode=deep",
+    "timestamp": "2026-02-06 20:46:57.232686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Struct: DigestTranscript] [Medium - No Serialization] DigestTranscript doesn't implement Serialize/Deserialize - if a protocol tries to checkpoint transcript state, can this introduce vulnerabilities?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a1752dfe-b25f-4e57-8e51-dc68e040379c?mode=deep",
+    "timestamp": "2026-02-06 20:47:19.329423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Type: Challenge] [Low - Challenge Serialization] If challenge outputs need to be transmitted over the network, is there a canonical serialization format?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_55492b94-073a-42c8-914d-89c0acec3d76?mode=deep",
+    "timestamp": "2026-02-06 20:47:41.713090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append()] [High - Length Prefix DoS] An attacker supplying a message with length near u64::MAX forces 8 bytes of length encoding - can rapid calls with varying lengths cause CPU DoS?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_65a28f9e-da38-4e2a-9eb3-c4fa45edb794?mode=deep",
+    "timestamp": "2026-02-06 20:48:04.334189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: zeroize()] [Medium - Drop Performance] If DigestTranscript is dropped frequently (e.g., after each signing operation), can the zeroize() cost impact performance?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_74645442-c669-4881-b014-7d3bd0e65f13?mode=deep",
+    "timestamp": "2026-02-06 20:48:27.714778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Trait: SecureDigest] [High - Algorithm Downgrade] If a protocol supports multiple digest algorithms, can an attacker force use of a weaker (but still >=256-bit) digest?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c4c3cd68-4935-4bc1-adfe-5360cf35ffc8?mode=deep",
+    "timestamp": "2026-02-06 20:48:51.431176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Line: 176-177] [Medium - Hardcoded Algorithm] RecommendedTranscript hardcodes Blake2b512 - if migration to a new algorithm is needed, what's the migration path?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_226be307-b2af-45aa-b18b-8551cb280ca1?mode=deep",
+    "timestamp": "2026-02-06 20:49:14.472295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: new()] [Critical - Serai Protocol Identifier] Does each Serai sub-protocol (DKG, signing, batch verification, DEX) use a unique name parameter to prevent cross-protocol attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d0c213c4-27e2-44e2-99c8-65917d9fb75c?mode=deep",
+    "timestamp": "2026-02-06 20:49:37.765931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: domain_separate()] [Critical - Network Identifier Binding] Is the network ID (Bitcoin/Ethereum/Monero) bound via domain_separate() in every transcript to prevent cross-chain replay?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_994352ca-994c-44b7-9d67-9cb63a5c1773?mode=deep",
+    "timestamp": "2026-02-06 20:50:00.975749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [Critical - Validator Set ID Binding] Is the current validator set ID bound to every transcript to prevent replay from old sets?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_79e8cb5c-d527-48d7-8e53-edfe4b34e8a5?mode=deep",
+    "timestamp": "2026-02-06 20:50:23.567181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: challenge()] [High - Block Height Binding] Are external chain block heights bound to transcripts to prevent replay of signing requests?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_447d05b4-28ea-4136-854c-794d01aba67f?mode=deep",
+    "timestamp": "2026-02-06 20:50:45.157132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: append_message()] [High - Batch ID Binding] For batch signing operations, is a unique batch ID bound to the transcript?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_93988885-af55-4121-b6bc-75f061a1f9c7?mode=deep",
+    "timestamp": "2026-02-06 20:51:07.580691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/transcript/src/lib.rs] [Function: domain_separate()] [Medium - Rotation Epoch Binding] During validator set rotations, are both old and new set IDs bound to prevent transition attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6c453445-2071-44b4-8cb5-587e7746c947?mode=deep",
+    "timestamp": "2026-02-06 20:51:29.738797",
+    "report_generated": false
+  }
+]
