@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [HashMap Ordering] At line 500, verification_shares HashMap is populated in a loop. Could the iteration order of included affect the final result due to HashMap non-determinism? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_13644c92-044c-4926-931c-346d9556bc0c?mode=deep",
+    "timestamp": "2026-02-06 20:44:55.379898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::write()] [Verification Shares Order] At lines 556-560, verification shares are written in strict order 1..=n. Could reading from a different order or with missing entries cause deserialization issues? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fe090b3d-b3fb-4308-a849-8ee5d9494279?mode=deep",
+    "timestamp": "2026-02-06 20:45:07.815953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Struct: ThresholdCore] [HashMap vs BTreeMap] At line 261, verification_shares is a HashMap. Could using HashMap instead of BTreeMap cause non-deterministic serialization or consensus issues? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c9179be8-92a7-47d0-9532-e222a6e36dc6?mode=deep",
+    "timestamp": "2026-02-06 20:45:20.815830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Offset Single-Point Failure] At lines 518-521, the offset is only applied to the lowest-ID participant. If that participant is Byzantine or censored, can the protocol still function correctly? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ed970d88-05f4-419c-8243-2bfed6e2366f?mode=deep",
+    "timestamp": "2026-02-06 20:45:35.030827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::scale()] [Scalar Rejection] At line 401-402, zero scalars are rejected with None. Could an attacker force zero scalars in specific scenarios to DoS key derivation? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_00f5074a-1993-44df-86c9-cac5930629ee?mode=deep",
+    "timestamp": "2026-02-06 20:45:49.485962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::new()] [Interpolation Mismatch] At lines 368-374, constant interpolation requires t == n. Could an attacker exploit this by providing constant interpolation for threshold protocols expecting Lagrange? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a9e5f012-b085-4309-aeff-8f321bd1346e?mode=deep",
+    "timestamp": "2026-02-06 20:46:04.693645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: Interpolation::interpolation_factor()] [Lagrange Edge Cases] At lines 229-247, Lagrange interpolation requires all participants in included to be distinct. Could duplicate prevention failures in view() cause issues here? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ad084c8b-e14c-4468-be5b-df54da293a9f?mode=deep",
+    "timestamp": "2026-02-06 20:46:20.870671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: AllParticipantIndexes::next()] [Unwrap Safety] At line 151, unwrap() is called on Participant::new(self.i). Could self.i ever be 0 due to underflow or state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9764f909-e926-47a9-ae33-42801370b138?mode=deep",
+    "timestamp": "2026-02-06 20:46:38.282255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Last Element Unwrap] At line 487, included.last().unwrap() assumes included is non-empty. Is this guaranteed by the length check at lines 464-471? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_48889194-53e7-47cd-a92e-c39b04449288?mode=deep",
+    "timestamp": "2026-02-06 20:46:57.220113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::write()] [TryFrom Unwrap] At line 539, try_from().unwrap() is called on C::ID.len(). Could a ciphersuite with ID length > u32::MAX cause a panic here? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6eefb13b-1575-4274-aaec-4b6a8675eb3e?mode=deep",
+    "timestamp": "2026-02-06 20:47:16.139114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::serialize()] [Write Unwrap] At line 569, write() is called with unwrap(). Could writing to a Vec<u8> ever fail and panic? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_10201397-b701-46d5-8489-b34501bd1d9d?mode=deep",
+    "timestamp": "2026-02-06 20:47:37.007631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::group_key()] [Key Derivation Formula] At line 446, the formula (key * scalar) + (generator * offset) is used. Is this formula consistent with the secret share derivation in view() at lines 494-520? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_061f588d-00f5-4355-8e6a-a3f8e7669843?mode=deep",
+    "timestamp": "2026-02-06 20:47:59.165357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Interpolation Order] At lines 494-498, the secret share is scaled then interpolated. Is this order consistent with how verification shares are computed at lines 502-506? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_113277a6-8f9b-41f7-a0ce-d3cdeeb138c7?mode=deep",
+    "timestamp": "2026-02-06 20:48:20.368314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Verification Share Formula] At lines 503-505, verification shares are computed as: verification_share * scalar * interpolation_factor. Is this mathematically equivalent to the secret share computation? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3d363e9-3386-46cc-98ff-86a8935be769?mode=deep",
+    "timestamp": "2026-02-06 20:48:40.332847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: Interpolation::interpolation_factor()] [Lagrange Formula] At lines 232-246, the Lagrange formula computes product(share) / product(share - i_f). Is this the correct Lagrange interpolation formula for threshold signatures? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_040608c6-5a7d-45e5-a117-d1cbbaf80847?mode=deep",
+    "timestamp": "2026-02-06 20:49:01.592324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::new()] [Group Key Validation] At lines 376-378, the group key is derived using the first t participants. Should it use all n participants or specifically the signing set? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6ed0fe70-84d4-4050-a118-7c21f981c24c?mode=deep",
+    "timestamp": "2026-02-06 20:49:22.245392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Empty Included List] What if included is empty after validation at lines 464-471? Could this cause issues at line 518 when accessing included[0]? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_70caf9fb-b925-4a5e-bcd6-09c56fb15f4f?mode=deep",
+    "timestamp": "2026-02-06 20:49:44.110844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdParams::new()] [Minimum Threshold] At lines 167-172, there's no check for minimum viable threshold (e.g., t >= 2). Could t=1 with n>1 allow single-party control while appearing to be a multisig? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_373a686a-3042-49a9-abfe-39a6df105b93?mode=deep",
+    "timestamp": "2026-02-06 20:50:06.192625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::new()] [Verification Shares Completeness] At lines 355-365, the code checks the count and IDs of verification shares, but does it check for gaps (e.g., participants 1,2,4,5 when n=5)? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_68ca7bd1-23fb-4c24-8c4a-33c6cce3e763?mode=deep",
+    "timestamp": "2026-02-06 20:50:28.195816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Included Ordering] At line 473, included is sorted. Could the original order be significant for protocol purposes, and does sorting break anything? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_31d51438-a76a-43a0-baff-bf57074ce561?mode=deep",
+    "timestamp": "2026-02-06 20:50:50.470554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: Interpolation::interpolation_factor()] [Zero Participant] Although Participant prevents ID 0, at line 230 what if field conversion of a valid participant ID results in F::ZERO due to field modulus? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_873e9c72-bf2b-47fb-a074-dbcbccd52062?mode=deep",
+    "timestamp": "2026-02-06 20:51:11.821987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Struct: ThresholdCore] [Cloning Secrets] At line 257, ThresholdCore derives Clone. Could cloning create multiple copies of secret_share that aren't properly zeroized? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_44ba0b8c-7422-452d-9fb6-ab1dd98321e1?mode=deep",
+    "timestamp": "2026-02-06 20:51:34.220653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Struct: ThresholdKeys] [Clone Semantics] At line 291, ThresholdKeys derives Clone. Does cloning an Arc mean multiple ThresholdKeys can share the same core, and does this affect zeroization? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b2442361-3160-4482-bb63-f867aab9c8fc?mode=deep",
+    "timestamp": "2026-02-06 20:51:59.542392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::view()] [Participant ID Manipulation] At lines 494-521, if an attacker can manipulate the included list to exclude the participant with lowest ID, could they prevent offset application and derive incorrect keys? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8216ccb5-5390-471f-8ead-52462586b8ac?mode=deep",
+    "timestamp": "2026-02-06 20:52:26.160483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/dkg/src/lib.rs] [Function: ThresholdKeys::scale()] [Multiple Scale Calls] If scale() is called multiple times, self.scalar is multiplied repeatedly at line 404. Could accumulated multiplications lead to predictable patterns or weak keys? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_99c6894b-ed92-41d5-9f90-403c9835ab45?mode=deep",
+    "timestamp": "2026-02-06 20:52:53.579831",
+    "report_generated": false
+  }
+]
