@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Trait: Curve::CONTEXT] [Cross-Chain Signature Forgery] **CRITICAL** Can an attacker exploit missing or weak CONTEXT values in concrete implementations to create signatures valid across different chains (Bitcoin, Ethereum, Monero), enabling cross-chain replay attacks and unauthorized fund transfers?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_59a2de5a-bd6f-4431-abc8-573b16f3036a?mode=deep",
+    "timestamp": "2026-02-06 20:51:43.147640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash()] [Domain Separation Bypass] **HIGH** Does the concatenation of CONTEXT, dst, and data in hash() allow for collision attacks if CONTEXT or dst lack fixed-length encoding, enabling an attacker to create ambiguous inputs that hash to the same value?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ab2555ea-8f93-4c32-9791-b1c246bef09c?mode=deep",
+    "timestamp": "2026-02-06 20:51:55.606106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash()] [Malleability Attack] **HIGH** Can an attacker manipulate the boundary between CONTEXT, dst, and data parameters through carefully crafted inputs to produce the same hash output for different semantic meanings?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1567d362-c757-49c1-be20-53a735bee5ce?mode=deep",
+    "timestamp": "2026-02-06 20:52:08.454992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Trait: Curve::CONTEXT] [Network Confusion] **CRITICAL** If two different curve implementations use the same CONTEXT string, could validators accidentally sign messages for the wrong network, causing mint/burn imbalances between chains?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f06bc7d8-97aa-4d42-9237-747eeb484215?mode=deep",
+    "timestamp": "2026-02-06 20:52:22.449539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash()] [Memory Safety] **MEDIUM** Does the concat() operation in hash() allocate unbounded memory if dst or data are adversarially large, enabling DoS through memory exhaustion during DKG or signing ceremonies?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dc5936b5-13bf-4297-80ef-9d785c664c9d?mode=deep",
+    "timestamp": "2026-02-06 20:52:36.346960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_to_F()] [Zero Field Element] **HIGH** Can hash_to_F() return zero field elements, and if so, would this break key generation or create weak nonces that leak secret shares during threshold signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9b7169ca-97fe-4116-bc1b-b7a2ab205e67?mode=deep",
+    "timestamp": "2026-02-06 20:52:51.613073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_to_F()] [Domain Separation] **HIGH** Does the concatenation of CONTEXT and dst in hash_to_F() properly prevent collision between different uses (H1 vs H3), or can an attacker craft inputs causing the same field element for binding factors and nonces?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2ccbf3b8-c2b7-4c36-bc2a-b95ab8ab1cdc?mode=deep",
+    "timestamp": "2026-02-06 20:53:07.976513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_to_F()] [Bias in Field Element] **MEDIUM** Does the underlying hash_to_F implementation from Ciphersuite introduce bias in the field element distribution that could weaken the DKG or enable statistical attacks on signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4f343c85-312b-4e9e-bc77-e1e41c902bb0?mode=deep",
+    "timestamp": "2026-02-06 20:53:25.170962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_to_F()] [Side-Channel Timing] **MEDIUM** Is hash_to_F() constant-time, or could timing variations in field element reduction leak information about secrets when used in random_nonce() or hash_binding_factor()?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_afa10e6c-1e3d-4d4f-968e-ba83ceb912e1?mode=deep",
+    "timestamp": "2026-02-06 20:53:43.538934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_msg()] [Message Collision] **HIGH** Can an attacker find two different messages that produce the same hash_msg() output, enabling them to obtain a signature on one message and claim it's for another, bypassing instruction validation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5612916f-050e-4bc8-81f4-00fae3b893b6?mode=deep",
+    "timestamp": "2026-02-06 20:54:02.174661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_msg()] [Fixed DST] **MEDIUM** Is the hardcoded 'msg' domain separation tag sufficient to prevent collisions with other uses of the hash function, or could it overlap with custom protocol extensions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d3387ec0-3983-402a-9c76-9a9cb10cff23?mode=deep",
+    "timestamp": "2026-02-06 20:54:21.894670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_msg()] [Large Message DoS] **LOW** Does hash_msg() have any size limits on the message parameter, or could an attacker provide multi-gigabyte messages causing memory exhaustion or computation DoS?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d03de47a-b022-46ff-b84f-754118216d83?mode=deep",
+    "timestamp": "2026-02-06 20:54:41.326915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_commitments()] [Commitment Malleability] **CRITICAL** If the commitments byte serialization is not canonical (e.g., allows identity point or non-reduced scalars), can an attacker create different commitment sets that hash to the same value, breaking binding factor uniqueness?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a9440f1e-bc6b-4d68-ade3-165ce4c178fb?mode=deep",
+    "timestamp": "2026-02-06 20:55:02.795629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_commitments()] [Ordering Attack] **HIGH** Does hash_commitments() enforce a canonical ordering of participant commitments, or can different orderings produce the same hash, enabling signature malleability?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6c96d93f-4995-4609-964b-fa74d153c453?mode=deep",
+    "timestamp": "2026-02-06 20:55:25.036531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_commitments()] [Missing Commitment DoS] **MEDIUM** If some participants' commitments are missing or zero-length in the byte array, does hash_commitments() detect this, or could it produce a valid hash leading to invalid signature aggregation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0dcc4fb4-439a-40bb-9089-8219ceb70981?mode=deep",
+    "timestamp": "2026-02-06 20:55:48.134421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_binding_factor()] [Zero Binding Factor] **CRITICAL** The comment acknowledges hash_binding_factor() may return zero with negligible probability, but does this enable an attacker who finds a zero-hash collision to forge signatures by manipulating the binding equation in the FROST protocol?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f95316f6-d992-4e11-85b2-2f178c3fa133?mode=deep",
+    "timestamp": "2026-02-06 20:56:11.996097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_binding_factor()] [Preimage Attack] **HIGH** If an attacker can find a preimage for hash_binding_factor() that produces a chosen binding factor, can they manipulate the signature aggregation to cancel out honest participants' contributions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ca934d59-6822-4d02-b58f-056fcd5daa71?mode=deep",
+    "timestamp": "2026-02-06 20:56:37.126332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_binding_factor()] [No Zero Check] **MEDIUM** Given that the code explicitly does not panic on zero binding factors (per IETF spec), could this negligible probability event occur in production and cause fund loss if not handled properly in higher-level signing code?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4188339e-2d0d-4dba-843c-2b6c4d9add17?mode=deep",
+    "timestamp": "2026-02-06 20:57:02.595115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_binding_factor()] [Binding Input Malleability] **HIGH** Can an attacker manipulate the binding byte array input to produce the same binding factor for different sets of commitments and message, breaking the binding property?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2abe2047-bd25-44db-9104-514203cdb5a3?mode=deep",
+    "timestamp": "2026-02-06 20:57:28.759217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: hash_binding_factor()] [rho DST] **MEDIUM** Is the 'rho' domain separation tag properly documented and does it match the IETF FROST specification exactly, or could implementation divergence cause cross-implementation signature incompatibility?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c9349e39-bca2-47ac-941f-0fe60b219cd1?mode=deep",
+    "timestamp": "2026-02-06 20:57:55.662166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Nonce Reuse Catastrophe] **CRITICAL** If the RNG provided to random_nonce() is weak or predictable, can an attacker predict future nonces and extract secret shares from partial signatures, leading to complete key compromise and fund theft?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_273336e3-3f69-4b72-8489-381332b95c5e?mode=deep",
+    "timestamp": "2026-02-06 20:58:22.804456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Seed Size] **HIGH** The seed is hardcoded to 32 bytes - is this sufficient entropy for all supported curves, or could curves with larger field sizes require more entropy, weakening the nonce unpredictability?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_85655496-72fd-4d79-8dcf-999f5a916dbe?mode=deep",
+    "timestamp": "2026-02-06 20:58:50.112512",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Secret Leakage] **CRITICAL** Does the repr variable (secret.to_repr()) leave copies of the secret share in memory after zeroization, or could memory analysis recover the secret from unzeroed intermediate buffers?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e2ea2656-5d11-4450-b1a4-bea6ec8c3840?mode=deep",
+    "timestamp": "2026-02-06 20:59:17.574781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Rejection Sampling Loop] **HIGH** Could the rejection sampling loop fail to terminate if hash_to_F consistently produces zero (due to implementation bug or malicious hash function), causing a DoS hang during signing?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_646b728e-da05-4039-a3e2-8dc1f22b00fa?mode=deep",
+    "timestamp": "2026-02-06 20:59:45.409446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/curve/mod.rs] [Function: random_nonce()] [Side-Channel Timing] **HIGH** Does the rejection sampling loop's variable iteration count leak information about the secret share through timing side-channels, allowing an attacker to narrow down secret values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d5847bd4-a289-4292-b511-78beb4113346?mode=deep",
+    "timestamp": "2026-02-06 21:00:14.223816",
+    "report_generated": false
+  }
+]
