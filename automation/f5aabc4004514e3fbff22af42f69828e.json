@@ -148,5 +148,155 @@
     "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_be5be297-ef0b-4ca8-bed2-06fdc3580b46?mode=deep",
     "timestamp": "2026-02-06 21:14:32.193088",
     "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Medium: Sorting Stability] Line 295 uses sort_unstable() on included - can different sort orders (for equal elements, though Participant should be distinct) cause different transcript states across participants?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b685088c-d808-4ac2-a8de-ed7e2267b543?mode=deep",
+    "timestamp": "2026-02-06 21:22:21.543899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [High: Double Insertion] Line 455 inserts params.i() into responses, then line 458 inserts from shares - if shares contains params.i(), does HashMap update or ignore? Can this cause our share to be excluded?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f86d2b72-6097-45a6-be89-a2cfcdc89705?mode=deep",
+    "timestamp": "2026-02-06 21:22:34.457118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Critical: Rs Computation] Line 383 computes Rs from binding factors - if B.nonces() returns incorrect or manipulated values, can this enable signature forgery or leak share information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_101e8d5a-16fb-4dde-85d5-d694351622f3?mode=deep",
+    "timestamp": "2026-02-06 21:22:48.090189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Medium: Early Return] If algorithm.verify() succeeds at line 465, the function returns early - are there any cleanup operations that should run regardless (e.g., logging, metrics)?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0dd82b95-1cba-45a2-b099-20453f0d3a8f?mode=deep",
+    "timestamp": "2026-02-06 21:23:01.084718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [High: View Validity] ThresholdView at line 312 must match the actual participants - if keys were generated with different participants than are included now, can this cause security issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6e4acf6b-9a94-4820-8c90-0964f0022a39?mode=deep",
+    "timestamp": "2026-02-06 21:23:14.989478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Critical: Verification Key] Line 465 uses self.view.group_key() - if the group key was computed incorrectly during DKG, will all signatures verify incorrectly? Is there a way to detect this?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d88ffbbe-bc79-4a73-8041-d30509b354d5?mode=deep",
+    "timestamp": "2026-02-06 21:23:30.076054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [High: Individual Verification] Line 477 gets self.view.verification_share(*l) - if this returns the wrong verification share (due to bugs in view construction), can blame be misassigned?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dc84ff24-24a8-4054-a57d-0a027a20bc3e?mode=deep",
+    "timestamp": "2026-02-06 21:23:46.151314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Medium: Bound Nonces] Line 478 calls self.B.bound(*l) - what does bound() return? If it returns unbound nonces, can individual share verification pass incorrectly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_757c0702-c574-40f2-ac01-a2c89dd7c14b?mode=deep",
+    "timestamp": "2026-02-06 21:24:03.102682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Critical: Message Independence] Multiple signatures can be generated with the same preprocesses if signing fails and is retried with a different message - is this safe, or does it leak secret information?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a818ecf8-a066-4cb3-a22b-0766b0dc78b7?mode=deep",
+    "timestamp": "2026-02-06 21:24:21.689283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Struct: AlgorithmMachine] [Medium: Key Reuse] Can the same ThresholdKeys be used in multiple AlgorithmMachine instances concurrently? If so, can this cause nonce reuse if the same seed is generated?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6fdd29f5-ad97-4017-a493-e3858c7998a7?mode=deep",
+    "timestamp": "2026-02-06 21:24:38.349292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: from_cache()] [Critical: Key Mismatch] If from_cache() is called with different keys than originally used in cache(), can this proceed? Will the signature be valid but under a different key?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e3a33c78-c0a9-4a56-b07f-b88f534e5be0?mode=deep",
+    "timestamp": "2026-02-06 21:24:58.512355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: from_cache()] [High: Algorithm Mismatch] If from_cache() uses a different algorithm than cache() was created with, can this cause undefined behavior or signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1141404e-5814-48e6-8fab-7437b6b52975?mode=deep",
+    "timestamp": "2026-02-06 21:25:18.689769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: read_preprocess()] [Medium: Reader Statefulness] If read_preprocess() is called multiple times with the same reader in different positions, can it read inconsistent or partial data?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1babac72-3e06-40e0-9920-fe72bb77c7cf?mode=deep",
+    "timestamp": "2026-02-06 21:25:39.816287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: read_share()] [Medium: EOF Handling] What happens if read_share() encounters EOF before reading a complete field element? Does it return an error or can it deserialize garbage?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f4ef78ca-0cfa-4b83-bdbc-bc6839fba00e?mode=deep",
+    "timestamp": "2026-02-06 21:26:01.110278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Critical: Preprocess Consumption] After preprocesses are consumed in the loop at line 348, they're no longer available - if signing fails and needs retry, are new preprocesses required? Can this lead to protocol deadlock?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_acf7b3aa-9149-42ec-a25e-b0112e300d5a?mode=deep",
+    "timestamp": "2026-02-06 21:26:22.780870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [High: Commitment Ordering] When commitments are inserted into B at lines 345 and 356, does the insertion order matter for binding factor calculation? Can reordering cause signature verification failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5c54111c-7720-4d26-a0c7-40b5eb7de3dc?mode=deep",
+    "timestamp": "2026-02-06 21:26:45.571354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Medium: Batch Size] If self.view.included().len() is large (e.g., 1000 participants), does batch verification have performance or memory issues?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_793bc366-7f00-4b6a-8686-ca6dcb475d06?mode=deep",
+    "timestamp": "2026-02-06 21:27:09.051575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: complete()] [Low: RNG Usage] Line 473 creates a new RNG from blame_entropy - is ChaCha20Rng the appropriate choice? Can a simpler/faster RNG be used since this is only for performance?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_84f9628b-fd06-4c7a-8c6d-1092eb38de05?mode=deep",
+    "timestamp": "2026-02-06 21:27:34.279221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: seeded_preprocess()] [High: Addendum Generation] Line 133 passes &mut rng to preprocess_addendum() - if the addendum generation consumes significant entropy, can it weaken subsequent nonce generation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3e61695c-078a-42d1-b522-54a250e4d2f0?mode=deep",
+    "timestamp": "2026-02-06 21:27:58.113203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Struct: Preprocess] [Medium: Clone Cost] Line 69 derives Clone for Preprocess - if commitments are large, can cloning at line 141 cause performance issues or excessive memory usage?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_811bd1c5-c494-46cf-85bb-7b355b304e98?mode=deep",
+    "timestamp": "2026-02-06 21:28:22.250152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Struct: SignatureShare] [Low: Equality Check] Line 182 derives Eq - is field element equality constant-time? Can timing attacks reveal share values through equality comparisons?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b3b5548c-ccee-41e6-82af-3e25b8d6435e?mode=deep",
+    "timestamp": "2026-02-06 21:28:46.678061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: write()] [High: Error Handling] All write() implementations return io::Result - if writing fails partway through, can this leave the output in an inconsistent state that deserializes to wrong values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_03f249b6-27e1-49d4-afb9-1c1c9afa0449?mode=deep",
+    "timestamp": "2026-02-06 21:29:11.091782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: serialize()] [Medium: Panic in Production] Line 35 calls .unwrap() on write result - since it writes to a Vec, this should never fail, but can malicious Algorithm implementations cause write() to error?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2afc6aeb-a59d-4fcf-9aa7-31c0aa97ff77?mode=deep",
+    "timestamp": "2026-02-06 21:29:36.459362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Trait: Writable] [Low: Trait Coherence] Line 40-47 implements Writable for Vec<T> - can this conflict with other blanket implementations? Does this cause issues with type inference?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c7f43d36-6df0-49da-8c99-b485c2c9d9f7?mode=deep",
+    "timestamp": "2026-02-06 21:30:02.584836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/frost/src/sign.rs] [Function: sign()] [Critical: Nonce Commitment Binding] The commitments transcripted at lines 336 and 349 must bind to the nonces - if commitments are verified before transcripting, can an attacker substitute commitments?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ae53a5d4-e076-4034-b206-f58ef3b1f223?mode=deep",
+    "timestamp": "2026-02-06 21:30:30.266915",
+    "report_generated": false
   }
 ]
