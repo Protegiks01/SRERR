@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::nonces()] [Critical - Nonce Reuse] Can an Algorithm implementation return empty nonce vectors or inconsistent nonce counts across signing sessions, enabling nonce reuse attacks that leak private keys when signing different messages?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8eb9efd3-8cd2-48f9-9e9b-5453a5d8ea2a?mode=deep",
+    "timestamp": "2026-02-06 20:04:40.813913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::nonces()] [High - Nonce Specification Malleability] Can a malicious Algorithm implementation specify nonce generators that are not linearly independent or are weak points, allowing attackers to predict nonce values and forge signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_cc90ebcc-a37d-4ead-96c3-fa14ebaebc67?mode=deep",
+    "timestamp": "2026-02-06 20:04:53.007334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::nonces()] [High - Cross-Protocol Nonce Collision] If multiple Algorithm implementations share the same nonce generation pattern, can cross-protocol attacks allow nonce reuse across different signature contexts, leading to key extraction?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d220c23e-a844-4438-b5e1-93fb500aeba6?mode=deep",
+    "timestamp": "2026-02-06 20:05:06.197640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::nonces()] [Medium - Nonce Generator Commitment] Does the lack of commitment to nonce generators in the trait allow a malicious implementation to change generators after preprocessing, breaking binding properties?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_6638e4f4-604c-4bda-9257-d35cb6c5b1c3?mode=deep",
+    "timestamp": "2026-02-06 20:05:19.534390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::transcript()] [Critical - Transcript State Mutation] Can concurrent access to the mutable transcript reference in multi-threaded environments cause race conditions that corrupt transcript state and enable signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_34e907bc-7bcf-40d0-b3d0-cac4649db5f8?mode=deep",
+    "timestamp": "2026-02-06 20:05:33.381064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::transcript()] [High - Transcript Rollback] Can an Algorithm implementation reset or rewind the transcript after nonce commitments, enabling transcript malleability attacks and signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4c33a454-e1fb-425f-9e9a-e254c339e67d?mode=deep",
+    "timestamp": "2026-02-06 20:05:48.340235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::transcript()] [High - Transcript Cloning] Does returning a mutable reference allow external code to clone the transcript at critical points and use it to produce multiple signatures with the same nonces?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4bf59437-78f5-4907-8166-442aaff43b20?mode=deep",
+    "timestamp": "2026-02-06 20:06:03.514434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::preprocess_addendum()] [Critical - Addendum Entropy] Can a malicious implementation generate deterministic or low-entropy addendums that leak information about secret shares or enable share prediction attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7bff196c-d305-4db6-842c-3d1499ad5d1d?mode=deep",
+    "timestamp": "2026-02-06 20:06:20.876400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::preprocess_addendum()] [High - Addendum RNG Manipulation] If the RNG passed to preprocess_addendum is compromised or predictable, can attackers reconstruct the addendum and derive secret information about the signing process?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b7514fe9-db36-482e-9fee-01aea76dcf52?mode=deep",
+    "timestamp": "2026-02-06 20:06:39.167546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::read_addendum()] [Critical - Addendum Deserialization DoS] Can maliciously crafted addendum data cause unbounded memory allocation, infinite loops, or panics during deserialization, enabling denial of service?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dd8cce10-d43a-452a-ad4b-0455512b111b?mode=deep",
+    "timestamp": "2026-02-06 20:06:57.432836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::read_addendum()] [High - Addendum Size Limits] Does the trait enforce maximum size constraints on addendum data to prevent memory exhaustion attacks through oversized addendums?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d320baac-42c5-4e58-9461-6301d2e55047?mode=deep",
+    "timestamp": "2026-02-06 20:07:17.052764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [Critical - Addendum Ordering Violation] The comment states addendums are 'Guaranteed to be called in order' - can race conditions or concurrent processing violate this guarantee and break security assumptions?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8538e729-77df-4fed-9c17-3cda1d69040e?mode=deep",
+    "timestamp": "2026-02-06 20:07:37.609397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [High - Addendum Replay] Can an attacker replay old addendums from previous signing sessions to manipulate the current signing state or cause verification failures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_752d2ab0-07be-49a0-ab38-13ac33c0dde8?mode=deep",
+    "timestamp": "2026-02-06 20:07:58.561306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [High - Addendum Participant Binding] Can an attacker substitute addendums from different participants (changing the 'l: Participant' parameter) to cause share aggregation errors or signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_af4ae268-896c-49dd-abb0-e4b9b01e75f9?mode=deep",
+    "timestamp": "2026-02-06 20:08:20.847083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::process_addendum()] [Medium - Addendum FrostError Handling] Can FrostError returns from process_addendum be exploited to cause honest participants to be incorrectly blamed for invalid addendums?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_706bf4e0-d9da-4055-948a-292be9cbcf38?mode=deep",
+    "timestamp": "2026-02-06 20:08:44.470980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Critical - Nonce Sum Validation] Are nonce_sums validated for correct structure and non-zero values before use? Can zero or identity nonces enable trivial signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_25fd2e86-0baf-4cb0-ac27-576a65d39c9c?mode=deep",
+    "timestamp": "2026-02-06 20:09:07.824426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Critical - Lagrange Coefficient Application] The comment states 'The secret will already have been its lagrange coefficient applied' - can incorrect coefficient application in calling code lead to invalid shares or key leakage?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1fcfabc6-7e34-4813-9eee-5503de115175?mode=deep",
+    "timestamp": "2026-02-06 20:09:32.869419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Critical - Combined Nonce Form] The comment mentions 'd + (e * p)' nonce combination - can incorrect binding factor 'e' calculation enable forgery through nonce cancellation attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dee7f605-bab5-4183-8e09-031fa8fdae9e?mode=deep",
+    "timestamp": "2026-02-06 20:09:57.466401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [High - Nonce Zeroization Timing] Are the Zeroizing nonces properly cleared from memory before the function returns? Can timing side-channels or panic unwinding leak nonce values?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_107f9d77-6740-4e8e-89c4-efab389510b6?mode=deep",
+    "timestamp": "2026-02-06 20:10:22.963475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [High - Message Binding] Is the message data cryptographically bound to the signature share calculation? Can message substitution after nonce commitment enable forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a4fefc65-4d61-4a6a-97e9-fb8056cf3db2?mode=deep",
+    "timestamp": "2026-02-06 20:10:50.275354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::sign_share()] [Medium - Share Overflow] Can the scalar field arithmetic in share calculation overflow or wrap, producing invalid shares that still verify?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_665ef001-155b-41e4-99f4-bc5428cc40a3?mode=deep",
+    "timestamp": "2026-02-06 20:11:16.350603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [Critical - Group Key Validation] Is the group_key parameter validated to be a valid curve point and not the identity? Can invalid group keys enable signature forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_82dad042-01d2-4062-b660-2b76e994b6cd?mode=deep",
+    "timestamp": "2026-02-06 20:11:42.740330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [Critical - Nonce Commitment Verification] Are the nonces parameter values verified to match the commitments from the preprocessing phase? Can nonce substitution enable forgery?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0e924cd6-8845-406e-9f9b-61b8132d3fa1?mode=deep",
+    "timestamp": "2026-02-06 20:12:10.588037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [High - Sum Validation] Is the sum parameter validated to be in the correct scalar field range? Can out-of-range values bypass verification checks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_10f2f7ea-622c-41ea-b54b-a1cb8069b21f?mode=deep",
+    "timestamp": "2026-02-06 20:12:36.214907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/frost/src/algorithm.rs] [Function: Algorithm::verify()] [High - Must Use Annotation] The #[must_use] attribute is present - can callers accidentally ignore verification failure (None return) and accept invalid signatures?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c16fcc24-8c53-4d04-bce4-d85446733c63?mode=deep",
+    "timestamp": "2026-02-06 20:13:01.826933",
+    "report_generated": false
+  }
+]
