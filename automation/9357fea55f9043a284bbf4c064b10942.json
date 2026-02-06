@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Edge Case] If bits[p][n] produces a value >= buckets.len() due to bit manipulation errors in prep_bits, will line 26 panic causing DoS during signature operations? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b305dd9d-5d1e-4291-aecd-eb46254e8af2?mode=deep",
+    "timestamp": "2026-02-06 20:20:52.696084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Edge Case] Can nibble values at line 59 exceed buckets.len() causing out-of-bounds panics at lines 61-64 during threshold signature generation? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_882d8749-5e5a-4ace-9d35-4d1d590c8b98?mode=deep",
+    "timestamp": "2026-02-06 20:21:05.048902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Memory Safety - Zeroization] Does the buckets.zeroize() at line 35 occur before any potential early returns or panics that could leave sensitive scalar material in memory? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d0a830f6-0ec4-4a05-98cc-bbf0408af988?mode=deep",
+    "timestamp": "2026-02-06 20:21:20.071060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Memory Safety - Zeroization] Is bits.zeroize() at line 38 guaranteed to execute even if the group operations panic, or could scalar bits leak in validator memory after crashes? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_596ef6ff-16a9-4a57-9776-fd6f02e41ece?mode=deep",
+    "timestamp": "2026-02-06 20:21:33.115449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Memory Safety - Missing Zeroization] Why doesn't pippenger_vartime zeroize bits or bucket contents after use, allowing scalar information to persist in memory for potential extraction by attackers? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_078ffcc3-e279-4303-961f-a24e0322f177?mode=deep",
+    "timestamp": "2026-02-06 20:21:46.983636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Memory Safety - Partial Zeroization] Does buckets.zeroize() at line 35 properly clear all G::identity() elements, or could some group elements fail to zeroize leaving key material exposed? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bedda639-5815-4b8f-8660-d1cb2f26f872?mode=deep",
+    "timestamp": "2026-02-06 20:22:01.781236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Memory Safety - Lifetime] Are the references in pairs at line 43 guaranteed to outlive the computation, or could dangling references cause use-after-free when accessing pairs[p].1? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_379a8cff-bdcc-4c4b-a0e4-412edc4eb55b?mode=deep",
+    "timestamp": "2026-02-06 20:22:17.535023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Cryptographic - Malleability] Can an attacker manipulate the input pairs to produce the same result with different intermediate states, enabling signature malleability in FROST protocols? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2e79777d-5ce6-4809-a073-ba48f09ac2bb?mode=deep",
+    "timestamp": "2026-02-06 20:22:34.887196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Cryptographic - Timing Attack] Is pippenger_vartime safe to use for FROST nonce generation or should it be restricted to public operations only, given its variable-time nature? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0da004c9-0f70-46f7-92f9-bed73f4d8e97?mode=deep",
+    "timestamp": "2026-02-06 20:22:54.348059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Cryptographic - Subgroup Attack] Does the algorithm verify that all points in pairs are in the correct prime-order subgroup, or can small-subgroup points cause invalid signatures? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_eb3cb5c6-cc80-48c9-802e-15a169cd415a?mode=deep",
+    "timestamp": "2026-02-06 20:23:12.350151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Cryptographic - Point Validation] Can invalid curve points in pairs[p].1 at line 62 cause mathematical errors that result in forged threshold signatures? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d3d93b52-f1f1-4148-90ae-bc9e06ba822c?mode=deep",
+    "timestamp": "2026-02-06 20:23:31.693101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Cryptographic - Scalar Validation] Are scalars validated to be in the correct field range before use, or can out-of-range scalars cause reduction modulo incorrect values leading to key recovery? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2d9c8834-ca91-4e99-9075-4098adcee0b8?mode=deep",
+    "timestamp": "2026-02-06 20:23:51.414016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Concurrency] If pippenger is called concurrently with the same pairs reference from multiple threads, can race conditions in prep_bits or group operations cause non-deterministic results? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_647e3e33-4fb0-46ab-93d7-90baaccb8126?mode=deep",
+    "timestamp": "2026-02-06 20:24:11.536343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Concurrency] Can concurrent calls to pippenger_vartime with overlapping memory cause data races when accessing pairs[p].1 or intermediate sums? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_14b2359a-54c4-4670-ad78-f5e77713cb81?mode=deep",
+    "timestamp": "2026-02-06 20:24:33.023158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Dependency - prep_bits] If prep_bits returns inconsistent Vec lengths where bits[p].len() varies across different p, will line 17 use only bits[0].len() causing truncation and incorrect signatures? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3ccc0353-f0e9-4a86-9bc3-f7b1ffdd037c?mode=deep",
+    "timestamp": "2026-02-06 20:24:54.924565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Dependency - prep_bits] Can prep_bits return bits vectors with different lengths, causing line 49 to iterate based on bits[0] while accessing out-of-bounds on other bits[p] elements? (Critical)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_13673dd8-9e69-4029-900b-16a90cf24e77?mode=deep",
+    "timestamp": "2026-02-06 20:25:17.149899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Dependency - prep_bits] If prep_bits fails to properly group bits into windows, can bits[p][n] at line 26 contain values >= 2^window causing out-of-bounds bucket access? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ebb69030-16bc-4ba5-8d1b-fbd9c5f75a13?mode=deep",
+    "timestamp": "2026-02-06 20:25:41.075785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Dependency - prep_bits] What ensures bits[p][n] at line 59 never exceeds 2^window-1, preventing out-of-bounds access on buckets during signature generation? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e5d4ad12-aa76-4c95-804e-e7164e92c45e?mode=deep",
+    "timestamp": "2026-02-06 20:26:05.529784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Dependency - prep_bits] Can prep_bits return empty bit vectors where bits[0].len() == 0, causing line 17's rev() iterator to be empty and returning incorrect identity? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_9b3b3d76-e754-4859-8bab-f25b824a8ea1?mode=deep",
+    "timestamp": "2026-02-06 20:26:30.729595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Performance - Complexity Attack] Can an attacker force worst-case performance by providing pairs that cause maximum bucket collisions, significantly slowing threshold signature generation? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4a087531-b48b-473b-a248-3f2b37a299f7?mode=deep",
+    "timestamp": "2026-02-06 20:26:56.918165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Performance - Complexity Attack] Does the None optimization at lines 61-65 create worst-case scenarios where most buckets are Some, eliminating performance benefits while adding complexity? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d8f6e994-0497-4483-9473-6fe1ca6a8c03?mode=deep",
+    "timestamp": "2026-02-06 20:27:21.923994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Performance - Memory Bandwidth] Can large window values cause cache thrashing in the buckets vector at line 24, creating timing variations that leak scalar information? (Low)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_efb8c129-8850-43a6-9d6f-4b4f062e603a?mode=deep",
+    "timestamp": "2026-02-06 20:27:47.521114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Type Safety] Does the Zeroize + Group bound at line 10 guarantee that G::identity() and all group operations are constant-time, or can certain G implementations violate this? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_68bc385c-e8b6-466f-a044-f0caa3be217a?mode=deep",
+    "timestamp": "2026-02-06 20:28:13.456321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger_vartime()] [Type Safety] Can the Group<Scalar: PrimeFieldBits> bound at line 42 be satisfied by groups with non-prime order, enabling small-subgroup attacks in FROST? (High)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e6bfa356-b07f-4e30-9416-00d4bffc593c?mode=deep",
+    "timestamp": "2026-02-06 20:28:40.034481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/multiexp/src/pippenger.rs] [Function: pippenger()] [Type Safety] Does the PrimeFieldBits trait guarantee that to_le_bits used in prep_bits always returns the same bit length for the same field, preventing length inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ef594b87-afa1-4f03-b99b-511b07cb9fa5?mode=deep",
+    "timestamp": "2026-02-06 20:29:09.097942",
+    "report_generated": false
+  }
+]
