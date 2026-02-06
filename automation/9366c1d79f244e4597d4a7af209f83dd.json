@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Context-Message Boundary] The boundary between context and message is only determined by ctx_len. Could a one-byte error in ctx_len cause catastrophic reinterpretation? (Severity: Critical - Boundary Confusion)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0977f8fb-3edf-4b78-a8ad-05fbbee6c133?mode=deep",
+    "timestamp": "2026-02-06 20:21:37.295788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: preprocess_addendum()] [No Validation] This function is empty. Should it validate that nonces are not reused across different signing sessions? (Severity: Critical - Nonce Reuse)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f094296e-78b8-44a0-abbf-3459939dbac6?mode=deep",
+    "timestamp": "2026-02-06 20:21:49.542598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: nonces()] [Nonce Leakage] Returning nonces by value creates a copy. Are the original nonces in self.schnorr zeroized after signing to prevent reuse? (Severity: High - Nonce Reuse)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_b61f1845-db57-45ad-92da-d4adf5c87ca2?mode=deep",
+    "timestamp": "2026-02-06 20:22:03.123821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Nonce Commitment] Only nonces[0][0] is used. If FROST allows multiple nonce commitments per participant, could unused nonces enable alternate signatures? (Severity: Medium - Signature Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_33370e83-e3bd-4492-842d-75d5042b4d7e?mode=deep",
+    "timestamp": "2026-02-06 20:22:15.933049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Struct: Schnorrkel] [msg Field] The msg field is Option<Vec<u8>>. If multiple threads call sign_share() concurrently, could msg be overwritten mid-signing? (Severity: High - Race Condition)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_3680f6d8-2718-4076-896f-5711a0829224?mode=deep",
+    "timestamp": "2026-02-06 20:22:29.559421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Mutable Self] sign_share() takes &mut self to store msg. Is there a guarantee that only one signing operation is active at a time? (Severity: High - Concurrency)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5bfd9a36-5037-493d-a7cd-1d17b1c8b0a9?mode=deep",
+    "timestamp": "2026-02-06 20:22:44.287553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Shared State] verify() reads self.msg which was written by sign_share(). If verify() is called from a different thread, could stale or missing msg cause incorrect verification? (Severity: High - State Consistency)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_2a204c2c-28b8-4d1f-8b74-f0813df58f9d?mode=deep",
+    "timestamp": "2026-02-06 20:22:59.922414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Signature Serialization] SchnorrSignature is serialized using .serialize(). Does this produce a canonical representation, or could different (R, s) pairs serialize identically? (Severity: Medium - Canonicality)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_7490b067-e06a-4339-8f1e-baf3bc51d022?mode=deep",
+    "timestamp": "2026-02-06 20:23:16.233281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Point Encoding] RistrettoPoint::to_bytes() is used for encoding. Is this encoding compressed and canonical to prevent malleability? (Severity: Medium - Point Malleability)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5047ae0c-29f0-4772-b501-09e61b893fc0?mode=deep",
+    "timestamp": "2026-02-06 20:23:33.803744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [From_bytes Validation] Signature::from_bytes() may accept multiple representations for the same signature. Does schnorrkel enforce strict canonical parsing? (Severity: Medium - Malleability)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c06af513-4273-4c03-8bfc-af0a8efaab89?mode=deep",
+    "timestamp": "2026-02-06 20:23:52.149404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [ThresholdKeys Binding] The Algorithm trait uses ThresholdKeys<Ristretto>. Are these keys bound to the specific Schnorrkel context to prevent cross-context key reuse? (Severity: Critical - Key Reuse)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_fd90b34e-1e6c-48a4-8775-6992cb5307fb?mode=deep",
+    "timestamp": "2026-02-06 20:24:10.766840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify_share()] [Share Validation] Does verify_share() check that shares are non-zero and within the correct scalar range, or could invalid shares pass validation? (Severity: High - Invalid Share)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_10ead38b-b9c0-47e1-b702-fec585821ba9?mode=deep",
+    "timestamp": "2026-02-06 20:24:32.170708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Participant Identification] The function receives ThresholdView but doesn't validate participant identity. Could a participant sign with another's shares? (Severity: Critical - Identity Forgery)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c7ae0f13-54a0-4644-9e18-4231150ef948?mode=deep",
+    "timestamp": "2026-02-06 20:24:53.089997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Byzantine Nonce] If a Byzantine participant provides an invalid nonce that causes PublicKey::from_bytes() to panic, can they DoS the entire signing session? (Severity: High - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_f4aae95b-c6ac-4677-9410-15caef95bd87?mode=deep",
+    "timestamp": "2026-02-06 20:25:14.915064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Malformed Transcript] Could a Byzantine participant manipulate their local transcript to produce a different challenge scalar, causing signature aggregation to fail? (Severity: High - Signing Failure)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_102eeeca-c7dd-4f65-92cb-9bc4a2742a55?mode=deep",
+    "timestamp": "2026-02-06 20:25:37.628836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Share Injection] If a Byzantine coordinator injects additional signature shares beyond the threshold, could this cause verification failures or worse? (Severity: Medium - Protocol Deviation)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0b29f778-dc62-4b42-91d9-63d7c628f9b7?mode=deep",
+    "timestamp": "2026-02-06 20:26:01.100155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: Schnorrkel::new()] [Protocol Version] The transcript is labeled 'FROST Schnorrkel'. If the protocol is upgraded, could old and new versions have signature compatibility issues? (Severity: Medium - Version Confusion)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ab898472-b30b-4fbc-b092-274af1e018eb?mode=deep",
+    "timestamp": "2026-02-06 20:26:24.995442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Overall] [Algorithm Evolution] The Algorithm trait is implemented for a specific FROST version. If FROST3 or FROST4 introduces changes, could outdated implementations remain in use? (Severity: Low - Technical Debt)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c20528fc-654e-4b09-bb53-c2d8d3ad9514?mode=deep",
+    "timestamp": "2026-02-06 20:26:49.930945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: sign_share()] [Concat Memory] The concat() operation allocates. For a 4GB context + large message, could this cause out-of-memory errors during signing? (Severity: Medium - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_0d09bd40-f2e2-4867-814e-4a8155ab9cb1?mode=deep",
+    "timestamp": "2026-02-06 20:27:14.617891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: SchnorrkelHram::hram()] [Stack Overflow] The SigningTranscript and intermediate conversions may use stack allocation. Could deeply nested calls cause stack overflow? (Severity: Low - DoS)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_80994e1f-fa52-44e7-9bc0-935b21a1c11b?mode=deep",
+    "timestamp": "2026-02-06 20:27:39.871785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Struct: Schnorrkel] [Memory Leak] If msg is set but verify() never uses it (e.g., signing fails), is the Vec leaked, or does Drop handle it? (Severity: Low - Resource Leak)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5904e2b9-e80f-405d-9fb9-9144036fa394?mode=deep",
+    "timestamp": "2026-02-06 20:28:05.432609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Functions: sign_share() & verify()] [Msg Consistency] sign_share() stores msg, verify() reads it. If these are called out of order or on different instances, could verification use the wrong message? (Severity: Critical - Message Confusion)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ec665373-d64c-4a77-a6b1-702db2899a55?mode=deep",
+    "timestamp": "2026-02-06 20:28:32.265410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Functions: new() & sign_share()] [Context Consistency] new() sets self.context, sign_share() uses it. If context is a dangling reference (despite 'static), could this cause memory unsafety? (Severity: Critical - Memory Safety)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5da65a83-26ad-41a1-97f6-9292d60505b3?mode=deep",
+    "timestamp": "2026-02-06 20:28:58.006978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Functions: hram() & verify()] [Point Format] hram() converts to schnorrkel PublicKey, verify() converts from Ristretto. Are these conversions lossless and bijective? (Severity: High - Conversion Error)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_11690006-af27-4ccd-aa8d-1a4bf033dd5e?mode=deep",
+    "timestamp": "2026-02-06 20:29:25.002896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: crypto/schnorrkel/src/lib.rs] [Function: verify()] [Verification Failure] If schnorrkel's verify() returns Err, the filter returns None. Is this None distinguishable from other failure modes in the calling code? (Severity: Medium - Error Handling)",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4d26a6e1-181b-4e86-9626-2aab1ec06e19?mode=deep",
+    "timestamp": "2026-02-06 20:29:52.660483",
+    "report_generated": false
+  }
+]
