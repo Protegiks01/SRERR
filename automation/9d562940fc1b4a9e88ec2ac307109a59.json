@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [High - DoS] Can the binary search at lines 109-117 be forced into O(n*log(n)) time with carefully crafted invalid statements?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_c9069743-dc20-4024-b2a1-e8c2553dc2c6?mode=deep",
+    "timestamp": "2026-02-06 20:28:10.018345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: flat()] [Critical - DoS] Can nested Vec allocations cause stack exhaustion if statement vectors are deeply nested (though type system prevents this)?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_e9726fa3-562a-498b-ac5e-af901c5f33e0?mode=deep",
+    "timestamp": "2026-02-06 20:28:22.101006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Multiple Functions] [Medium - Resource Leak] If BatchVerifier is cloned multiple times, do all clones properly zeroize, or could this leak sensitive scalars?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bbb3bc44-35a2-4a5d-a359-b4d20b6433aa?mode=deep",
+    "timestamp": "2026-02-06 20:28:35.269207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Fund Loss] If batch verification is used for DEX swap signatures, can crafted invalid swaps pass verification and drain liquidity pools?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_775c3cbe-3436-4ae4-b965-d8b950033dc9?mode=deep",
+    "timestamp": "2026-02-06 20:28:48.171658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Mint/Burn Imbalance] Can batch verification of mint/burn proofs allow unbalanced operations where mints exceed burns due to weight cancellation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_175bab1d-9770-4593-8ffc-7d17814eb1de?mode=deep",
+    "timestamp": "2026-02-06 20:29:02.068778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Critical - Economic Attack] If blame_vartime() incorrectly identifies a valid swap as invalid, could this cause wrongful refunds and economic loss?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a07b2f8d-42a5-424f-b152-f1fe627e2d23?mode=deep",
+    "timestamp": "2026-02-06 20:29:17.739035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - AMM Invariant Break] Can batch verification of constant product (xy=k) proofs allow violation of the invariant through algebraic manipulation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a56c54b2-549d-4adf-9a83-19b956c91851?mode=deep",
+    "timestamp": "2026-02-06 20:29:33.104959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [Critical - Solvency Risk] When verifying reserve proofs, can attackers exploit random weighting to make undercollateralized positions appear solvent?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_57199432-f186-4470-9f08-2da3fa54449c?mode=deep",
+    "timestamp": "2026-02-06 20:29:50.118218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [Critical - Double-Spend] Can batch verification of Bitcoin transaction signatures allow double-spends if invalid signatures cancel out valid ones?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1d3da140-8aad-4a48-a0b3-f77648a8d85a?mode=deep",
+    "timestamp": "2026-02-06 20:30:07.677830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: queue()] [High - Finality Break] If used to verify Ethereum finality proofs in batch, can manipulated proofs pass verification and accept unfinalized blocks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a6d2a49c-8937-47a4-8927-f5017697a516?mode=deep",
+    "timestamp": "2026-02-06 20:30:25.540476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: blame_vartime()] [Critical - Fund Loss] When blaming invalid Monero output proofs, can incorrect attribution cause legitimate outputs to be rejected and funds lost?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_93d9c251-f2dc-4c01-8dcc-0587ddd6ddab?mode=deep",
+    "timestamp": "2026-02-06 20:30:44.179434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: serai/crypto/multiexp/src/batch.rs] [Function: verify()] [High - Instruction Forgery] Can batch verification of cross-chain instruction signatures allow forged instructions that violate network-specific limits (OP_RETURN 80 bytes)?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_dd05a958-9699-47c1-8160-87926830c276?mode=deep",
+    "timestamp": "2026-02-06 20:31:05.180463",
+    "report_generated": false
+  }
+]
