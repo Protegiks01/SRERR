@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 69] [Reduction - Medium] Scalar::reduce from U256 - does this handle the case where the hash output equals or exceeds the curve order correctly?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_26202b60-ecae-491f-8355-5c030549e62e?mode=deep",
+    "timestamp": "2026-02-06 19:42:52.697445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 72] [Constant Time - Critical] The conditional_select for negating c - is this actually constant-time when Choice is false, or can it leak through speculation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_557ce596-8fa0-4419-9164-c5d5aa454138?mode=deep",
+    "timestamp": "2026-02-06 19:43:05.165155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 90] [State - Medium] FrostSchnorr::ietf() - does this properly initialize transcript state, or can stale state from previous sessions leak through?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_a5cb4910-fcd1-41a2-b982-4a764d89b234?mode=deep",
+    "timestamp": "2026-02-06 19:43:18.636777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 146] [Negation - Critical] The conditional negation of s based on needs_negation(&sig.R) - can this ever produce invalid signatures if the negation logic is wrong?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_8c00a4e7-cc79-44ab-9918-d5e999ed5626?mode=deep",
+    "timestamp": "2026-02-06 19:43:32.078596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 148] [Array Slice - High] The [1..] slice assumes the signature is at least 65 bytes - what prevents shorter signatures from causing panics here?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4cb7f311-63ba-4835-9317-c2af21c10341?mode=deep",
+    "timestamp": "2026-02-06 19:43:46.244336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Line 148] [Conversion - Medium] The try_into().unwrap() - can this ever fail if the FROST signature format changes or is malformed?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_80b7591c-3dbd-42fa-9440-22d5349e8681?mode=deep",
+    "timestamp": "2026-02-06 19:44:01.416180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Consensus] [Share Aggregation - Critical] When aggregating signature shares from t-of-n validators, is there validation that exactly t shares are used, not t-1 or t+1?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_80f32fcc-75df-4c6f-9ab5-c3675bfa9b6d?mode=deep",
+    "timestamp": "2026-02-06 19:44:17.323022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Consensus] [Nonce Aggregation - High] Does nonce aggregation use the same participant set ordering across all validators to ensure consistent nonce sums?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_ed1fe2f1-bf73-48b8-97dc-533ad3c6367a?mode=deep",
+    "timestamp": "2026-02-06 19:44:35.275463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Consensus] [Challenge Consistency - Critical] Can different validators compute different challenges due to floating-point errors or scalar reduction differences?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_bfe396a3-fa32-4d89-a111-8261a8a5d5cc?mode=deep",
+    "timestamp": "2026-02-06 19:44:53.538495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [State Machine] [Signing Order - High] Must verify() be called after sign_share(), or can calling them out of order corrupt internal state?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_51bde5f5-c792-47eb-985b-13cc1d30fff1?mode=deep",
+    "timestamp": "2026-02-06 19:45:12.434917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [State Machine] [Reuse Prevention - Critical] Can the same Schnorr instance be reused for multiple signing sessions, and if so, does this cause nonce or transcript reuse?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_628f4ea2-d837-4745-85d4-23fa01217706?mode=deep",
+    "timestamp": "2026-02-06 19:45:33.082839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [State Machine] [Abort Handling - Medium] If a signing session is aborted mid-way, are all nonces and state properly cleared to prevent leakage in the next session?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4996b8ed-d544-4174-9859-be8490a26532?mode=deep",
+    "timestamp": "2026-02-06 19:45:55.191362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Network] [Share Transport - High] When signature shares are transmitted between validators, is there authentication to prevent MITM attacks that inject false shares?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_788db855-ebde-4eda-9e6f-77f00c474041?mode=deep",
+    "timestamp": "2026-02-06 19:46:17.440700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Network] [Nonce Commitment - High] Are nonce commitments transmitted and verified before nonces are revealed to prevent adaptive chosen-nonce attacks?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_1341e3b2-649a-43bf-b009-b56f6adcdc32?mode=deep",
+    "timestamp": "2026-02-06 19:46:41.136315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Network] [Message Authentication - Medium] Does the protocol ensure that all signing messages are authenticated to prevent message injection or modification?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_5414cb26-47af-449b-9f3b-b2e4441b80e5?mode=deep",
+    "timestamp": "2026-02-06 19:47:04.768857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Integration] [Key Tweaking - High] The test file shows tweak_keys() being used - does key tweaking preserve the threshold signature security properties?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_152efc30-415b-46eb-9b87-4870af433d91?mode=deep",
+    "timestamp": "2026-02-06 19:47:28.590982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Integration] [Group Key Derivation - Critical] Is the group key used in verify() the same key used to derive Bitcoin addresses, or can they diverge causing unspendable funds?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_d1667f1c-9f05-433b-8b56-5a5a071a04c7?mode=deep",
+    "timestamp": "2026-02-06 19:47:54.742414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin/src/crypto.rs] [Integration] [Message Hash - Medium] The test shows SHA256 hashing of messages - is this hash binding properly included in the BIP-340 challenge computation?",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_4395c3fe-e413-429b-81e8-48c4b8d99039?mode=deep",
+    "timestamp": "2026-02-06 19:48:20.490218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: networks/bitcoin\n\n### Citations\n\n**File:** networks/bitcoin/src/crypto.rs (L1-163)\n```rust\nuse subtle::{Choice, ConstantTimeEq, ConditionallySelectable};\n\nuse k256::{\n  elliptic_curve::sec1::{Tag, ToEncodedPoint},\n  ProjectivePoint,\n};\n\nuse bitcoin::key::XOnlyPublicKey;\n\n/// Get the x coordinate of a non-infinity point.\n///\n/// Panics on invalid input.\nfn x(key: &ProjectivePoint) -> [u8; 32] {\n  let encoded = key.to_encoded_point(true);\n  (*encoded.x().expect(",
+    "url": "https://deepwiki.com/search/-serai-security-audit-prompt-s_57f5e66d-cf6f-456f-a21f-7707c6afe954?mode=deep",
+    "timestamp": "2026-02-06 19:48:46.924279",
+    "report_generated": false
+  }
+]
